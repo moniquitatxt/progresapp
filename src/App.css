@@ -10,8 +10,40 @@ body {
 }
 
 @media screen and (min-width: 415px) {
+  body {
+    background-image: url("background-login.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .title {
-    background-color: blue;
+    height: 1vh;
+  }
+  .App {
+    margin-top: 10vh;
+    margin-bottom: 10vh ;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    margin-left: 35%;
+    margin-right: 35%;
+    border-radius: 10pt;
+    -webkit-box-shadow: 3px 3px 3px  #3c3b3e;
+    -moz-box-shadow: 3px 3px 3px  #3c3b3e;
+    box-shadow: 3px 3px 3px  #3c3b3e;
+  }
+  .titlepc {
+    height: 30vh;
+    background-image: url("title-loginpc.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .login {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+  }
+  .appart {
+    margin-top: 30pt;
   }
 }
 

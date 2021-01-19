@@ -6,7 +6,9 @@ import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material
 
 const CssTextField = withStyles({
   root: {
-    width: '60%',
+    
+    width: 250,
+
     '& label.Mui-focused': {
       color: '#475694',
     },
@@ -31,7 +33,7 @@ const ColorButton = withStyles((theme) => ({
   root: {
     color: theme.palette.getContrastText("#475694"),
     backgroundColor: "#475694",
-    width: '60%',
+    width: 250,
     height: 45,
     '&:hover': {
       backgroundColor: "#475694",
@@ -50,6 +52,7 @@ function App() {
   return (
     <div className="App">
       <div className="title" />
+      <div className="titlepc" />
       <form className="login">
       <CssTextField
         className={classes.margin}
