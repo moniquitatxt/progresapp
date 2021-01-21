@@ -25,6 +25,7 @@ body {
     justify-content: center;
     align-items: center;
     background: #fff;
+    min-width: 41vh;
     margin-left: 35%;
     margin-right: 35%;
     border-radius: 10pt;
@@ -43,7 +44,7 @@ body {
     margin-bottom: 5vh;
   }
   .appart {
-    margin-top: 30pt;
+    margin-top: 20pt;
   }
 }
 

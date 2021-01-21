@@ -4,39 +4,36 @@ import './App.css';
 import { TextField, Button } from '@material-ui/core';
 import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
-const CssTextField = withStyles({
+const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
     
     width: 250,
 
-    '& label.Mui-focused': {
+    '& label.Mui-focused': { //color del label cuando se haga clck
       color: '#475694',
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#475694',
-    },
-    '& .MuiOutlinedInput-root': {
+    '& .MuiOutlinedInput-root': {    //color del borde del textfield
       '& fieldset': {
         borderColor: '#b39490',
       },
-      '&:hover fieldset': {
+      '&:hover fieldset': {        //color del borde del textfield cuando el mouse este encima
         borderColor: '#b39490',
       },
-      '&.Mui-focused fieldset': {
+      '&.Mui-focused fieldset': {   //color del borde del textfield cuando se clickea
         borderColor: '#475694',
       },
     },
   },
 })(TextField);
 
-const ColorButton = withStyles((theme) => ({
+const ColorButton = withStyles((theme) => ({          //estilos del boton
   root: {
     color: theme.palette.getContrastText("#475694"),
     backgroundColor: "#475694",
     width: 250,
     height: 45,
-    '&:hover': {
-      backgroundColor: "#475694",
+    '&:hover': {      //cuando el mouse este encima del boton, o en su defecto lo clickee
+      backgroundColor: "#232b4a",
     },
   },
 }))(Button);
