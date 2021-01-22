@@ -1,10 +1,10 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { TextField, Button } from '@material-ui/core';
-import { createMuiTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import React from "react";
+import titlepc from "./title.svg";
+import "./App.css";
+import { TextField, Button, Container } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
-const CssTextField = withStyles({        //Editar estilos de TextField
+/*const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
     
     width: 250,
@@ -24,52 +24,82 @@ const CssTextField = withStyles({        //Editar estilos de TextField
       },
     },
   },
-})(TextField);
+})(TextField);*/
 
-const ColorButton = withStyles((theme) => ({          //estilos del boton
-  root: {
-    color: theme.palette.getContrastText("#475694"),
-    backgroundColor: "#475694",
-    width: 250,
-    height: 45,
-    '&:hover': {      //cuando el mouse este encima del boton, o en su defecto lo clickee
-      backgroundColor: "#232b4a",
+// const ColorButton = withStyles((theme) => ({
+//   //estilos del boton
+//   root: {
+//     color: theme.palette.getContrastText("#475694"),
+//     backgroundColor: "#475694",
+//     width: 250,
+//     height: 45,
+//     "&:hover": {
+//       //cuando el mouse este encima del boton, o en su defecto lo clickee
+//       backgroundColor: "#232b4a",
+//     },
+//   },
+// }))(Button);
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#475694",
+    },
+    secondary: {
+      main: "#d3485a",
+    },
+    tertiary: {
+      main: "#fb86bb",
+    },
+    quaternary: {
+      main: "#ffe4d4",
+    },
+    quinary: {
+      main: "#232b4a",
+    },
+    sextarian: {
+      main: "#b39490",
+    },
+    septenary: {
+      main: "#fca976",
     },
   },
-}))(Button);
-
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
+});
 
 function App() {
-  const classes = useStyles();
   return (
-    <div className="App">
-      <div className="title" />
-      <div className="titlepc" />
-      <form className="login">
-      <CssTextField
-        className={classes.margin}
-        label="Correo UCAB"
-        variant="outlined"
-        id="custom-css-outlined-input-email"
-      />
-        <div className="appart">
-          <CssTextField
-            className={classes.margin}
-            label="Contraseña"
-            type="password"
-            variant="outlined"
-            id="custom-css-outlined-input-pass"
-          />
+    <div className="app">
+      <div className="cLogin">
+        {/* Logo */}
+        <div className="iLogo">
+          <img src={titlepc} />
         </div>
-      </form>
-      <ColorButton variant="contained" color="primary" className={classes.margin}>
-        Ingresar
-      </ColorButton>
+        <ThemeProvider theme={theme}>
+          {/* Inputs */}
+          <div className="cInputs">
+            <div className="tfMail">
+              <TextField
+                fullWidth
+                label="Correo Ucab"
+                variant="outlined"
+              ></TextField>
+            </div>
+            <div className="tfPassword">
+              <TextField
+                fullWidth
+                label="Contraseña"
+                variant="outlined"
+              ></TextField>
+            </div>
+          </div>
+          {/* Button */}
+          <div className="bLogin">
+            <Button variant="contained" color="primary">
+              Ingresar
+            </Button>
+          </div>
+        </ThemeProvider>
+      </div>
     </div>
   );
 }

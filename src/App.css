@@ -1,68 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+* {
   text-align: center;
+  font-family: "Quicksand", sans-serif;
 }
 
 body {
-  background-color: #FAF3F0;
-  font-family: 'Quicksand', sans-serif;
+  background-color: #faf3f0;
 }
 
-@media screen and (min-width: 415px) {
+.tfMail,
+.tfPassword {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cInputs {
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 320px;
+}
+
+.bLogin {
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 600px) {
   body {
     background-image: url("background-login.svg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
   }
-  .title {
-    height: 1vh;
-  }
-  .App {
-    margin-top: 10vh;
-    margin-bottom: 10vh ;
-    height: 80vh;
-    justify-content: center;
-    align-items: center;
+
+  .cLogin {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 480px;
+    width: 400px;
+    padding-top: 5px;
     background: #fff;
-    min-width: 41vh;
-    margin-left: 35%;
-    margin-right: 35%;
+    justify-content: center;
     border-radius: 10pt;
-    -webkit-box-shadow: 3px 3px 3px  #3c3b3e;
-    -moz-box-shadow: 3px 3px 3px  #3c3b3e;
-    box-shadow: 3px 3px 3px  #3c3b3e;
+    -webkit-box-shadow: 3px 3px 3px #3c3b3e;
+    -moz-box-shadow: 3px 3px 3px #3c3b3e;
+    box-shadow: 3px 3px 3px #3c3b3e;
   }
-  .titlepc {
-    height: 30vh;
-    background-image: url("title-loginpc.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0px;
   }
-  .login {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-  }
-  .appart {
-    margin-top: 20pt;
+
+  .iLogo {
+    max-width: 100%;
+    height: 200px;
   }
 }
 
-@media screen and (max-width: 414px) {
-  .title {
-    margin-top: -12pt;
-    height: 120pt;
-    background-image: url("title.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 20pt;
-  }
-  .login {
-    margin-top: 20vh;
-    margin-bottom: 20vh;
-  }
-  .appart {
-    margin-top: 40pt;
-  }
-
+/* Telefonos pequeños */
+@media only screen and (max-width: 600px) {
 }
