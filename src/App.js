@@ -1,5 +1,5 @@
 import React from "react";
-import titlepc from "./title-loginpc.svg";
+import titlepc from "./assets/title-loginpc.svg";
 import "./App.css";
 import { TextField, Button, Container } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
