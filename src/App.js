@@ -1,5 +1,5 @@
 import React from "react";
-import titlepc from "./title.svg";
+import titlepc from "./title-loginpc.svg";
 import "./App.css";
 import { TextField, Button, Container } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -40,26 +40,34 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 //   },
 // }))(Button);
 
+//Tema
 const theme = createMuiTheme({
   palette: {
+    //Moradito clarito
     primary: {
       main: "#475694",
     },
+    //Rojosado
     secondary: {
       main: "#d3485a",
     },
+    //Rosado
     tertiary: {
       main: "#fb86bb",
     },
+    //Cremita
     quaternary: {
       main: "#ffe4d4",
     },
+    //Morado oscuro
     quinary: {
       main: "#232b4a",
     },
+    //Marron claro
     sextarian: {
       main: "#b39490",
     },
+    //Mostaza
     septenary: {
       main: "#fca976",
     },
@@ -74,9 +82,11 @@ function App() {
         <div className="iLogo">
           <img src={titlepc} />
         </div>
+        {/* Tema */}
         <ThemeProvider theme={theme}>
           {/* Inputs */}
           <div className="cInputs">
+            {/* TextField del correo */}
             <div className="tfMail">
               <TextField
                 fullWidth
@@ -84,17 +94,19 @@ function App() {
                 variant="outlined"
               ></TextField>
             </div>
+            {/* TextField de la contraseña */}
             <div className="tfPassword">
               <TextField
                 fullWidth
                 label="Contraseña"
                 variant="outlined"
+                type="password"
               ></TextField>
             </div>
           </div>
-          {/* Button */}
+          {/* Boton para ingresar */}
           <div className="bLogin">
-            <Button variant="contained" color="primary">
+            <Button variant="contained" fullWidth color="primary">
               Ingresar
             </Button>
           </div>

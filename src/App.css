@@ -1,37 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
-* {
-  text-align: center;
-  font-family: "Quicksand", sans-serif;
-}
 
-body {
-  background-color: #faf3f0;
-}
-
-.tfMail,
-.tfPassword {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
+/* Contenedor de los cuadros de texto */
 .cInputs {
-  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 320px;
+  margin-bottom: 10%;
 }
 
+/* Todas las imagenes de la pantalla, que en este caso solo hay una, 
+si hubieran mas se puede especificar la jerarquía para saber cual 
+imagen se está modificando */
+img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0px;
+}
+
+/* Contenedor del botón de ingresar */
 .bLogin {
-  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Computadores o dispositivos mayores a 600px */
 @media screen and (min-width: 600px) {
+  /* Cuerpo de la pantalla */
   body {
     background-image: url("background-login.svg");
     background-repeat: no-repeat;
     background-size: auto;
   }
 
+  /* Contenedor del Login */
   .cLogin {
     margin-right: auto;
     margin-left: auto;
@@ -39,7 +39,6 @@ body {
     margin-bottom: 5%;
     height: 480px;
     width: 400px;
-    padding-top: 5px;
     background: #fff;
     justify-content: center;
     border-radius: 10pt;
@@ -48,18 +47,68 @@ body {
     box-shadow: 3px 3px 3px #3c3b3e;
   }
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0px;
-  }
-
+  /* Contenedor de la imagen del logo */
   .iLogo {
+    background-color: #ffe4d4;
     max-width: 100%;
     height: 200px;
+    border-top-right-radius: 10pt;
+    border-top-left-radius: 10pt;
+  }
+
+  /* Contenedor de ambos cuadros de texto */
+  .cInputs {
+    max-width: 320px;
+  }
+
+  /* Contenedor de cada uno de los text fields */
+  .tfMail,
+  .tfPassword {
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+
+  /* Contenedor del boton para ingresar */
+  .bLogin {
+    margin-bottom: 20px;
+    max-width: 200px;
   }
 }
 
-/* Telefonos pequeños */
+/* Telefonos */
 @media only screen and (max-width: 600px) {
+  /* Cuerpo de la pantalla */
+  body {
+    background-color: #faf3f0;
+  }
+
+  /* Contenedor de la imagen del logo */
+  .iLogo {
+    background-color: #ffe4d4;
+    max-width: 100%;
+  }
+
+  /* Contenedor de ambos cuadros de texto */
+  .cInputs {
+    max-width: 280px;
+    padding-top: 5vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+  }
+
+  /* Contenedor de cada textfield */
+  .tfMail,
+  .tfPassword {
+    margin-top: 5vh;
+    margin-bottom: 8vh;
+  }
+
+  /* Contenedor del boton */
+  .bLogin {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    max-width: 250px;
+    padding-left: 2vh;
+    padding-right: 2vh;
+  }
 }
