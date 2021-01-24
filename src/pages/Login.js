@@ -40,16 +40,19 @@ import { userLogin } from "../firebase/functions";
 //   },
 // }))(Button);
 
+// Página de Inicio de Sesión
 const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
+  // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
     setUser({ ...user, [name]: value });
   };
 
+  // Función que inicia sesión al clickear el botón
   const login = async () => {
     if (user.email.trim() === "" || user.password.trim() === "") {
       alert("Ingresa tu correo y tu contraseña, por favor.");
