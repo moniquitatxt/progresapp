@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import titlepc from "../assets/title-loginpc.svg";
 import "./Login.css";
-import { TextField, Button } from "@material-ui/core";
+import {
+  TextField,
+  Button,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { userLogin } from "../firebase/functions";
 import { useHistory } from "react-router-dom";
 
@@ -49,12 +55,21 @@ const Login = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const history = useHistory();
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
     setUser({ ...user, [name]: value });
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (e) => {
+    e.preventDefault();
   };
 
   // Función que inicia sesión al clickear el botón
@@ -69,11 +84,11 @@ const Login = () => {
       history.push("/home");
     } catch (error) {
       let message;
-      if (error.code == "auth/invalid-email") {
+      if (error.code === "auth/invalid-email") {
         message = "Ingresa una dirección de correo electrónico válida";
       } else if (
-        error.code == "auth/user-not-found" ||
-        error.code == "auth/wrong-password"
+        error.code === "auth/user-not-found" ||
+        error.code === "auth/wrong-password"
       ) {
         message = "Correo o contraseña inválidos, intenta nuevamente";
       } else {
@@ -99,6 +114,7 @@ const Login = () => {
             fullWidth
             label="Correo Ucab"
             variant="outlined"
+            type="email"
             error={errorMessage}
             onChange={(e) => handleChangeText("email", e.target.value)}
           ></TextField>
@@ -109,9 +125,23 @@ const Login = () => {
             fullWidth
             label="Contraseña"
             variant="outlined"
-            type="password"
+            type={showPassword ? "text" : "password"}
             error={errorMessage}
             onChange={(e) => handleChangeText("password", e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           ></TextField>
         </div>
       </div>
