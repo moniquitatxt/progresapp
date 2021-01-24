@@ -30,12 +30,12 @@ export const studentSignUp = async (user) => {
 export const getStudentTutorings = (uid) => {
   return db
     .collectionGroup("tutorings")
-    .where("students", "array-contains", uid)
+    .where("students.uid", "array-contains", uid)
     .get();
 };
 
 export const getTutoringsByDegree = (degree) => {
   return db
     .collectionGroup("tutorings")
-    .where("degress", "array-contains", degree);
+    .where("degrees", "array-contains", degree);
 };
