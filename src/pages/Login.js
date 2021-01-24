@@ -8,8 +8,8 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { userLogin } from "../firebase/functions";
 import { useHistory } from "react-router-dom";
+import { studentLogin } from "../firebase/functions";
 
 /*const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
@@ -80,7 +80,7 @@ const Login = () => {
     }
 
     try {
-      await userLogin(user.email, user.password);
+      await studentLogin(user.email, user.password);
       history.push("/home");
     } catch (error) {
       let message;

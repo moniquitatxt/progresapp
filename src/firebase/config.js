@@ -14,13 +14,13 @@ firebase.initializeApp({
 });
 
 const auth = firebase.auth();
-const firestore = firebase.firestore();
+const db = firebase.firestore();
 
-firestore.enablePersistence().catch(function (err) {
+db.enablePersistence().catch(function (err) {
   // TODO: Manejar el error
   console.log(err.message);
 });
 
 const analytics = firebase.analytics();
 
-export { auth, firestore, analytics };
+export { auth, db, analytics };
