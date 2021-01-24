@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import titlepc from "../assets/title-loginpc.svg";
 import "./Login.css";
 import { TextField, Button, Container } from "@material-ui/core";
+// import { auth } from "../firebase/config";
 
 /*const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
@@ -40,11 +41,34 @@ import { TextField, Button, Container } from "@material-ui/core";
 // }))(Button);
 
 const Login = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChangeText = (name, value) => {
+    setUser({ ...user, [name]: value });
+  };
+
+  const login = async () => {
+    if (user.email.trim() === "" || user.password.trim() === "") {
+      console.log("Ingresa tu correo y tu contraseña, por favor.");
+      return;
+    }
+
+    try {
+      // TODO: Instalar Firebase para culminar esto
+      // await auth.signInWithEmailAndPassword(user.email, user.password);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="cLogin">
       {/* Logo */}
       <div className="iLogo">
-        <img src={titlepc} />
+        <img src={titlepc} alt="logo" />
       </div>
       {/* Inputs */}
       <div className="cInputs">
@@ -54,6 +78,7 @@ const Login = () => {
             fullWidth
             label="Correo Ucab"
             variant="outlined"
+            onChange={(value) => handleChangeText("email", value)}
           ></TextField>
         </div>
         {/* TextField de la contraseña */}
@@ -63,12 +88,13 @@ const Login = () => {
             label="Contraseña"
             variant="outlined"
             type="password"
+            onChange={(value) => handleChangeText("password", value)}
           ></TextField>
         </div>
       </div>
       {/* Boton para ingresar */}
       <div className="bLogin">
-        <Button variant="contained" fullWidth color="primary">
+        <Button variant="contained" fullWidth color="primary" onClick={login}>
           Ingresar
         </Button>
       </div>
