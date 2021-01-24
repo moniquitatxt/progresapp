@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import titlepc from "../assets/title-loginpc.svg";
 import "./Login.css";
-import { TextField, Button, Container } from "@material-ui/core";
-// import { auth } from "../firebase/config";
+import { TextField, Button } from "@material-ui/core";
+import { userLogin } from "../firebase/functions";
 
 /*const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
@@ -52,15 +52,15 @@ const Login = () => {
 
   const login = async () => {
     if (user.email.trim() === "" || user.password.trim() === "") {
-      console.log("Ingresa tu correo y tu contraseña, por favor.");
+      alert("Ingresa tu correo y tu contraseña, por favor.");
       return;
     }
 
     try {
-      // TODO: Instalar Firebase para culminar esto
-      // await auth.signInWithEmailAndPassword(user.email, user.password);
+      await userLogin(user.email, user.password);
+      alert("Inicio exitoso");
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -78,7 +78,7 @@ const Login = () => {
             fullWidth
             label="Correo Ucab"
             variant="outlined"
-            onChange={(value) => handleChangeText("email", value)}
+            onChange={(e) => handleChangeText("email", e.target.value)}
           ></TextField>
         </div>
         {/* TextField de la contraseña */}
@@ -88,7 +88,7 @@ const Login = () => {
             label="Contraseña"
             variant="outlined"
             type="password"
-            onChange={(value) => handleChangeText("password", value)}
+            onChange={(e) => handleChangeText("password", e.target.value)}
           ></TextField>
         </div>
       </div>

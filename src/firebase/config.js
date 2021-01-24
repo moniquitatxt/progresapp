@@ -17,7 +17,7 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 firestore.enablePersistence().catch(function (err) {
-    // TODO: Manejar el error
+  // TODO: Manejar el error
   console.log(err.message);
 });
 
