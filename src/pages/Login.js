@@ -48,6 +48,8 @@ const Login = () => {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const history = useHistory();
 
   // Función llamada al cambiar el texto del input
@@ -58,16 +60,26 @@ const Login = () => {
   // Función que inicia sesión al clickear el botón
   const login = async () => {
     if (user.email.trim() === "" || user.password.trim() === "") {
-      alert("Ingresa tu correo y tu contraseña, por favor.");
+      setErrorMessage("Ingresa tu correo y tu contraseña, por favor");
       return;
     }
 
     try {
       await userLogin(user.email, user.password);
-      alert("Inicio exitoso");
       history.push("/home");
     } catch (error) {
-      alert(error.message);
+      let message;
+      if (error.code == "auth/invalid-email") {
+        message = "Ingresa una dirección de correo electrónico válida";
+      } else if (
+        error.code == "auth/user-not-found" ||
+        error.code == "auth/wrong-password"
+      ) {
+        message = "Correo o contraseña inválidos, intenta nuevamente";
+      } else {
+        message = "Error de conexión";
+      }
+      setErrorMessage(message);
     }
   };
 
@@ -79,12 +91,15 @@ const Login = () => {
       </div>
       {/* Inputs */}
       <div className="cInputs">
+        {/* Mensaje de error */}
+        {errorMessage && <p>{errorMessage}</p>}
         {/* TextField del correo */}
         <div className="tfMail">
           <TextField
             fullWidth
             label="Correo Ucab"
             variant="outlined"
+            error={errorMessage}
             onChange={(e) => handleChangeText("email", e.target.value)}
           ></TextField>
         </div>
@@ -95,6 +110,7 @@ const Login = () => {
             label="Contraseña"
             variant="outlined"
             type="password"
+            error={errorMessage}
             onChange={(e) => handleChangeText("password", e.target.value)}
           ></TextField>
         </div>
