@@ -3,6 +3,7 @@ import titlepc from "../assets/title-loginpc.svg";
 import "./Login.css";
 import { TextField, Button } from "@material-ui/core";
 import { userLogin } from "../firebase/functions";
+import { useHistory } from "react-router-dom";
 
 /*const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
@@ -47,6 +48,8 @@ const Login = () => {
     password: "",
   });
 
+  const history = useHistory();
+
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
     setUser({ ...user, [name]: value });
@@ -62,6 +65,7 @@ const Login = () => {
     try {
       await userLogin(user.email, user.password);
       alert("Inicio exitoso");
+      history.push("/home");
     } catch (error) {
       alert(error.message);
     }
