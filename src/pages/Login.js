@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import titlepc from "../assets/title-loginpc.svg";
 import "./Login.css";
 import { TextField, Button } from "@material-ui/core";
-import { userLogin } from "../firebase/functions";
+import { studentLogin } from "../firebase/functions";
 
 /*const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
@@ -60,7 +60,7 @@ const Login = () => {
     }
 
     try {
-      await userLogin(user.email, user.password);
+      await studentLogin(user.email, user.password);
       alert("Inicio exitoso");
     } catch (error) {
       alert(error.message);

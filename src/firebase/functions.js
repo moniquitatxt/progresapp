@@ -1,10 +1,10 @@
 import { auth, db } from "./config";
 
-export const userLogin = (email, password) => {
+export const studentLogin = (email, password) => {
   return auth.signInWithEmailAndPassword(email, password);
 };
 
-export const userSignUp = async (user) => {
+export const studentSignUp = async (user) => {
   const response = await auth.createUserWithEmailAndPassword(
     user.email,
     user.password
@@ -17,7 +17,7 @@ export const userSignUp = async (user) => {
     name: user.name,
     // TODO: Consirar alternativas para estos nombres
     idDocument: user.idDocument,
-    degree:  user.degree,
+    degree: user.degree,
     // TODO: Lo mismo del uid con el email
     email: user.email,
     phone: user.phone,
@@ -25,4 +25,17 @@ export const userSignUp = async (user) => {
   };
 
   return db.collection("students").doc(uid).set(data);
+};
+
+export const getStudentTutorings = (uid) => {
+  return db
+    .collectionGroup("tutorings")
+    .where("students", "array-contains", uid)
+    .get();
+};
+
+export const getTutoringsByDegree = (degree) => {
+  return db
+    .collectionGroup("tutorings")
+    .where("degress", "array-contains", degree);
 };
