@@ -96,7 +96,7 @@ const SignUp = () => {
     // Intenta registrar al usuario y lo redirecciona
     try {
       await studentSignUp(user);
-      history.push("/home");
+      //history.push("/home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         errorMessages.email =

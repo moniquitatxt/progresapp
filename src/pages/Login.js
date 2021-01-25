@@ -85,7 +85,8 @@ const Login = () => {
     // Inicia sesión y redirecciona al usuario
     try {
       await studentLogin(user.email.trim(), user.password);
-      history.push("/home");
+      alert("inicio")
+      //history.push("/home");
     } catch (error) {
       let message;
       if (error.code === "auth/invalid-email") {

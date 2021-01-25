@@ -1,10 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import { UserProvider } from "./contexts/UserContext";
+import CustomRoute from "./components/CustomRoute";
 
 //Tema
 const theme = createMuiTheme({
@@ -49,17 +50,17 @@ function App() {
           <Router>
             <Switch>
               {/* Página principal */}
-              <Route exact path="/">
+              <CustomRoute exact path="/" needsAuth={true} >
                 <Home />
-              </Route>
+              </CustomRoute>
               {/* Página de registro */}
-              <Route path="/signup">
+              <CustomRoute path="/signup" needsAuth={false} >
                 <SignUp />
-              </Route>
+              </CustomRoute>
               {/* Página de inicio de sesión */}
-              <Route path="/login">
+              <CustomRoute path="/login" needsAuth={false} >
                 <Login />
-              </Route>
+              </CustomRoute>
             </Switch>
           </Router>
         </UserProvider>
