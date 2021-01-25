@@ -50,15 +50,15 @@ function App() {
           <Router>
             <Switch>
               {/* Página principal */}
-              <CustomRoute exact path="/" needsAuth={true} >
+              <CustomRoute exact path="/" auth={true} >
                 <Home />
               </CustomRoute>
               {/* Página de registro */}
-              <CustomRoute path="/signup" needsAuth={false} >
+              <CustomRoute path="/signup" auth={false} >
                 <SignUp />
               </CustomRoute>
               {/* Página de inicio de sesión */}
-              <CustomRoute path="/login" needsAuth={false} >
+              <CustomRoute path="/login" auth={false} >
                 <Login />
               </CustomRoute>
             </Switch>

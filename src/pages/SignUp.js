@@ -8,7 +8,6 @@ import {
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "./SignUp.css";
 import { studentSignUp } from "../firebase/functions";
-import { useHistory } from "react-router-dom";
 
 // Pantalla de registro
 const SignUp = () => {
@@ -27,8 +26,6 @@ const SignUp = () => {
   const [user, setUser] = useState(initialData);
   const [errorMessages, setErrorMessages] = useState(initialData);
   const [showPassword, setShowPassword] = useState(false);
-
-  const history = useHistory();
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -93,10 +90,9 @@ const SignUp = () => {
       return;
     }
 
-    // Intenta registrar al usuario y lo redirecciona
+    // Intenta registrar al usuario
     try {
       await studentSignUp(user);
-      //history.push("/home");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         errorMessages.email =

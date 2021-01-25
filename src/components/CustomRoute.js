@@ -5,21 +5,20 @@ import {
 } from "react-router-dom";
 import { useUser } from "../contexts/UserContext";
 
-const CustomRoute = ({ children, needsAuth, ...rest }) => {
+const CustomRoute = ({ children, auth, ...rest }) => {
   const user = useUser();
-  console.log(user);
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        (needsAuth ? user : !user) ? (
+        (auth ? user : !user) ? (
           children
         ) : (
           <Redirect
             exact 
             to={{
-              pathname: needsAuth ? "/login" : "/",
+              pathname: auth ? "/login" : "/",
               state: { from: location },
             }}
           />

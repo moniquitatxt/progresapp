@@ -4,7 +4,6 @@ import { signOut } from "../firebase/functions";
 
 const Home = () => {
   const user = useUser();
-  console.log("AAAA");
 
   return (
     <div>

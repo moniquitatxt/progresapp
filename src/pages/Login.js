@@ -8,7 +8,6 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
 import { studentLogin } from "../firebase/functions";
 
 /*const CssTextField = withStyles({        //Editar estilos de TextField
@@ -57,8 +56,6 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const history = useHistory();
-
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
     setUser({ ...user, [name]: value });
@@ -82,11 +79,9 @@ const Login = () => {
       return;
     }
 
-    // Inicia sesión y redirecciona al usuario
+    // Inicia sesión
     try {
       await studentLogin(user.email.trim(), user.password);
-      alert("inicio")
-      //history.push("/home");
     } catch (error) {
       let message;
       if (error.code === "auth/invalid-email") {
