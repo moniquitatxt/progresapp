@@ -6,6 +6,11 @@ export const studentLogin = (email, password) => {
   return promise;
 };
 
+// Cerrar Sesión
+export const signOut = () => {
+  auth.signOut();
+}
+
 // Registro de estudiantes
 export const studentSignUp = async (user) => {
   const response = await auth.createUserWithEmailAndPassword(

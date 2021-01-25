@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import { UserProvider } from "./contexts/UserContext";
 
 //Tema
 const theme = createMuiTheme({
@@ -44,23 +45,24 @@ function App() {
     <div>
       {/* Tema */}
       <ThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            {/* Página de inicio de sesión */}
-            {/* TODO: Al final el login será "/login" y el home "/"" */}
-            <Route exact path="/">
-              <Login />
-            </Route>
-            {/* Página de registro */}
-            <Route path="/signup">
-              <SignUp />
-            </Route>
-            {/* Página principal */}
-            <Route path="/home">
-              <Home />
-            </Route>
-          </Switch>
-        </Router>
+        <UserProvider>
+          <Router>
+            <Switch>
+              {/* Página principal */}
+              <Route exact path="/">
+                <Home />
+              </Route>
+              {/* Página de registro */}
+              <Route path="/signup">
+                <SignUp />
+              </Route>
+              {/* Página de inicio de sesión */}
+              <Route path="/login">
+                <Login />
+              </Route>
+            </Switch>
+          </Router>
+        </UserProvider>
       </ThemeProvider>
     </div>
   );
