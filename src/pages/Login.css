@@ -1,10 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
+
 /* Contenedor de los cuadros de texto */
 .cInputs {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10%;
+}
+
+.regBut {
+  text-align: center;
+  padding-top: 10pt;
+  padding-bottom: 10pt;
+}
+
+.regBut_But {
+  text-decoration: none;
+  color: #475694;
+}
+
+.regBut_But:hover {
+  text-decoration: underline;
+  color: #232b4a;
 }
 
 /* Todas las imagenes de la pantalla, que en este caso solo hay una, 
@@ -37,7 +54,6 @@ img {
     margin-left: auto;
     margin-top: 5%;
     margin-bottom: 5%;
-    height: 480px;
     width: 400px;
     background: #fff;
     justify-content: center;
@@ -70,8 +86,8 @@ img {
 
   /* Contenedor del boton para ingresar */
   .bLogin {
-    margin-bottom: 20px;
     max-width: 200px;
+    justify-content: center;
   }
 }
 
@@ -106,7 +122,6 @@ img {
   /* Contenedor del boton */
   .bLogin {
     margin-top: 10vh;
-    margin-bottom: 10vh;
     max-width: 250px;
     padding-left: 2vh;
     padding-right: 2vh;

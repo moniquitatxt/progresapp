@@ -151,6 +151,9 @@ const Login = () => {
           Ingresar
         </Button>
       </div>
+      <div className="regBut">
+        <a href="SignUp" className="regBut_But">¿No tienes cuenta? ¡Registrate aquí!</a>
+      </div>
     </div>
   );
 };
