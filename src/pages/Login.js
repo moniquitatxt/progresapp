@@ -64,23 +64,27 @@ const Login = () => {
     setUser({ ...user, [name]: value });
   };
 
+  // Función para cambiar visibilidad de la contraseña
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  // Función del icono de de visibilidad
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
   };
 
   // Función que inicia sesión al clickear el botón
   const login = async () => {
-    if (user.email.trim() === "" || user.password.trim() === "") {
+    // Verifica que los input estén llenos
+    if (user.email.trim() === "" || user.password === "") {
       setErrorMessage("Ingresa tu correo y tu contraseña, por favor");
       return;
     }
 
+    // Inicia sesión y redirecciona al usuario
     try {
-      await studentLogin(user.email, user.password);
+      await studentLogin(user.email.trim(), user.password);
       history.push("/home");
     } catch (error) {
       let message;

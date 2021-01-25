@@ -1,10 +1,12 @@
 import { auth, db } from "./config";
 
+// Inicio de sesión de estudiantes con correo y contraseña
 export const studentLogin = (email, password) => {
   const promise = auth.signInWithEmailAndPassword(email, password);
   return promise;
 };
 
+// Registro de estudiantes
 export const studentSignUp = async (user) => {
   const response = await auth.createUserWithEmailAndPassword(
     user.email,
@@ -29,6 +31,7 @@ export const studentSignUp = async (user) => {
   return promise;
 };
 
+// Obtener las tutorías de un estudiante dado su uid
 export const getStudentTutorings = (uid) => {
   return db
     .collectionGroup("tutorings")
@@ -36,6 +39,7 @@ export const getStudentTutorings = (uid) => {
     .get();
 };
 
+// Obtener todas las tutorías de una carrera
 export const getTutoringsByDegree = (degree) => {
   return db
     .collectionGroup("tutorings")

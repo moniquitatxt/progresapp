@@ -10,7 +10,9 @@ import "./SignUp.css";
 import { studentSignUp } from "../firebase/functions";
 import { useHistory } from "react-router-dom";
 
+// Pantalla de registro
 const SignUp = () => {
+  // Estado inicial
   const initialData = {
     name: "",
     idDocument: "",
@@ -21,9 +23,11 @@ const SignUp = () => {
     confirm: "",
   };
 
+  // States
   const [user, setUser] = useState(initialData);
   const [errorMessages, setErrorMessages] = useState(initialData);
   const [showPassword, setShowPassword] = useState(false);
+
   const history = useHistory();
 
   // Función llamada al cambiar el texto del input
@@ -31,23 +35,28 @@ const SignUp = () => {
     setUser({ ...user, [name]: value });
   };
 
+  // Función para cambiar visibilidad de la contraseña
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+  // Función del icono de de visibilidad
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
   };
 
+  // Función de registro del estudiante al clickear el botón
   const signUp = async () => {
     const errorMessages = initialData;
 
+    // Borra los espacios al inicio y al final
     for (const property in user) {
       if (property !== "password" && property !== "confirm") {
         user[property] = user[property].trim();
       }
     }
 
+    // Maneja los errores de inputs vacíos
     if (user.name === "") {
       errorMessages.name = "Ingresa tu nombre y apellido, por favor";
     }
@@ -68,6 +77,7 @@ const SignUp = () => {
       errorMessages.confirm = "Repite tu contraseña, por favor";
     }
 
+    // Verifica que todo input requerido esté lleno
     for (const property in user) {
       if (user[property] === "" && property !== "phone") {
         setErrorMessages(errorMessages);
@@ -75,6 +85,7 @@ const SignUp = () => {
       }
     }
 
+    // Verifica que las contraseñas coincidan
     if (user.password !== user.confirm) {
       errorMessages.confirm =
         "Las contraseñas no coinciden, vuelve a intentarlo";
@@ -82,6 +93,7 @@ const SignUp = () => {
       return;
     }
 
+    // Intenta registrar al usuario y lo redirecciona
     try {
       await studentSignUp(user);
       history.push("/home");
