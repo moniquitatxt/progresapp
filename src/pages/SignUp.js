@@ -7,9 +7,11 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "./SignUp.css";
+import { studentSignUp } from "../firebase/functions";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
-  const [user, setUser] = useState({
+  const initialData = {
     name: "",
     idDocument: "",
     email: "",
@@ -17,10 +19,12 @@ const SignUp = () => {
     degree: "",
     password: "",
     confirm: "",
-  });
+  };
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [user, setUser] = useState(initialData);
+  const [errorMessages, setErrorMessages] = useState(initialData);
   const [showPassword, setShowPassword] = useState(false);
+  const history = useHistory();
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -35,7 +39,67 @@ const SignUp = () => {
     e.preventDefault();
   };
 
-  const signUp = () => {};
+  const signUp = async () => {
+    const errorMessages = initialData;
+
+    for (const property in user) {
+      if (property !== "password" && property !== "confirm") {
+        user[property] = user[property].trim();
+      }
+    }
+
+    if (user.name === "") {
+      errorMessages.name = "Ingresa tu nombre y apellido, por favor";
+    }
+    if (user.idDocument === "") {
+      errorMessages.idDocument = "Ingresa tu cédula, por favor";
+    }
+    if (user.email === "") {
+      errorMessages.email = "Ingresa tu correo, por favor";
+    }
+    if (user.degree === "") {
+      errorMessages.degree = "Ingresa tu carrera, por favor";
+    }
+    if (user.password === "") {
+      errorMessages.password =
+        "Ingresa una contraseña de al menos 6 caracteres, por favor";
+    }
+    if (user.confirm === "") {
+      errorMessages.confirm = "Repite tu contraseña, por favor";
+    }
+
+    for (const property in user) {
+      if (user[property] === "" && property !== "phone") {
+        setErrorMessages(errorMessages);
+        return;
+      }
+    }
+
+    if (user.password !== user.confirm) {
+      errorMessages.confirm =
+        "Las contraseñas no coinciden, vuelve a intentarlo";
+      setErrorMessages(errorMessages);
+      return;
+    }
+
+    try {
+      await studentSignUp(user);
+      history.push("/home");
+    } catch (error) {
+      if (error.code === "auth/invalid-email") {
+        errorMessages.email =
+          "Ingresa una dirección de correo electrónico válida";
+      } else if (error.code === "auth/email-already-in-use") {
+        errorMessages.email =
+          "Ya existe un usuario con esta dirección de correo, intenta nuevamente";
+      } else if (error.code === "auth/weak-password") {
+        errorMessages.password =
+          "Ingresa una contraseña de al menos 6 caracteres, por favor";
+      }
+      // TODO: Pensar en cómo manejar el error de desconexión
+      setErrorMessages(errorMessages);
+    }
+  };
 
   return (
     <div>
@@ -47,7 +111,9 @@ const SignUp = () => {
           fullWidth
           label="Nombre y Apellido"
           variant="outlined"
-          error={errorMessage}
+          required
+          error={errorMessages.name !== ""}
+          helperText={errorMessages.name}
           onChange={(e) => handleChangeText("name", e.target.value)}
         ></TextField>
       </div>
@@ -58,7 +124,9 @@ const SignUp = () => {
           // TODO: Considerar agregar "de identidad"
           label="Cédula"
           variant="outlined"
-          error={errorMessage}
+          required
+          error={errorMessages.idDocument !== ""}
+          helperText={errorMessages.idDocument}
           onChange={(e) => handleChangeText("idDocument", e.target.value)}
         ></TextField>
       </div>
@@ -69,7 +137,9 @@ const SignUp = () => {
           label="Correo"
           variant="outlined"
           type="email"
-          error={errorMessage}
+          required
+          error={errorMessages.email !== ""}
+          helperText={errorMessages.email}
           onChange={(e) => handleChangeText("email", e.target.value)}
         ></TextField>
       </div>
@@ -79,7 +149,8 @@ const SignUp = () => {
           fullWidth
           label="Teléfono"
           variant="outlined"
-          error={errorMessage}
+          error={errorMessages.phone !== ""}
+          helperText={errorMessages.phone}
           onChange={(e) => handleChangeText("phone", e.target.value)}
         ></TextField>
       </div>
@@ -89,7 +160,9 @@ const SignUp = () => {
           fullWidth
           label="Carrera"
           variant="outlined"
-          error={errorMessage}
+          required
+          error={errorMessages.degree !== ""}
+          helperText={errorMessages.degree}
           onChange={(e) => handleChangeText("degree", e.target.value)}
         ></TextField>
       </div>
@@ -100,7 +173,9 @@ const SignUp = () => {
           label="Contraseña"
           variant="outlined"
           type={showPassword ? "text" : "password"}
-          error={errorMessage}
+          required
+          error={errorMessages.password !== ""}
+          helperText={errorMessages.password}
           onChange={(e) => handleChangeText("password", e.target.value)}
           InputProps={{
             endAdornment: (
@@ -125,8 +200,10 @@ const SignUp = () => {
           label="Repetir Contraseña"
           variant="outlined"
           type={showPassword ? "text" : "password"}
-          error={errorMessage}
-          onChange={(e) => handleChangeText("password", e.target.value)}
+          required
+          error={errorMessages.confirm !== ""}
+          helperText={errorMessages.confirm}
+          onChange={(e) => handleChangeText("confirm", e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

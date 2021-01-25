@@ -1,7 +1,8 @@
 import { auth, db } from "./config";
 
 export const studentLogin = (email, password) => {
-  return auth.signInWithEmailAndPassword(email, password);
+  const promise = auth.signInWithEmailAndPassword(email, password);
+  return promise;
 };
 
 export const studentSignUp = async (user) => {
@@ -21,10 +22,11 @@ export const studentSignUp = async (user) => {
     // TODO: Lo mismo del uid con el email
     email: user.email,
     phone: user.phone,
-    isTutor: user.isTutor,
+    isTutor: false,
   };
 
-  return db.collection("students").doc(uid).set(data);
+  const promise = db.collection("students").doc(uid).set(data);
+  return promise;
 };
 
 export const getStudentTutorings = (uid) => {

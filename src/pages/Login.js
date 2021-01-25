@@ -92,7 +92,7 @@ const Login = () => {
       ) {
         message = "Correo o contraseña inválidos, intenta nuevamente";
       } else {
-        message = "Error de conexión";
+        message = "Se produjo un error desconocido";
       }
       setErrorMessage(message);
     }
@@ -115,7 +115,7 @@ const Login = () => {
             label="Correo Ucab"
             variant="outlined"
             type="email"
-            error={errorMessage}
+            error={errorMessage !== ""}
             onChange={(e) => handleChangeText("email", e.target.value)}
           ></TextField>
         </div>
@@ -126,7 +126,7 @@ const Login = () => {
             label="Contraseña"
             variant="outlined"
             type={showPassword ? "text" : "password"}
-            error={errorMessage}
+            error={errorMessage !== ""}
             onChange={(e) => handleChangeText("password", e.target.value)}
             InputProps={{
               endAdornment: (
