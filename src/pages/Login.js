@@ -101,7 +101,7 @@ const Login = () => {
   return (
     <div className="cLogin">
       {/* Logo */}
-      <div className="iLogo">
+      <div className="cHeader">
         <img src={titlepc} alt="logo" />
       </div>
       {/* Inputs */}
@@ -112,7 +112,7 @@ const Login = () => {
         <div className="tfMail">
           <TextField
             fullWidth
-            label="Correo Ucab"
+            label="Correo"
             variant="outlined"
             type="email"
             error={errorMessage !== ""}
@@ -151,8 +151,8 @@ const Login = () => {
           Ingresar
         </Button>
       </div>
-      <div className="regBut">
-        <a href="SignUp" className="regBut_But">¿No tienes cuenta? ¡Registrate aquí!</a>
+      <div className="cBSignUp">
+        <a href="SignUp" className="bSignUp">¿No tienes cuenta? ¡Registrate aquí!</a>
       </div>
     </div>
   );

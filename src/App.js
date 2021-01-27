@@ -6,13 +6,26 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import { UserProvider } from "./contexts/UserContext";
 import CustomRoute from "./components/CustomRoute";
+import { light } from "@material-ui/core/styles/createPalette";
 
 //Tema
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      '"Helvetica Neue"',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+
   palette: {
     //Moradito clarito
     primary: {
-      main: "#475694",
+      main: "#475694",    
     },
     //Rojosado
     secondary: {

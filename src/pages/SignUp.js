@@ -5,6 +5,7 @@ import {
   InputAdornment,
   IconButton,
 } from "@material-ui/core";
+import logo from "../assets/logo.svg";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "./SignUp.css";
 import { studentSignUp } from "../firebase/functions";
@@ -110,11 +111,18 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="cSignUp">
       {/* TODO: Obviamente agregar estilos */}
       {/* TODO: Se puede cambiar el orden de los input como quede mejor */}
+      {/* Logo */}
+      <div className="cHeader">
+        <div className="iLogo">
+          <img src={logo} alt="logo" />
+        </div>
+        <h1>Regístrate en ProgresApp</h1>
+      </div>
       {/* TextField del nombre */}
-      <div>
+      <div className="tfInfo">
         <TextField
           fullWidth
           label="Nombre y Apellido"
@@ -126,7 +134,7 @@ const SignUp = () => {
         ></TextField>
       </div>
       {/* TextField de la cédula */}
-      <div>
+      <div className="tfInfo">
         <TextField
           fullWidth
           // TODO: Considerar agregar "de identidad"
@@ -138,8 +146,31 @@ const SignUp = () => {
           onChange={(e) => handleChangeText("idDocument", e.target.value)}
         ></TextField>
       </div>
+      {/* TextField del teléfono TODO: Ver si se puede mejorar*/}
+      <div className="tfInfo">
+        <TextField
+          fullWidth
+          label="Teléfono"
+          variant="outlined"
+          error={errorMessages.phone !== ""}
+          helperText={errorMessages.phone}
+          onChange={(e) => handleChangeText("phone", e.target.value)}
+        ></TextField>
+      </div>
+      {/* TODO: La carrera no se ingresará así al final */}
+      <div className="tfInfo">
+        <TextField
+          fullWidth
+          label="Carrera"
+          variant="outlined"
+          required
+          error={errorMessages.degree !== ""}
+          helperText={errorMessages.degree}
+          onChange={(e) => handleChangeText("degree", e.target.value)}
+        ></TextField>
+      </div>
       {/* TextField del correo */}
-      <div>
+      <div className="tfInfo">
         <TextField
           fullWidth
           label="Correo"
@@ -151,31 +182,8 @@ const SignUp = () => {
           onChange={(e) => handleChangeText("email", e.target.value)}
         ></TextField>
       </div>
-      {/* TextField del teléfono TODO: Ver si se puede mejorar*/}
-      <div>
-        <TextField
-          fullWidth
-          label="Teléfono"
-          variant="outlined"
-          error={errorMessages.phone !== ""}
-          helperText={errorMessages.phone}
-          onChange={(e) => handleChangeText("phone", e.target.value)}
-        ></TextField>
-      </div>
-      {/* TODO: La carrera no se ingresará así al final */}
-      <div>
-        <TextField
-          fullWidth
-          label="Carrera"
-          variant="outlined"
-          required
-          error={errorMessages.degree !== ""}
-          helperText={errorMessages.degree}
-          onChange={(e) => handleChangeText("degree", e.target.value)}
-        ></TextField>
-      </div>
       {/* TextField de la contraseña */}
-      <div>
+      <div className="tfInfo">
         <TextField
           fullWidth
           label="Contraseña"
@@ -202,7 +210,7 @@ const SignUp = () => {
         ></TextField>
       </div>
       {/* TextField de repetir contraseña */}
-      <div>
+      <div className="tfInfo">
         <TextField
           fullWidth
           label="Repetir Contraseña"
@@ -229,7 +237,7 @@ const SignUp = () => {
         ></TextField>
       </div>
       {/* Boton para registrarse */}
-      <div>
+      <div className="bSignUp">
         <Button variant="contained" fullWidth color="primary" onClick={signUp}>
           Registrarse
         </Button>
