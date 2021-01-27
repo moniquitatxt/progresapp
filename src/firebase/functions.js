@@ -1,4 +1,4 @@
-import { auth, db } from "./config";
+import { auth, db, storage } from "./config";
 
 // Inicio de sesión de estudiantes con correo y contraseña
 export const studentLogin = (email, password) => {
@@ -9,7 +9,7 @@ export const studentLogin = (email, password) => {
 // Cerrar Sesión
 export const signOut = () => {
   auth.signOut();
-}
+};
 
 // Registro de estudiantes
 export const studentSignUp = async (user) => {
@@ -34,6 +34,16 @@ export const studentSignUp = async (user) => {
 
   const promise = db.collection("students").doc(uid).set(data);
   return promise;
+};
+
+// Subir archivo al storage
+export const uploadFile = async (file, path) => {
+  const fileRef = storage.ref().child(path);
+
+  // TODO: Tener cuidado con los posibles errores y colocar metadata
+  await fileRef.put(file);
+  const url = await fileRef.getDownloadURL();
+  return url;
 };
 
 // Obtener las tutorías de un estudiante dado su uid

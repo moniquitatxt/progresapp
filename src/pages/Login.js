@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { studentLogin } from "../firebase/functions";
+import { Link } from "react-router-dom";
 
 /*const CssTextField = withStyles({        //Editar estilos de TextField
   root: {
@@ -152,7 +153,9 @@ const Login = () => {
         </Button>
       </div>
       <div className="cBSignUp">
-        <a href="SignUp" className="bSignUp">¿No tienes cuenta? ¡Registrate aquí!</a>
+        <Link to="/signup" className="bSignUp">
+          ¿No tienes cuenta? ¡Registrate aquí!
+        </Link>
       </div>
     </div>
   );

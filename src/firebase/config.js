@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import "firebase/analytics";
+import "firebase/storage";
 
 firebase.initializeApp({
   apiKey: "AIzaSyCLOhflVNjR3LxVfT6BFlFSdUz8b6W7xak",
@@ -15,12 +16,12 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+const analytics = firebase.analytics();
+const storage = firebase.storage();
 
 db.enablePersistence().catch(function (err) {
   // TODO: Manejar el error
   console.log(err.message);
 });
 
-const analytics = firebase.analytics();
-
-export { auth, db, analytics };
+export { auth, db, analytics, storage };
