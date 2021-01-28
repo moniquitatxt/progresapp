@@ -738,6 +738,257 @@ export const degrees = [
         id: "fund_der_pen",
         name: "Fundamentos del Derecho Penal y de la Pena",
       },
+      {
+        id: "teo_gen_pro",
+        name: "Teoría General del Proceso I",
+      },
+      {
+        id: "der_cons_ven1",
+        name: "Derecho Constitucional Venezolano I: Historia y Parte Dogmática",
+      },
+      {
+        id: "der_bienes_general",
+        name: "Derecho de Bienes y Derechos Reales: Parte General",
+      },
+      {
+        id: "seminario",
+        name: "Seminario",
+      },
+      {
+        id: "ins_jur_rom2",
+        name: "Instituciones Jurídicas Romanas II",
+      },
+      {
+        id: "teo_gen_pro2",
+        name: "Teoría General del Proceso II",
+      },
+      {
+        id: "der_cons_ven2",
+        name:
+          "Derecho Constitucional Venezolano II: Parte Orgánica y Garantías",
+      },
+      {
+        id: "teoria_delito",
+        name: "Teoría del Delito",
+      },
+      {
+        id: "der_int_pub",
+        name: "Derecho Internacional Público",
+      },
+      {
+        id: "ecologia",
+        name: "Ecología, Ambiente y Sustentabilidad",
+      },
+      {
+        id: "der_bienes_esp",
+        name: "Derecho de Bienes y Derechos Reales: Parte Especial",
+      },
+      {
+        id: "ingles_jur1",
+        name: "Inglés Jurídico I",
+      },
+      {
+        id: "oratoria",
+        name: "Oratoria",
+      },
+      {
+        id: "filo_der1",
+        name: "Filosofía del Derecho I",
+      },
+      {
+        id: "del_esp",
+        name: "Delitos Especiales",
+      },
+      {
+        id: "der_pro_c1",
+        name: "Derecho Procesal Civil I",
+      },
+      {
+        id: "fund_der_adm",
+        name: "Fundamentos de Derecho Administrativo",
+      },
+      {
+        id: "inst_de_in_pu",
+        name: "Instituciones del Derecho Internacional Público",
+      },
+      {
+        id: "crimi",
+        name: "Criminología",
+      },
+      {
+        id: "teo_g_obli",
+        name: "Teoría General de las Obligaciones",
+      },
+      {
+        id: "ingles_jur2",
+        name: "Inglés Jurídico II",
+      },
+      {
+        id: "filo_der2",
+        name: "Filosofía del Derecho II",
+      },
+      {
+        id: "der_pro_c2",
+        name: "Derecho Procesal Civil II",
+      },
+      {
+        id: "teo_pol_ec",
+        name: "Teoría y Política Económica",
+      },
+      {
+        id: "etica_derecho",
+        name: "Ética",
+      },
+      {
+        id: "der_p_ec",
+        name: "Derecho Penal Económico",
+      },
+      {
+        id: "teo_acto_apa",
+        name: "Teoría del Acto Administrativo y Procedimiento Administrativo",
+      },
+      {
+        id: "der_hum",
+        name: "Derechos Humanos",
+      },
+      {
+        id: "fuen_obl",
+        name: "Fuentes de las Obligaciones",
+      },
+      {
+        id: "inn_empre",
+        name: "Innovación y Emprendimiento",
+      },
+      {
+        id: "arg_ju",
+        name: "Argumentación Jurídica",
+      },
+      {
+        id: "soc_jur",
+        name: "Sociología Jurídica",
+      },
+      {
+        id: "res_al_conf",
+        name: "Resolución Alternativa de Conflictos",
+      },
+      {
+        id: "fund_der_tr",
+        name: "Fundamentos y sujetos del Derecho del Trabajo",
+      },
+      {
+        id: "teo_act_adm",
+        name: "Teoría de la Actividad Administrativa",
+      },
+      {
+        id: "fund_der_mer",
+        name: "Fundamentos de Derecho Mercantil",
+      },
+
+      {
+        id: "der_fami",
+        name: "Derecho de Familia",
+      },
+      {
+        id: "cont_es1",
+        name: "Contratos Especiales I",
+      },
+      {
+        id: "arbitraje",
+        name: "Arbitraje",
+      },
+      {
+        id: "der_pro_p1",
+        name: "Derecho Procesal Penal I",
+      },
+      {
+        id: "teo_gen_prue",
+        name: "Teoría General de la Prueba",
+      },
+      {
+        id: "der_ind_tr",
+        name: "Derecho Individual del Trabajo",
+      },
+      {
+        id: "contr_ar_ap",
+        name:
+          "Contratos Administrativos y Responsabilidad de la Administración Pública",
+      },
+      {
+        id: "der_sociedades",
+        name: "Derecho de Sociedades",
+      },
+      {
+        id: "cont_es2",
+        name: "Contratos Especiales II y Derecho de Garantías",
+      },
+      {
+        id: "der_pro_p2",
+        name: "Derecho Procesal Penal II",
+      },
+      {
+        id: "pre_proce",
+        name: "Pruebas en el Proceso",
+      },
+      {
+        id: "der_col_traba",
+        name: "Derecho Colectivo del Trabajo",
+      },
+      {
+        id: "der_tri_gen",
+        name: "Derecho Tributario: Parte General",
+      },
+      {
+        id: "der_pro_const",
+        name: "Derecho Procesal Constitucional",
+      },
+      {
+        id: "der_int_priv",
+        name: "Derecho Internacional Privado",
+      },
+      {
+        id: "contr_merc",
+        name: "Contratos Mercantiles y Títulos Valores",
+      },
+      {
+        id: "clin_jur1",
+        name: "Clínica Jurídica I",
+      },
+      {
+        id: "practicas_der",
+        name: "Prácticas",
+      },
+      {
+        id: "casacion",
+        name: "Casación",
+      },
+      {
+        id: "der_pro_tr",
+        name: "Derecho Procesal del Trabajo",
+      },
+      {
+        id: "der_tri_es",
+        name: "Derecho Tributario: Parte Especial",
+      },
+      {
+        id: "der_pro_adm",
+        name: "Derecho Procesal Administrativo",
+      },
+      {
+        id: "der_pro_civi",
+        name: "Derecho Procesal Civil Internacional",
+      },
+      {
+        id: "der_concur",
+        name: "Derecho Concursal",
+      },
+      {
+        id: "der_succ",
+        name: "Derecho de Sucesiones",
+      },
+      {
+        id: "clin_jur2",
+        name: "Clínica Jurídica II",
+      },
     ],
   },
 ];
