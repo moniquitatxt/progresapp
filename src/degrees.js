@@ -991,4 +991,420 @@ export const degrees = [
       },
     ],
   },
+  {
+    id: "informatica",
+    name: "Ingeniería Informática",
+    subjects: [
+      {
+        id: "trigo",
+        name: "Geometría Plana y Trigonometría",
+      },
+      {
+        id: "mate_basica",
+        name: "Matemática Básica",
+      },
+      {
+        id: "intro_inf",
+        name: "Introducción a la Informática",
+      },
+      {
+        id: "comprension",
+        name: "Comprensión y Producción de Textos",
+      },
+      {
+        id: "liderazgo1",
+        name: "Identidad, Liderazgo y Compromiso I",
+      },
+      {
+        id: "liderazgo2",
+        name: "Identidad, Liderazgo y Compromiso II",
+      },
+      {
+        id: "c1",
+        name: "Cálculo I",
+      },
+      {
+        id: "logica_comp",
+        name: "Lógica Computacional",
+      },
+      {
+        id: "pro1",
+        name: "Algoritmos y Programación I",
+      },
+      {
+        id: "c2",
+        name: "Cálculo II",
+      },
+      {
+        id: "fisica",
+        name: "Física General",
+      },
+      {
+        id: "discretas",
+        name: "Matemáticas Discretas",
+      },
+      {
+        id: "pro2",
+        name: "Algoritmos y Programación II",
+      },
+      {
+        id: "c3",
+        name: "Cálculo III",
+      },
+      {
+        id: "pro3",
+        name: "Algoritmos y Programación III",
+      },
+      {
+        id: "struct",
+        name: "Estructura del Computador",
+      },
+      {
+        id: "fis_elec",
+        name: "Física Eléctrica",
+      },
+      {
+        id: "ecologia",
+        name: "Ecología, Ambiente y Sustentabilidad",
+      },
+      {
+        id: "c4",
+        name: "Cálculo IV",
+      },
+      {
+        id: "circuitos",
+        name: "Circuitos Electrónicos",
+      },
+      {
+        id: "so",
+        name: "Sistemas de Operación",
+      },
+      {
+        id: "ids",
+        name: "Ingeniería del Software",
+      },
+      {
+        id: "ihc",
+        name: "Interacción Humano Computador",
+      },
+      {
+        id: "calc_num",
+        name: "Cálculo Numérico",
+      },
+      {
+        id: "est_probabilidades",
+        name: "Estadística y Probabilidades",
+      },
+      {
+        id: "arqui_comp",
+        name: "Arquitectura del Computador",
+      },
+      {
+        id: "redes1",
+        name: "Redes de Computadores I",
+      },
+      {
+        id: "bdd1",
+        name: "Sistemas de Bases de Datos I",
+      },
+      {
+        id: "pro_lin",
+        name: "Programación Lineal",
+      },
+      {
+        id: "redes2",
+        name: "Redes de Computadores II",
+      },
+      {
+        id: "bdd2",
+        name: "Sistemas de Bases de Datos II",
+      },
+      {
+        id: "meto_soft",
+        name: "Metodologia del Software",
+      },
+      {
+        id: "contabi_gen",
+        name: "Contabilidad General",
+      },
+      {
+        id: "ing1_ing",
+        name: "Inglés I",
+      },
+      {
+        id: "inv_op",
+        name: "Investigación de Operaciones",
+      },
+      {
+        id: "redes3",
+        name: "Redes de Computadores III",
+      },
+      {
+        id: "desarollo_soft",
+        name: "Desarrollo de Software",
+      },
+      {
+        id: "ing_eco",
+        name: "Ingeniería Económica",
+      },
+      {
+        id: "ing2_ing",
+        name: "Inglés II",
+      },
+      {
+        id: "seg_comp",
+        name: "Seguridad Computacional",
+      },
+      {
+        id: "sist_dis",
+        name: "Sistemas Distribuidos",
+      },
+      {
+        id: "inn_empre",
+        name: "Innovación y Emprendimiento",
+      },
+      {
+        id: "ingl_tec",
+        name: "Inglés Técnico",
+      },
+      {
+        id: "et_pro",
+        name: "Ética Profesional",
+      },
+      {
+        id: "ev_sis_inf",
+        name: "Evaluación de Sistemas Informáticos",
+      },
+      {
+        id: "gest_pro_soft",
+        name: "Gestión de Proyectos de Software",
+      },
+    ],
+  },
+  {
+    id: "industrial",
+    name: "Ingeniería Industrial",
+    subjects: [
+      {
+        id: "fund_ing_ind",
+        name: "Fundamentos de Ingeniería Industrial",
+      },
+      {
+        id: "trigo",
+        name: "Geometría Plana y Trigonometría",
+      },
+      {
+        id: "mate_basica",
+        name: "Matemática Básica",
+      },
+      {
+        id: "comprension",
+        name: "Comprensión y Producción de Textos",
+      },
+      {
+        id: "liderazgo1",
+        name: "Identidad, Liderazgo y Compromiso I",
+      },
+      {
+        id: "liderazgo2",
+        name: "Identidad, Liderazgo y Compromiso II",
+      },
+      {
+        id: "c1",
+        name: "Cálculo I",
+      },
+      {
+        id: "log_ind",
+        name: "Lógica",
+      },
+      {
+        id: "quim1",
+        name: "Química I",
+      },
+      {
+        id: "fisica",
+        name: "Física General",
+      },
+      {
+        id: "c2",
+        name: "Cálculo II",
+      },
+      {
+        id: "fis_elec",
+        name: "Física Eléctrica",
+      },
+      {
+        id: "quim2",
+        name: "Química II",
+      },
+      {
+        id: "geo_esp",
+        name: "Geometría del Espacio",
+      },
+      {
+        id: "c3",
+        name: "Cálculo III",
+      },
+      {
+        id: "ecologia",
+        name: "Ecología, Ambiente y Sustentabilidad",
+      },
+      {
+        id: "fund_progr",
+        name: "Fundamentos de Programación",
+      },
+      {
+        id: "meca1",
+        name: "Mecánica Racional I",
+      },
+      {
+        id: "autocad",
+        name: "Fundamentos de Dibujo Asistido por Computadora",
+      },
+      {
+        id: "c4",
+        name: "Cálculo IV",
+      },
+      {
+        id: "est_probabilidades",
+        name: "Estadística y Probabilidades",
+      },
+      {
+        id: "inn_empre",
+        name: "Innovación y Emprendimiento",
+      },
+      {
+        id: "termo",
+        name: "Calor y Termodinámica",
+      },
+      {
+        id: "meca2",
+        name: "Mecánica Racional II",
+      },
+      {
+        id: "elec_ind",
+        name: "Introducción a la Electricidad Industrial",
+      },
+      {
+        id: "solidw",
+        name: "Fundamentos de Ingeniería Asistida por Computadora",
+      },
+      {
+        id: "vectores",
+        name: "Vectores Aleatorios e Inferencia",
+      },
+      {
+        id: "calc_num",
+        name: "Cálculo Numérico",
+      },
+      {
+        id: "pro_lin",
+        name: "Programación Lineal",
+      },
+      {
+        id: "termica",
+        name: "Térmica",
+      },
+      {
+        id: "pro_qui_ind",
+        name: "Procesos Químicos Industriales",
+      },
+      {
+        id: "res_mat",
+        name: "Resistencia de Materiales",
+      },
+      {
+        id: "contabi_gen",
+        name: "Contabilidad General",
+      },
+      {
+        id: "inv_op",
+        name: "Investigación de Operaciones",
+      },
+      {
+        id: "dis_tra_fact",
+        name: "Diseño del Trabajo y Factores Humanos",
+      },
+      {
+        id: "metod_est",
+        name: "Métodos Estadísticos",
+      },
+      {
+        id: "fluidos",
+        name: "Mecánica de Fluidos",
+      },
+      {
+        id: "cien_mat",
+        name: "Ciencias de los Materiales",
+      },
+      {
+        id: "simulacion",
+        name: "Simulación",
+      },
+      {
+        id: "dis_sis_pro",
+        name: "Diseño de Sistemas Productivos",
+      },
+      {
+        id: "ges_tfc",
+        name: "Gestión del Trabajo y Factores Humanos",
+      },
+      {
+        id: "dis_ins_aux",
+        name: "Diseño de Instalaciones Auxiliares",
+      },
+      {
+        id: "ing_tec_ind",
+        name: "Inglés Técnico para Ingenieros Industriales",
+      },
+      {
+        id: "ing_eco",
+        name: "Ingeniería Económica",
+      },
+      {
+        id: "ges_sis_prod",
+        name: "Gestión de Sistemas Productivos",
+      },
+      {
+        id: "merc_indu",
+        name: "Mercadotecnia para Ingenieros Industriales",
+      },
+      {
+        id: "gest_cal",
+        name: "Gestión de la Calidad",
+      },
+      {
+        id: "ges_man_ind",
+        name: "Gestión de Mantenimiento Industrial",
+      },
+      {
+        id: "cost_inud",
+        name: "Costos Industriales",
+      },
+      {
+        id: "prac_pro",
+        name: "Prácticas Profesionales",
+      },
+      {
+        id: "et_pro",
+        name: "Ética Profesional",
+      },
+      {
+        id: "ges_logi",
+        name: "Gestión de Logística",
+      },
+      {
+        id: "ges_proy",
+        name: "Gestión de Proyectos",
+      },
+      {
+        id: "ges_empre",
+        name: "Gestión de Empresas",
+      },
+      {
+        id: "ini_empr",
+        name: "Inicitivas de Emprendimiento",
+      },
+    ],
+  },
 ];
