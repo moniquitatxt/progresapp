@@ -154,7 +154,7 @@ const Login = () => {
       </div>
       <div className="cBSignUp">
         <Link to="/signup" className="bSignUp">
-          ¿No tienes cuenta? ¡Registrate aquí!
+          ¿No tienes cuenta? ¡Regístrate aquí!
         </Link>
       </div>
     </div>
