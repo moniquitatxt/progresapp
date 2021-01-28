@@ -100,7 +100,6 @@ const Login = () => {
         message = "Se produjo un error desconocido";
       }
       setErrorMessage(message);
-    } finally {
       setLoading(false);
     }
   };
