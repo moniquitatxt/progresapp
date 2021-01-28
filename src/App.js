@@ -7,6 +7,7 @@ import {
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import Tutorings from "./pages/Tutorings";
 import { UserProvider } from "./contexts/UserContext";
 import CustomRoute from "./components/CustomRoute";
 import { light } from "@material-ui/core/styles/createPalette";
@@ -68,6 +69,10 @@ function App() {
               {/* Página principal */}
               <CustomRoute exact path="/" auth={true}>
                 <Home />
+              </CustomRoute>
+              {/* Página de lista de tutorías */}
+              <CustomRoute path="/tutorias" auth={true}>
+                <Tutorings />
               </CustomRoute>
               {/* Página de registro */}
               <CustomRoute path="/signup" auth={false}>
