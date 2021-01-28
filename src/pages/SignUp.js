@@ -45,7 +45,7 @@ const SignUp = () => {
 
   // Función de registro del estudiante al clickear el botón
   const signUp = async () => {
-    const errorMessages = initialData;
+    const errorMessages = { ...initialData };
 
     // Borra los espacios al inicio y al final
     for (const property in user) {
@@ -56,7 +56,7 @@ const SignUp = () => {
 
     // Maneja los errores de inputs vacíos
     if (user.name === "") {
-      errorMessages.name = "Ingresa tu nombre y apellido, por favor";
+      errorMessages.name = "Ingresa tu nombre y apellido";
     }
     if (user.idDocument === "") {
       errorMessages.idDocument = "Ingresa tu cédula, por favor";
@@ -111,7 +111,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="cSignUp" >
+    <div className="cSignUp">
       {/* TODO: Obviamente agregar estilos */}
       {/* TODO: Se puede cambiar el orden de los input como quede mejor */}
       {/* Header */}
