@@ -4,11 +4,13 @@ import {
   Button,
   InputAdornment,
   IconButton,
+  MenuItem,
 } from "@material-ui/core";
 import logo from "../assets/logo.svg";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "./SignUp.css";
 import { studentSignUp } from "../firebase/functions";
+import { degrees } from "../degrees";
 
 // Pantalla de registro
 const SignUp = () => {
@@ -111,9 +113,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="cSignUp" >
-      {/* TODO: Obviamente agregar estilos */}
-      {/* TODO: Se puede cambiar el orden de los input como quede mejor */}
+    <div className="cSignUp">
       {/* Header */}
       <div className="cHeader">
         {/* Logo */}
@@ -141,7 +141,6 @@ const SignUp = () => {
           <div className="tfId">
             <TextField
               fullWidth
-              // TODO: Considerar agregar "de identidad"
               label="Cédula"
               variant="outlined"
               required
@@ -162,17 +161,25 @@ const SignUp = () => {
             onChange={(e) => handleChangeText("phone", e.target.value)}
           ></TextField>
         </div>
-        {/* TODO: La carrera no se ingresará así al final */}
+        {/* TextField de la carrera */}
         <div className="tfInfo">
           <TextField
             fullWidth
+            select
             label="Carrera"
             variant="outlined"
             required
             error={errorMessages.degree !== ""}
             helperText={errorMessages.degree}
             onChange={(e) => handleChangeText("degree", e.target.value)}
-          ></TextField>
+            value={user.degree}
+          >
+            {degrees.map((option) => (
+              <MenuItem key={option.id} value={option.id}>
+                {option.name}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
         {/* TextField del correo */}
         <div className="tfInfo">
