@@ -55,8 +55,18 @@ export const getStudentTutorings = (uid) => {
 };
 
 // Obtener todas las tutorías de una carrera
-export const getTutoringsByDegree = (degree) => {
+// export const getTutoringsByDegree = (degree) => {
+//   return db
+//     .collectionGroup("tutorings")
+//     .where("degrees", "array-contains", degree);
+// };
+
+export const getTutoringsByDegree = (degree, func) => {
   return db
     .collectionGroup("tutorings")
-    .where("degrees", "array-contains", degree);
+    .where("degrees", "array-contains", degree)
+    .onSnapshot((snapshot) => {
+      const tutorings = snapshot.docs.map((doc) => doc.data());
+      func(tutorings);
+    });
 };
