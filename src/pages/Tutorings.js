@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import { signOut, getStudentTutorings } from "../firebase/functions";
+import { getTutoringsByDegree } from "../firebase/functions";
 
-const Home = () => {
+const Tutorings = () => {
   const user = useUser();
   const [tutorings, setTutorings] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    return getStudentTutorings(user.uid, (tutorings) => {
+    return getTutoringsByDegree(user.degree, (tutorings) => {
       setTutorings(tutorings);
       setLoading(false);
     });
-  }, [user.uid]);
+  }, [user.degree]);
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>{user.name}</p>
-      <button onClick={() => signOut()}>Salir</button>
+      <h1>Lista de Tutorías</h1>
     </div>
   );
 };
 
-export default Home;
+export default Tutorings;

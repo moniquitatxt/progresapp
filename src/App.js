@@ -12,20 +12,20 @@ import { light } from "@material-ui/core/styles/createPalette";
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
+      "-apple-system",
+      "BlinkMacSystemFont",
       '"Segoe UI"',
       '"Helvetica Neue"',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
-    ].join(','),
+    ].join(","),
   },
 
   palette: {
     //Moradito clarito
     primary: {
-      main: "#475694",    
+      main: "#475694",
     },
     //Rojosado
     secondary: {
@@ -63,15 +63,19 @@ function App() {
           <Router>
             <Switch>
               {/* Página principal */}
-              <CustomRoute exact path="/" auth={true} >
+              <CustomRoute exact path="/" auth={true}>
                 <Home />
               </CustomRoute>
+              {/* Página de lista de tutorías */}
+              <CustomRoute path="/tutorias" auth={true}>
+                <Tutorings />
+              </CustomRoute>
               {/* Página de registro */}
-              <CustomRoute path="/signup" auth={false} >
+              <CustomRoute path="/signup" auth={false}>
                 <SignUp />
               </CustomRoute>
               {/* Página de inicio de sesión */}
-              <CustomRoute path="/login" auth={false} >
+              <CustomRoute path="/login" auth={false}>
                 <Login />
               </CustomRoute>
             </Switch>
