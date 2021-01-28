@@ -49,12 +49,13 @@ import { Link } from "react-router-dom";
 
 // Página de Inicio de Sesión
 const Login = () => {
-  const [user, setUser] = useState({
+  const initialState = {
     email: "",
     password: "",
-  });
+  };
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [user, setUser] = useState(initialState);
+  const [errorMessages, setErrorMessages] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
 
   // Función llamada al cambiar el texto del input
@@ -74,9 +75,18 @@ const Login = () => {
 
   // Función que inicia sesión al clickear el botón
   const login = async () => {
+    const errorMessages = { ...initialState };
+
+    if (user.email.trim() === "") {
+      errorMessages.email = "Ingresa tu correo, por favor";
+    }
+    if (user.password === "") {
+      errorMessages.password = "Ingresa tu contraseña, por favor";
+    }
+
     // Verifica que los input estén llenos
     if (user.email.trim() === "" || user.password === "") {
-      setErrorMessage("Ingresa tu correo y tu contraseña, por favor");
+      setErrorMessages(errorMessages);
       return;
     }
 
@@ -84,18 +94,16 @@ const Login = () => {
     try {
       await studentLogin(user.email.trim(), user.password);
     } catch (error) {
-      let message;
       if (error.code === "auth/invalid-email") {
-        message = "Ingresa una dirección de correo electrónico válida";
-      } else if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password"
-      ) {
-        message = "Correo o contraseña inválidos, intenta nuevamente";
-      } else {
-        message = "Se produjo un error desconocido";
+        errorMessages.email = "Ingresa una dirección de correo válida";
+      } else if (error.code === "auth/user-not-found") {
+        errorMessages.email =
+          "No hay usuarios con este correo, intenta de nuevo";
+      } else if (error.code === "auth/wrong-password") {
+        errorMessages.password = "Contraseña incorrecta, intenta nuevamente";
       }
-      setErrorMessage(message);
+      // TODO: Pensar en cómo manejar el error de desconexión
+      setErrorMessages(errorMessages);
     }
   };
 
@@ -107,8 +115,6 @@ const Login = () => {
       </div>
       {/* Inputs */}
       <div className="cInputs">
-        {/* Mensaje de error */}
-        {errorMessage && <p>{errorMessage}</p>}
         {/* TextField del correo */}
         <div className="tfMail">
           <TextField
@@ -116,7 +122,8 @@ const Login = () => {
             label="Correo"
             variant="outlined"
             type="email"
-            error={errorMessage !== ""}
+            error={errorMessages.email !== ""}
+            helperText={errorMessages.email}
             onChange={(e) => handleChangeText("email", e.target.value)}
           ></TextField>
         </div>
@@ -127,7 +134,8 @@ const Login = () => {
             label="Contraseña"
             variant="outlined"
             type={showPassword ? "text" : "password"}
-            error={errorMessage !== ""}
+            error={errorMessages.password !== ""}
+            helperText={errorMessages.password}
             onChange={(e) => handleChangeText("password", e.target.value)}
             InputProps={{
               endAdornment: (

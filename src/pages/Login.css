@@ -1,18 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
+/* Mensaje de error*/
+p {
+  font-family: "Quicksand";
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  max-width: 250px;
+  color: red;
+}
+
 /* Contenedor de los cuadros de texto */
 .cInputs {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10%;
 }
-
+/* Contenedor de botón que lleva a la página del registro*/
 .cBSignUp {
   text-align: center;
   padding-top: 10pt;
   padding-bottom: 10pt;
 }
 
+/*Botón que lleva a la página del registro*/
 .bSignUp {
   text-decoration: none;
   color: #475694;
@@ -102,6 +113,11 @@ img {
     background-color: #ffe4d4;
     max-width: 100%;
     align-content: center;
+  }
+
+  /* Mensaje de error*/
+  p {
+    font-size: 15px;
   }
 
   /* Contenedor de ambos cuadros de texto */
