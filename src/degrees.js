@@ -1407,4 +1407,234 @@ export const degrees = [
       },
     ],
   },
+  {
+    id: "civil",
+    name: "Ingeniería Civil",
+    subjects: [
+      {
+        id: "trigo",
+        name: "Geometría Plana y Trigonometría",
+      },
+      {
+        id: "mate_basica",
+        name: "Matemática Básica",
+      },
+      {
+        id: "comprension",
+        name: "Comprensión y Producción de Textos",
+      },
+      {
+        id: "dibujo",
+        name: "Dibujo",
+      },
+      {
+        id: "intro_civil",
+        name: "Introdución a la Ingeniería Civil",
+      },
+      {
+        id: "liderazgo1",
+        name: "Identidad, Liderazgo y Compromiso I",
+      },
+      {
+        id: "liderazgo2",
+        name: "Identidad, Liderazgo y Compromiso II",
+      },
+      {
+        id: "c1",
+        name: "Cálculo I",
+      },
+      {
+        id: "quim1",
+        name: "Química I",
+      },
+      {
+        id: "fisica",
+        name: "Física General",
+      },
+      {
+        id: "geo_desc1",
+        name: "Geometría Descriptiva I",
+      },
+      {
+        id: "c2",
+        name: "Cálculo II",
+      },
+      {
+        id: "quim2",
+        name: "Química II",
+      },
+      {
+        id: "geo_desc1",
+        name: "Geometría Descriptiva II",
+      },
+      {
+        id: "estatica",
+        name: "Estática",
+      },
+      {
+        id: "c3",
+        name: "Cálculo III",
+      },
+      {
+        id: "ecologia",
+        name: "Ecología, Ambiente y Sustentabilidad",
+      },
+      {
+        id: "fund_progr",
+        name: "Fundamentos de Programación",
+      },
+      {
+        id: "dinamica",
+        name: "Dinámica",
+      },
+      {
+        id: "ele_calo",
+        name: "Electricidad y Calorimetría",
+      },
+      {
+        id: "inn_empre",
+        name: "Innovación y Emprendimiento",
+      },
+      {
+        id: "c4",
+        name: "Cálculo IV",
+      },
+      {
+        id: "est_probabilidades",
+        name: "Estadística y Probabilidades",
+      },
+      {
+        id: "topografia",
+        name: "Topografía",
+      },
+      {
+        id: "autocado_civil",
+        name: "Dibujo Asistido por Computadora",
+      },
+      {
+        id: "ins_elec",
+        name: "Instalaciones Eléctricas",
+      },
+      {
+        id: "res_mat1",
+        name: "Resistencia de Materiales I",
+      },
+      {
+        id: "contabi_gen",
+        name: "Contabilidad General",
+      },
+      {
+        id: "calc_num",
+        name: "Cálculo Numérico",
+      },
+      {
+        id: "res_mat2",
+        name: "Resistencia de Materiales II",
+      },
+      {
+        id: "mat_cons",
+        name: "Materiales de Construcción",
+      },
+      {
+        id: "ing_eco",
+        name: "Ingeniería Económica",
+      },
+      {
+        id: "fluidos1",
+        name: "Mecánica de los Fluidos I",
+      },
+      {
+        id: "intro_ing_amb",
+        name: "Introducción a la Ingeniería Ambiental",
+      },
+      {
+        id: "meca_sue1",
+        name: "Mecánica de Suelos I",
+      },
+      {
+        id: "estruc1",
+        name: "Estructuras I",
+      },
+      {
+        id: "concreto1",
+        name: "Concreto Reforzado I",
+      },
+      {
+        id: "fluidos2",
+        name: "Mecánica de los Fluidos II",
+      },
+      {
+        id: "hidrologia",
+        name: "Hidrología Básica",
+      },
+      {
+        id: "ing_sani1",
+        name: "Ingeniería Sanitaria I",
+      },
+      {
+        id: "vias1",
+        name: "Vías de Comunicación I",
+      },
+      {
+        id: "meca_sue2",
+        name: "Mecánica de Suelos II",
+      },
+      {
+        id: "estruc2",
+        name: "Estructuras II",
+      },
+      {
+        id: "concreto2",
+        name: "Concreto Reforzado II",
+      },
+      {
+        id: "ing_sani2",
+        name: "Ingeniería Sanitaria II",
+      },
+      {
+        id: "hidrau",
+        name: "Hidráulica de Conducciones",
+      },
+      {
+        id: "vias2",
+        name: "Vías de Comunicación II",
+      },
+      {
+        id: "et_pro",
+        name: "Ética Profesional",
+      },
+      {
+        id: "geologia",
+        name: "Geología Aplicada",
+      },
+      {
+        id: "estruc_acero",
+        name: "Estructuras de Acero",
+      },
+      {
+        id: "ing_hidr1",
+        name: "Ingeniería Hidráulica I",
+      },
+      {
+        id: "infr_urb",
+        name: "Infraestructuras Hidráulicas en Urbanismos",
+      },
+      {
+        id: "ing_fundaciones",
+        name: "Ingeniería de Fundaciones",
+      },
+      {
+        id: "ing_hidr2",
+        name: "Ingeniería Hidráulica II",
+      },
+      {
+        id: "pavimentos",
+        name: "Pavimentos",
+      },
+      {
+        id: "insta_san_edi",
+        name: "Instalaciones Sanitarias para Edificaciones",
+      },
+    ],
+  },
 ];
