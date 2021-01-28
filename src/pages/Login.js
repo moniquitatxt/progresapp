@@ -6,6 +6,8 @@ import {
   Button,
   InputAdornment,
   IconButton,
+  Backdrop,
+  CircularProgress,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { studentLogin } from "../firebase/functions";
@@ -56,6 +58,7 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -82,6 +85,7 @@ const Login = () => {
 
     // Inicia sesión
     try {
+      setLoading(true);
       await studentLogin(user.email.trim(), user.password);
     } catch (error) {
       let message;
@@ -96,6 +100,8 @@ const Login = () => {
         message = "Se produjo un error desconocido";
       }
       setErrorMessage(message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -157,6 +163,9 @@ const Login = () => {
           ¿No tienes cuenta? ¡Regístrate aquí!
         </Link>
       </div>
+      <Backdrop open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 };

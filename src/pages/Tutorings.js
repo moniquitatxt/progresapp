@@ -6,14 +6,15 @@ const Tutorings = () => {
   const user = useUser();
   const [tutorings, setTutorings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [degree, setDegree] = useState(user.degree);
 
   useEffect(() => {
     setLoading(true);
-    return getTutoringsByDegree(user.degree, (tutorings) => {
+    return getTutoringsByDegree(degree, (tutorings) => {
       setTutorings(tutorings);
       setLoading(false);
     });
-  }, [user.degree]);
+  }, [degree]);
 
   return (
     <div>
