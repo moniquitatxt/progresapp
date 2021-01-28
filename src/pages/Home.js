@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import { signOut, getTutoringsByDegree } from "../firebase/functions";
+import { signOut, getStudentTutorings } from "../firebase/functions";
 
 const Home = () => {
   const user = useUser();
@@ -10,12 +10,11 @@ const Home = () => {
 
   useEffect(() => {
     setLoading(true);
-    return getTutoringsByDegree(user.degree, (tutorings) => {
+    return getStudentTutorings(user.uid, (tutorings) => {
       setTutorings(tutorings);
       setLoading(false);
-      console.log("A");
     });
-  }, [user.degree]);
+  }, [user.uid]);
 
   return (
     <div>

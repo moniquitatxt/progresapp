@@ -21,7 +21,7 @@ export const studentSignUp = async (user) => {
   const uid = response.user.uid;
 
   const data = {
-    // TODO: Considerar luego si poner el uid aquí o no
+    uid,
     name: user.name,
     // TODO: Consirar alternativas para estos nombres
     idDocument: user.idDocument,
@@ -47,11 +47,14 @@ export const uploadFile = async (file, path) => {
 };
 
 // Obtener las tutorías de un estudiante dado su uid
-export const getStudentTutorings = (uid) => {
+export const getStudentTutorings = (uid, func) => {
   return db
     .collectionGroup("tutorings")
-    .where("students.uid", "array-contains", uid)
-    .get();
+    .where("studentsUIDs", "array-contains", uid)
+    .onSnapshot((snapshot) => {
+      const tutorings = snapshot.docs.map((doc) => doc.data());
+      func(tutorings);
+    });
 };
 
 // Obtener todas las tutorías de una carrera
