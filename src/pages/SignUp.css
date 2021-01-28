@@ -1,5 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
 
+/* Contenedor del header */
+.cHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor del mensaje de regístrate */
+h1 {
+  margin-left: 15px;
+  font-family: "QuickSand";
+}
+
+/* Contenedor de los inputs de texto*/
+.cTextFields {
+  max-width: 450px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Cada uno de los cuadros de texto */
+.tfInfo {
+  margin-top: 15px;
+}
+
 @media screen and (min-width: 600px) {
   /* Contenedor del Login */
   .cSignUp {
@@ -7,60 +32,95 @@
     margin-left: auto;
     margin-top: 5%;
     margin-bottom: 5%;
-    width: 400px;
-    background: #fff;
-    justify-content: center;
+    width: 500px;
+    background-color: #faf3f0;
     border-radius: 10pt;
     -webkit-box-shadow: 3px 3px 3px #3c3b3e;
     -moz-box-shadow: 3px 3px 3px #3c3b3e;
     box-shadow: 3px 3px 3px #3c3b3e;
   }
-  /* Contenedor del header */
-  .cHeader {
-    display: flex;
-    align-items: center;
-  }
-
   /* Contenedor del logo*/
   .iLogo {
     max-width: 90px;
     height: 90px;
-    margin-left: 15px;
   }
-
   /* Contenedor del mensaje de regístrate */
   h1 {
     font-size: 2.4em;
-    margin-left: 15px;
-    font-family: "QuickSand";
     max-width: 250px;
   }
 
-  /* Contenedor de cada uno de los cuadros de texto */
-  .tfInfo {
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+  /* Contenedor de Nombre y cédula*/
+  .cNameAndId {
+    display: flex;
+    margin-top: 15px;
+  }
+
+  /* Cada input de nombre y cedula */
+  .tfName,
+  .tfId {
+    min-width: 220px;
+  }
+
+  /* Input de cédula*/
+  .tfId {
+    margin-left: 10px;
   }
 
   /* Contenedor del botón para registrarse*/
   .bSignUp {
     max-width: 200px;
-    justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 10pt;
+    padding-top: 20pt;
     padding-bottom: 20pt;
   }
+}
+/* Pantalla de teléfonos */
+@media only screen and (max-width: 600px) {
+  /* Contenedor del mensaje de regístrate */
+  h1 {
+    font-size: 30px;
+    max-width: 200px;
+  }
 
-  /* Pantalla de teléfonos */
-  @media screen and (min-width: 600px) {
-    /* Contenedor del header */
-    .cHeader {
-      display: flex;
-      align-items: center;
-    }
+  /* Contenedor del logo*/
+  .iLogo {
+    max-width: 80px;
+  }
+
+  /* Cada input de nombre y cedula */
+  .tfName,
+  .tfId {
+    margin-top: 15px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  /* Cada uno de los cuadros de texto */
+  .tfInfo {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  /* Contenedor del botón para registrarse*/
+  .bSignUp {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20pt;
+    padding-bottom: 20pt;
+  }
+}
+
+@media only screen and (max-width: 270px) {
+  /* Contenedor del mensaje de regístrate */
+  h1 {
+    font-size: 18px;
+  }
+
+  /* Contenedor del logo*/
+  .iLogo {
+    max-width: 55px;
   }
 }

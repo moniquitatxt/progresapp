@@ -111,130 +111,136 @@ const SignUp = () => {
   };
 
   return (
-    <div className="cSignUp">
+    <div className="cSignUp" >
       {/* TODO: Obviamente agregar estilos */}
       {/* TODO: Se puede cambiar el orden de los input como quede mejor */}
-      {/* Logo */}
+      {/* Header */}
       <div className="cHeader">
+        {/* Logo */}
         <div className="iLogo">
           <img src={logo} alt="logo" />
         </div>
+        {/* Regístrate */}
         <h1>Regístrate en ProgresApp</h1>
       </div>
-      {/* TextField del nombre */}
-      <div className="tfInfo">
-        <TextField
-          fullWidth
-          label="Nombre y Apellido"
-          variant="outlined"
-          required
-          error={errorMessages.name !== ""}
-          helperText={errorMessages.name}
-          onChange={(e) => handleChangeText("name", e.target.value)}
-        ></TextField>
-      </div>
-      {/* TextField de la cédula */}
-      <div className="tfInfo">
-        <TextField
-          fullWidth
-          // TODO: Considerar agregar "de identidad"
-          label="Cédula"
-          variant="outlined"
-          required
-          error={errorMessages.idDocument !== ""}
-          helperText={errorMessages.idDocument}
-          onChange={(e) => handleChangeText("idDocument", e.target.value)}
-        ></TextField>
-      </div>
-      {/* TextField del teléfono TODO: Ver si se puede mejorar*/}
-      <div className="tfInfo">
-        <TextField
-          fullWidth
-          label="Teléfono"
-          variant="outlined"
-          error={errorMessages.phone !== ""}
-          helperText={errorMessages.phone}
-          onChange={(e) => handleChangeText("phone", e.target.value)}
-        ></TextField>
-      </div>
-      {/* TODO: La carrera no se ingresará así al final */}
-      <div className="tfInfo">
-        <TextField
-          fullWidth
-          label="Carrera"
-          variant="outlined"
-          required
-          error={errorMessages.degree !== ""}
-          helperText={errorMessages.degree}
-          onChange={(e) => handleChangeText("degree", e.target.value)}
-        ></TextField>
-      </div>
-      {/* TextField del correo */}
-      <div className="tfInfo">
-        <TextField
-          fullWidth
-          label="Correo"
-          variant="outlined"
-          type="email"
-          required
-          error={errorMessages.email !== ""}
-          helperText={errorMessages.email}
-          onChange={(e) => handleChangeText("email", e.target.value)}
-        ></TextField>
-      </div>
-      {/* TextField de la contraseña */}
-      <div className="tfInfo">
-        <TextField
-          fullWidth
-          label="Contraseña"
-          variant="outlined"
-          type={showPassword ? "text" : "password"}
-          required
-          error={errorMessages.password !== ""}
-          helperText={errorMessages.password}
-          onChange={(e) => handleChangeText("password", e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        ></TextField>
-      </div>
-      {/* TextField de repetir contraseña */}
-      <div className="tfInfo">
-        <TextField
-          fullWidth
-          label="Repetir Contraseña"
-          variant="outlined"
-          type={showPassword ? "text" : "password"}
-          required
-          error={errorMessages.confirm !== ""}
-          helperText={errorMessages.confirm}
-          onChange={(e) => handleChangeText("confirm", e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        ></TextField>
+      <div className="cTextFields">
+        <div className="cNameAndId">
+          {/* TextField del nombre */}
+          <div className="tfName">
+            <TextField
+              fullWidth
+              label="Nombre y Apellido"
+              variant="outlined"
+              required
+              error={errorMessages.name !== ""}
+              helperText={errorMessages.name}
+              onChange={(e) => handleChangeText("name", e.target.value)}
+            ></TextField>
+          </div>
+          {/* TextField de la cédula */}
+          <div className="tfId">
+            <TextField
+              fullWidth
+              // TODO: Considerar agregar "de identidad"
+              label="Cédula"
+              variant="outlined"
+              required
+              error={errorMessages.idDocument !== ""}
+              helperText={errorMessages.idDocument}
+              onChange={(e) => handleChangeText("idDocument", e.target.value)}
+            ></TextField>
+          </div>
+        </div>
+        {/* TextField del teléfono TODO: Ver si se puede mejorar*/}
+        <div className="tfInfo">
+          <TextField
+            fullWidth
+            label="Teléfono"
+            variant="outlined"
+            error={errorMessages.phone !== ""}
+            helperText={errorMessages.phone}
+            onChange={(e) => handleChangeText("phone", e.target.value)}
+          ></TextField>
+        </div>
+        {/* TODO: La carrera no se ingresará así al final */}
+        <div className="tfInfo">
+          <TextField
+            fullWidth
+            label="Carrera"
+            variant="outlined"
+            required
+            error={errorMessages.degree !== ""}
+            helperText={errorMessages.degree}
+            onChange={(e) => handleChangeText("degree", e.target.value)}
+          ></TextField>
+        </div>
+        {/* TextField del correo */}
+        <div className="tfInfo">
+          <TextField
+            fullWidth
+            label="Correo"
+            variant="outlined"
+            type="email"
+            required
+            error={errorMessages.email !== ""}
+            helperText={errorMessages.email}
+            onChange={(e) => handleChangeText("email", e.target.value)}
+          ></TextField>
+        </div>
+        {/* TextField de la contraseña */}
+        <div className="tfInfo">
+          <TextField
+            fullWidth
+            label="Contraseña"
+            variant="outlined"
+            type={showPassword ? "text" : "password"}
+            required
+            error={errorMessages.password !== ""}
+            helperText={errorMessages.password}
+            onChange={(e) => handleChangeText("password", e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          ></TextField>
+        </div>
+        {/* TextField de repetir contraseña */}
+        <div className="tfInfo">
+          <TextField
+            fullWidth
+            label="Repetir Contraseña"
+            variant="outlined"
+            type={showPassword ? "text" : "password"}
+            required
+            error={errorMessages.confirm !== ""}
+            helperText={errorMessages.confirm}
+            onChange={(e) => handleChangeText("confirm", e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          ></TextField>
+        </div>
       </div>
       {/* Boton para registrarse */}
       <div className="bSignUp">
