@@ -67,7 +67,8 @@ export const getTutoringsByDegree = (degree, func) => {
     });
 };
 
-export const getTutoring = async (id) => {
+export const getTutoringById = async (id) => {
+  console.log(id);
   const tutoringDoc = await db.collection("tutorings").doc(id).get();
   if (!tutoringDoc.exists) {
     return null;

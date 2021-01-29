@@ -72,7 +72,7 @@ function App() {
                 <Home />
               </CustomRoute>
               {/* Página de lista de tutorías */}
-              <CustomRoute path="/tutorias" auth={true}>
+              <CustomRoute exact path="/tutorias" auth={true}>
                 <Tutorings />
               </CustomRoute>
               <CustomRoute path="/tutorias/:id" auth={true}>

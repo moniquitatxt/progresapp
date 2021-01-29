@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import { getTutoring } from "../firebase/functions";
+import { getTutoringById } from "../firebase/functions";
 import {
   TextField,
   MenuItem,
@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degrees } from "../degrees";
+import { useParams } from "react-router-dom";
 
 const TutoringDetail = () => {
   const [tutoring, setTutoring] = useState(null);
@@ -21,15 +22,26 @@ const TutoringDetail = () => {
   const params = useParams();
 
   useEffect(() => {
+    getTutoring();
+  });
+
+  const getTutoring = async () => {
     setLoading(true);
-    const tutoring = await getTutoring(params.id);
+    const tutoring = await getTutoringById(params.id);
     setTutoring(tutoring);
     setLoading(false);
-  });
+  };
 
   return (
     <div>
-      <h1></h1>
+      {!tutoring ? (
+        <h1>Not Found</h1>
+      ) : (
+        <div>
+          <h1>{tutoring.name}</h1>
+          <h2>{tutoring.tutorName}</h2>
+        </div>
+      )}
     </div>
   );
 };
