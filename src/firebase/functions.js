@@ -59,10 +59,19 @@ export const getStudentTutorings = (uid, func) => {
 
 export const getTutoringsByDegree = (degree, func) => {
   return db
-    .collectionGroup("tutorings")
+    .collection("tutorings")
     .where("degrees", "array-contains", degree)
     .onSnapshot((snapshot) => {
       const tutorings = snapshot.docs.map((doc) => doc.data());
       func(tutorings);
     });
+};
+
+export const getTutoring = async (id) => {
+  const tutoringDoc = await db.collection("tutorings").doc(id).get();
+  if (!tutoringDoc.exists) {
+    return null;
+  }
+  const tutoring = tutoringDoc.data();
+  return tutoring;
 };
