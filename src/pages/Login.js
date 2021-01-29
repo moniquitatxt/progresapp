@@ -116,7 +116,7 @@ const Login = () => {
     <div className="cLogin">
       {/* Logo */}
       <div className="cHeader">
-        <img src={titlepc} alt="logo" />
+        <img className="imgLogo" src={titlepc} alt="logo" />
       </div>
       {/* Inputs */}
       <div className="cInputs">

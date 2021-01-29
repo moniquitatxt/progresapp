@@ -8,7 +8,7 @@
 }
 
 /* Contenedor del mensaje de regístrate */
-h1 {
+.hSignUp {
   margin-left: 15px;
   font-family: "QuickSand";
   text-align: center;
@@ -46,7 +46,7 @@ h1 {
     height: 90px;
   }
   /* Contenedor del mensaje de regístrate */
-  h1 {
+  .hSignUp {
     font-size: 2.4em;
     max-width: 250px;
   }
@@ -116,7 +116,7 @@ h1 {
 
 @media only screen and (max-width: 270px) {
   /* Contenedor del mensaje de regístrate */
-  h1 {
+  .hSignUp {
     font-size: 18px;
   }
 

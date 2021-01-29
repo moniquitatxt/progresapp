@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.cTutoring {
+  background-color: #fff;
+  height: 100vh;
+}
+/* Pantalla computadores*/
+@media screen and (min-width: 600px) {
+}
+/* Pantalla de teléfonos */
+@media only screen and (max-width: 600px) {
+}
