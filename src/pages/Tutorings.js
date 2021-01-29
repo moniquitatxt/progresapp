@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
 import { getTutoringsByDegree } from "../firebase/functions";
-import { TextField, MenuItem } from "@material-ui/core";
+import {
+  TextField,
+  MenuItem,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemSecondaryAction,
+  IconButton,
+} from "@material-ui/core";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degrees } from "../degrees";
 
 const Tutorings = () => {
@@ -39,6 +48,26 @@ const Tutorings = () => {
         ))}
       </TextField>
       <h2>{degree}</h2>
+      <List>
+        {tutorings.map((tutoring) => (
+          <ListItem key={tutoring.id} button divider>
+            <ListItemText
+              key={tutoring.id + "txt"}
+              primary={tutoring.name}
+              secondary={tutoring.tutorName}
+            />
+            <ListItemSecondaryAction key={tutoring.id + "sec"}>
+              <IconButton
+                edge="end"
+                aria-label="arrow"
+                key={tutoring.id + "ico"}
+              >
+                <ArrowForwardIcon key={tutoring.id + "arr"} />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        ))}
+      </List>
     </div>
   );
 };
