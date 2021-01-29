@@ -3,6 +3,10 @@
   height: 89.8vh;
   background-color: #faf3f0;
   position: fixed;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 /* PC */

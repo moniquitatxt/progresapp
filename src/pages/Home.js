@@ -16,7 +16,7 @@ const Home = () => {
       <NavBar />
     </div>
     <div className="HomeBackground">
-        
+      
     </div>
     </>
   );
