@@ -1,26 +1,18 @@
-body {
+.HomeBackground {
+  width: 100vw;
+  height: 89.8vh;
   background-color: #faf3f0;
-  background-image: none;
+  position: fixed;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 /* PC */
 @media screen and (min-width: 600px) {
-  .titulo {
-    font-size: 15pt;
-    color: #faf3f0;
-  }
-
-  .separador1 {
-    width: 100vw;
-  }
 }
 
 /* Telefonos */
 @media only screen and (max-width: 600px) {
-  .titulo {
-    font-size: 14pt;
-  }
-  .separador1 {
-    width: 100vw;
-  }
 }
