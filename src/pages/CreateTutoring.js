@@ -4,6 +4,7 @@ import { getTutoringById } from "../firebase/functions";
 import {
   TextField,
   MenuItem,
+  Button,
   List,
   ListItem,
   ListItemText,
@@ -13,14 +14,14 @@ import {
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degreeSubjects } from "../degrees";
 import { useParams } from "react-router-dom";
+import { KeyboardTimePicker } from "@material-ui/pickers";
 
 const CreateTutoring = () => {
   // Estado inicial
   const initialData = {
     subjectID: "",
     day: "",
-    startTime: "",
-    endingTime: "",
+    startTime: new Date(),
     classRoom: "",
     groupLink: "",
   };
@@ -28,6 +29,7 @@ const CreateTutoring = () => {
   // States
   const [tutoring, setTutoring] = useState({ ...initialData });
   const [errorMessages, setErrorMessages] = useState({ ...initialData });
+  const [timeError, setTimeError] = useState(false);
 
   const user = useUser();
 
@@ -67,6 +69,8 @@ const CreateTutoring = () => {
   const handleChangeText = (name, value) => {
     setTutoring({ ...tutoring, [name]: value });
   };
+
+  const publish = () => {};
 
   return (
     <div>
@@ -112,6 +116,17 @@ const CreateTutoring = () => {
         </TextField>
       </div>
       <div>
+        <KeyboardTimePicker
+          required
+          label="Hora de Inicio"
+          value={tutoring.startTime}
+          onChange={(value) => handleChangeText("startTime", value)}
+          inputVariant="outlined"
+          onError={(error, value) => setTimeError(true)}
+          invalidDateMessage="Formato de fecha inválida"
+        />
+      </div>
+      <div>
         <TextField
           fullWidth
           label="Salón"
@@ -132,6 +147,11 @@ const CreateTutoring = () => {
           helperText={errorMessages.groupLink}
           onChange={(e) => handleChangeText("groupLink", e.target.value)}
         ></TextField>
+      </div>
+      <div>
+        <Button variant="contained" fullWidth color="primary" onClick={publish}>
+          Publicar Tutoría
+        </Button>
       </div>
     </div>
   );

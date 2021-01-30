@@ -13,6 +13,12 @@ import CreateTutoring from "./pages/CreateTutoring";
 import { UserProvider } from "./contexts/UserContext";
 import CustomRoute from "./components/CustomRoute";
 import { light } from "@material-ui/core/styles/createPalette";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+} from "@material-ui/pickers";
 
 //Tema
 const theme = createMuiTheme({
@@ -66,34 +72,36 @@ function App() {
       {/* Tema */}
       <ThemeProvider theme={theme}>
         <UserProvider>
-          <Router>
-            <Switch>
-              {/* Página principal */}
-              <CustomRoute exact path="/" auth={true}>
-                <Home />
-              </CustomRoute>
-              {/* Página de lista de tutorías */}
-              <CustomRoute exact path="/tutorias" auth={true}>
-                <Tutorings />
-              </CustomRoute>
-              {/* Detalle de tutoría */}
-              <CustomRoute path="/tutorias/:id" auth={true}>
-                <TutoringDetail />
-              </CustomRoute>
-              {/* Crear tutoría TODO: No es definitivo que sea una página */}
-              <CustomRoute path="/crearTutoria" auth={true}>
-                <CreateTutoring />
-              </CustomRoute>
-              {/* Página de registro */}
-              <CustomRoute path="/signup" auth={false}>
-                <SignUp />
-              </CustomRoute>
-              {/* Página de inicio de sesión */}
-              <CustomRoute path="/login" auth={false}>
-                <Login />
-              </CustomRoute>
-            </Switch>
-          </Router>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Router>
+              <Switch>
+                {/* Página principal */}
+                <CustomRoute exact path="/" auth={true}>
+                  <Home />
+                </CustomRoute>
+                {/* Página de lista de tutorías */}
+                <CustomRoute exact path="/tutorias" auth={true}>
+                  <Tutorings />
+                </CustomRoute>
+                {/* Detalle de tutoría */}
+                <CustomRoute path="/tutorias/:id" auth={true}>
+                  <TutoringDetail />
+                </CustomRoute>
+                {/* Crear tutoría TODO: No es definitivo que sea una página */}
+                <CustomRoute path="/crearTutoria" auth={true}>
+                  <CreateTutoring />
+                </CustomRoute>
+                {/* Página de registro */}
+                <CustomRoute path="/signup" auth={false}>
+                  <SignUp />
+                </CustomRoute>
+                {/* Página de inicio de sesión */}
+                <CustomRoute path="/login" auth={false}>
+                  <Login />
+                </CustomRoute>
+              </Switch>
+            </Router>
+          </MuiPickersUtilsProvider>
         </UserProvider>
       </ThemeProvider>
     </div>
