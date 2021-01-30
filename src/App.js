@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core/styles";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Tutorings from "./pages/Tutorings";
 import TutoringDetail from "./pages/TutoringDetail";
@@ -77,18 +78,22 @@ function App() {
               <Switch>
                 {/* Página principal */}
                 <CustomRoute exact path="/" auth={true}>
+                  <NavBar />
                   <Home />
                 </CustomRoute>
                 {/* Página de lista de tutorías */}
                 <CustomRoute exact path="/tutorias" auth={true}>
+                  <NavBar />
                   <Tutorings />
                 </CustomRoute>
                 {/* Detalle de tutoría */}
                 <CustomRoute path="/tutorias/:id" auth={true}>
+                  <NavBar />
                   <TutoringDetail />
                 </CustomRoute>
                 {/* Crear tutoría TODO: No es definitivo que sea una página */}
                 <CustomRoute path="/crearTutoria" auth={true}>
+                  <NavBar />
                   <CreateTutoring />
                 </CustomRoute>
                 {/* Página de registro */}
