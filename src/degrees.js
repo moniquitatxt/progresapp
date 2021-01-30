@@ -1645,7 +1645,7 @@ export const subjectDegrees = (subjectID) => {
   degrees.forEach((degree) => {
     degree.subjects.forEach((subject) => {
       if (subject.id === subjectID) {
-        degreesList.push(degree);
+        degreesList.push(degree.id);
       }
     });
   });
@@ -1663,4 +1663,18 @@ export const degreeSubjects = (degreeID) => {
   });
 
   return subjects;
+};
+
+export const subjectName = (subjectID) => {
+  let name;
+
+  degrees.forEach((degree) => {
+    degree.subjects.forEach((subject) => {
+      if (subject.id === subjectID) {
+        name = subject.name;
+      }
+    });
+  });
+
+  return name;
 };

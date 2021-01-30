@@ -1,5 +1,5 @@
 import { auth, db, storage } from "./config";
-import { subjectDegrees } from "../degrees.js";
+import { subjectDegrees, subjectName } from "../degrees.js";
 
 // Inicio de sesión de estudiantes con correo y contraseña
 export const studentLogin = (email, password) => {
@@ -83,20 +83,24 @@ export const getTutoringById = async (id) => {
 };
 
 // Crear una tutoría nueva
-export const createTutoring = (tutor, subject, tutoring) => {
+export const createTutoring = (tutor, tutoring) => {
   const data = {
-    name: tutoring.subject.name,
+    name: subjectName(tutoring.subjectID),
     tutor: {
-      id: tutor.id,
+      id: tutor.uid,
       name: tutor.name,
       phone: tutor.phone,
     },
-    subjectID: subject.id,
-    degrees: subjectDegrees(subject.id),
-    classRoom: "",
-    groupLink: "",
+    subjectID: tutoring.subjectID,
+    degrees: subjectDegrees(tutoring.subjectID),
+    classRoom: tutoring.classRoom,
+    groupLink: tutoring.groupLink,
     studentsIDs: [],
     students: [],
-    time: {},
+    day: tutoring.day,
+    startTime: tutoring.startTime,
   };
+
+  const promise = db.collection("tutorings").add(data);
+  return promise;
 };

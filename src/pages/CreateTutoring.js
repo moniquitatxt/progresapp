@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import { getTutoringById } from "../firebase/functions";
+import { createTutoring } from "../firebase/functions";
 import {
   TextField,
   MenuItem,
@@ -29,7 +29,6 @@ const CreateTutoring = () => {
   // States
   const [tutoring, setTutoring] = useState({ ...initialData });
   const [errorMessages, setErrorMessages] = useState({ ...initialData });
-  const [timeError, setTimeError] = useState(false);
 
   const user = useUser();
 
@@ -70,7 +69,38 @@ const CreateTutoring = () => {
     setTutoring({ ...tutoring, [name]: value });
   };
 
-  const publish = () => {};
+  const publish = async () => {
+    const errorMessages = { ...initialData };
+
+    // Verifica los input
+    if (tutoring.subjectID === "") {
+      errorMessages.subjectID = "Selecciona el curso de tu tutoría";
+    }
+    if (tutoring.day === "") {
+      errorMessages.day = "Selecciona el día de tu tutoría";
+    }
+    if (tutoring.classRoom === "") {
+      errorMessages.classRoom = "Ingresa el salón de tu tutoría";
+    }
+    if (
+      tutoring.startTime == "Invalid Date" ||
+      tutoring.subjectID === "" ||
+      tutoring.day === "" ||
+      tutoring.classRoom === ""
+    ) {
+      setErrorMessages(errorMessages);
+      return;
+    }
+
+    try {
+      await createTutoring(user, tutoring);
+      alert("Tutoría creada");
+    } catch (error) {
+      console.log(error);
+      // TODO: Error de desconexión
+      setErrorMessages(errorMessages);
+    }
+  };
 
   return (
     <div>
@@ -118,18 +148,20 @@ const CreateTutoring = () => {
       <div>
         <KeyboardTimePicker
           required
+          fullWidth
           label="Hora de Inicio"
           value={tutoring.startTime}
           onChange={(value) => handleChangeText("startTime", value)}
           inputVariant="outlined"
-          onError={(error, value) => setTimeError(true)}
           invalidDateMessage="Formato de fecha inválida"
+          cancelLabel="Cancelar"
         />
       </div>
       <div>
         <TextField
           fullWidth
           label="Salón"
+          placeholder="Ej: AR-22, o Virtual, si son clases online"
           variant="outlined"
           required
           error={errorMessages.classRoom !== ""}
@@ -142,7 +174,6 @@ const CreateTutoring = () => {
           fullWidth
           label="Enlace de Grupo (WhatsApp)"
           variant="outlined"
-          required
           error={errorMessages.groupLink !== ""}
           helperText={errorMessages.groupLink}
           onChange={(e) => handleChangeText("groupLink", e.target.value)}
