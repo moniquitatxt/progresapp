@@ -32,6 +32,36 @@ const CreateTutoring = () => {
   const user = useUser();
 
   const subjects = degreeSubjects(user.degree);
+  const days = [
+    {
+      number: 0,
+      name: "Lunes",
+    },
+    {
+      number: 1,
+      name: "Martes",
+    },
+    {
+      number: 2,
+      name: "Miércoles",
+    },
+    {
+      number: 3,
+      name: "Jueves",
+    },
+    {
+      number: 4,
+      name: "Viernes",
+    },
+    {
+      number: 5,
+      name: "Sábado",
+    },
+    {
+      number: 6,
+      name: "Domingo",
+    },
+  ];
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -61,6 +91,47 @@ const CreateTutoring = () => {
             </MenuItem>
           ))}
         </TextField>
+      </div>
+      <div>
+        <TextField
+          fullWidth
+          select
+          label="Día de la Semana"
+          variant="outlined"
+          required
+          error={errorMessages.day !== ""}
+          helperText={errorMessages.day}
+          onChange={(e) => handleChangeText("day", e.target.value)}
+          value={tutoring.day}
+        >
+          {days.map((option) => (
+            <MenuItem key={option.number} value={option.number}>
+              {option.name}
+            </MenuItem>
+          ))}
+        </TextField>
+      </div>
+      <div>
+        <TextField
+          fullWidth
+          label="Salón"
+          variant="outlined"
+          required
+          error={errorMessages.classRoom !== ""}
+          helperText={errorMessages.classRoom}
+          onChange={(e) => handleChangeText("classRoom", e.target.value)}
+        ></TextField>
+      </div>
+      <div>
+        <TextField
+          fullWidth
+          label="Enlace de Grupo (WhatsApp)"
+          variant="outlined"
+          required
+          error={errorMessages.groupLink !== ""}
+          helperText={errorMessages.groupLink}
+          onChange={(e) => handleChangeText("groupLink", e.target.value)}
+        ></TextField>
       </div>
     </div>
   );
