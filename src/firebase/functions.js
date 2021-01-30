@@ -1,4 +1,5 @@
 import { auth, db, storage } from "./config";
+import { subjectDegrees } from "../degrees.js";
 
 // Inicio de sesión de estudiantes con correo y contraseña
 export const studentLogin = (email, password) => {
@@ -57,16 +58,20 @@ export const getStudentTutorings = (uid, func) => {
     });
 };
 
+// Obtener todas las tutorías de una carrera determinada
 export const getTutoringsByDegree = (degree, func) => {
   return db
     .collection("tutorings")
     .where("degrees", "array-contains", degree)
     .onSnapshot((snapshot) => {
-      const tutorings = snapshot.docs.map((doc) => doc.data());
+      const tutorings = snapshot.docs.map((doc) => {
+        return { ...doc.data(), id: doc.id };
+      });
       func(tutorings);
     });
 };
 
+// Obtener los detalles de una tutoría
 export const getTutoringById = async (id) => {
   console.log(id);
   const tutoringDoc = await db.collection("tutorings").doc(id).get();
@@ -75,4 +80,23 @@ export const getTutoringById = async (id) => {
   }
   const tutoring = tutoringDoc.data();
   return tutoring;
+};
+
+// Crear una tutoría nueva
+export const createTutoring = (tutor, subject, tutoring) => {
+  const data = {
+    name: tutoring.subject.name,
+    tutor: {
+      id: tutor.id,
+      name: tutor.name,
+      phone: tutor.phone,
+    },
+    subjectID: subject.id,
+    degrees: subjectDegrees(subject.id),
+    classRoom: "",
+    groupLink: "",
+    studentsIDs: [],
+    students: [],
+    time: {},
+  };
 };

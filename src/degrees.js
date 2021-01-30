@@ -1638,3 +1638,29 @@ export const degrees = [
     ],
   },
 ];
+
+export const subjectDegrees = (subjectID) => {
+  const degreesList = [];
+
+  degrees.forEach((degree) => {
+    degree.subjects.forEach((subject) => {
+      if (subject.id === subjectID) {
+        degreesList.push(degree);
+      }
+    });
+  });
+
+  return degreesList;
+};
+
+export const degreeSubjects = (degreeID) => {
+  let subjects;
+  degrees.forEach((degree) => {
+    if (degree.id === degreeID) {
+      subjects = [...degree.subjects];
+      return;
+    }
+  });
+
+  return subjects;
+};
