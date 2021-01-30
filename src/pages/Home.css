@@ -1,0 +1,18 @@
+.HomeBackground {
+  width: 100vw;
+  height: 89.8vh;
+  background-color: #faf3f0;
+  position: fixed;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+/* PC */
+@media screen and (min-width: 600px) {
+}
+
+/* Telefonos */
+@media only screen and (max-width: 600px) {
+}

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Fragment } from "react";
 import { useUser } from "../contexts/UserContext";
+import "./Home.css";
+import NavBar from "../components/NavBar";
 import { signOut, getStudentTutorings } from "../firebase/functions";
+
 
 const Home = () => {
   const user = useUser();
@@ -16,11 +20,14 @@ const Home = () => {
   }, [user.uid]);
 
   return (
+    <>
     <div>
-      <h1>Home Page</h1>
-      <p>{user.name}</p>
-      <button onClick={() => signOut()}>Salir</button>
+      <NavBar />
     </div>
+    <div className="HomeBackground">
+      
+    </div>
+    </>
   );
 };
 
