@@ -4,13 +4,58 @@
   margin: 0px;
 }
 
-.cTutoring {
-  background-color: #fff;
-  height: 100vh;
+/* Estilo del titulo */
+.cTitleTutoring {
+  padding-bottom: 5vh;
+  padding-top: 5vh;
 }
+
 /* Pantalla computadores*/
 @media screen and (min-width: 600px) {
+  /* Estilo del contenedor de la lista de tutorias */
+  .cListTutoring {
+    padding-left: 20vw;
+    padding-right: 20vw;
+  }
+
+  /* Contenedor de la pantalla de tutorias */
+  .cTutoring {
+    background-color: #faf3f0;
+    height: 90.3vh;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  /* Estilo del contenedor de la linea divisora */
+  .divTutoring {
+    padding: 5vh;
+    padding-right: 20vw;
+    padding-left: 20vw;
+  }
 }
+
 /* Pantalla de teléfonos */
 @media only screen and (max-width: 600px) {
+  /* Estilo del contenedor de la lista de tutorias */
+  .cListTutoring {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  /* Contenedor de la pantalla de tutorias */
+  .cTutoring {
+    background-color: #faf3f0;
+    height: 90vh;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  /* Estilo del contenedor de la linea divisora */
+  .divTutoring {
+    padding: 2vh;
+  }
 }

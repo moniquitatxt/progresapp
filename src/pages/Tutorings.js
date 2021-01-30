@@ -9,10 +9,14 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   IconButton,
+  ListItemIcon,
 } from "@material-ui/core";
 import "./Tutorings.css"
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degrees } from "../degrees";
+import Divider from '@material-ui/core/Divider';
+import TutoringIcon from '@material-ui/icons/MenuBook'
+
 
 const Tutorings = () => {
   const user = useUser();
@@ -34,13 +38,16 @@ const Tutorings = () => {
 
   return (
     <div className="cTutoring">
-      <h1>Tutorías</h1>
+      <div className="cTitleTutoring">
+        <p style={{fontSize: '30pt', color: "#000", fontWeight: "bold"}}>Tutorías</p>
+      </div>
       <TextField
         select
         label="Seleccionar Carrera"
         variant="outlined"
         onChange={(e) => handleChangeDegree(e)}
         value={degree}
+        style={{ width: '200pt'}}
       >
         {degrees.map((option) => (
           <MenuItem key={option.id} value={option.id}>
@@ -48,27 +55,36 @@ const Tutorings = () => {
           </MenuItem>
         ))}
       </TextField>
-      <h2>{degree}</h2>
-      <List>
-        {tutorings.map((tutoring) => (
-          <ListItem key={tutoring.id} button divider>
-            <ListItemText
-              key={tutoring.id + "txt"}
-              primary={tutoring.name}
-              secondary={tutoring.tutorName}
-            />
-            <ListItemSecondaryAction key={tutoring.id + "sec"}>
-              <IconButton
-                edge="end"
-                aria-label="arrow"
-                key={tutoring.id + "ico"}
-              >
-                <ArrowForwardIcon key={tutoring.id + "arr"} />
-              </IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        ))}
-      </List>
+      <div className="divTutoring">
+        <Divider />
+      </div>
+      <div className="cListTutoring">
+        <List>
+          {tutorings.map((tutoring) => (
+            <ListItem key={tutoring.id} button divider style={{backgroundColor: "#fff", borderRadius: '5pt', marginBottom: '5pt'}}>
+              <div className="cIconList">
+                <ListItemIcon>
+                  <TutoringIcon/>
+                </ListItemIcon>
+              </div>
+              <ListItemText
+                key={tutoring.id + "txt"}
+                primary={tutoring.name}
+                secondary={tutoring.tutorName}
+              />
+              <ListItemSecondaryAction key={tutoring.id + "sec"}>
+                <IconButton
+                  edge="end"
+                  aria-label="arrow"
+                  key={tutoring.id + "ico"}
+                >
+                  <ArrowForwardIcon key={tutoring.id + "arr"} />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+      </div>
     </div>
   );
 };
