@@ -16,6 +16,37 @@ import { degreeSubjects } from "../degrees";
 import { useParams } from "react-router-dom";
 import { KeyboardTimePicker } from "@material-ui/pickers";
 
+const days = [
+  {
+    number: 0,
+    name: "Lunes",
+  },
+  {
+    number: 1,
+    name: "Martes",
+  },
+  {
+    number: 2,
+    name: "Miércoles",
+  },
+  {
+    number: 3,
+    name: "Jueves",
+  },
+  {
+    number: 4,
+    name: "Viernes",
+  },
+  {
+    number: 5,
+    name: "Sábado",
+  },
+  {
+    number: 6,
+    name: "Domingo",
+  },
+];
+
 const CreateTutoring = () => {
   // Estado inicial
   const initialData = {
@@ -33,36 +64,6 @@ const CreateTutoring = () => {
   const user = useUser();
 
   const subjects = degreeSubjects(user.degree);
-  const days = [
-    {
-      number: 0,
-      name: "Lunes",
-    },
-    {
-      number: 1,
-      name: "Martes",
-    },
-    {
-      number: 2,
-      name: "Miércoles",
-    },
-    {
-      number: 3,
-      name: "Jueves",
-    },
-    {
-      number: 4,
-      name: "Viernes",
-    },
-    {
-      number: 5,
-      name: "Sábado",
-    },
-    {
-      number: 6,
-      name: "Domingo",
-    },
-  ];
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -189,3 +190,4 @@ const CreateTutoring = () => {
 };
 
 export default CreateTutoring;
+export { days };

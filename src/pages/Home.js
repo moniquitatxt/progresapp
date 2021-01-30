@@ -20,6 +20,8 @@ const Home = () => {
   return (
     <div className="HomeBackground">
       <h1>ProgresApp</h1>
+      <h2>{user.name}</h2>
+      <button onClick={() => signOut()}>Salir</button>
     </div>
   );
 };

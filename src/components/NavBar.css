@@ -2,6 +2,7 @@
 @media screen and (min-width: 600px) {
   .titulo {
     font-size: 15pt;
+    text-decoration: none;
     color: #faf3f0;
   }
 
@@ -20,6 +21,7 @@
 @media only screen and (max-width: 600px) {
   .titulo {
     font-size: 0pt;
+    text-decoration: none;
   }
 
   .drawerContainer {
