@@ -37,7 +37,7 @@ p {
 /* Todas las imagenes de la pantalla, que en este caso solo hay una, 
 si hubieran mas se puede especificar la jerarquía para saber cual 
 imagen se está modificando */
-img {
+.imgLogo {
   max-width: 100%;
   max-height: 100%;
   margin: 0px;

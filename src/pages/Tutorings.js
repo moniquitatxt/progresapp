@@ -10,6 +10,7 @@ import {
   ListItemSecondaryAction,
   IconButton,
 } from "@material-ui/core";
+import "./Tutorings.css"
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degrees } from "../degrees";
 
@@ -32,8 +33,8 @@ const Tutorings = () => {
   };
 
   return (
-    <div>
-      <h1>Lista de Tutorías</h1>
+    <div className="cTutoring">
+      <h1>Tutorías</h1>
       <TextField
         select
         label="Seleccionar Carrera"

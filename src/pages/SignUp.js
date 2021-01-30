@@ -121,7 +121,7 @@ const SignUp = () => {
           <img src={logo} alt="logo" />
         </div>
         {/* Regístrate */}
-        <h1>Regístrate en ProgresApp</h1>
+        <h1 className="hSignUp">Regístrate en ProgresApp</h1>
       </div>
       <div className="cTextFields">
         <div className="cNameAndId">
