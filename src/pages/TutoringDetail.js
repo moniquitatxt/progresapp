@@ -10,11 +10,16 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   IconButton,
+  LinearProgress,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
 } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degrees } from "../degrees";
 import { useParams } from "react-router-dom";
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 
 const days = [
   "Lunes",
@@ -29,6 +34,7 @@ const days = [
 const TutoringDetail = () => {
   const [tutoring, setTutoring] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showStudents, setShowStudents] = useState(false);
 
   const user = useUser();
   const params = useParams();
@@ -59,11 +65,11 @@ const TutoringDetail = () => {
     }
   };
 
-  // TODO: Obviamente la dorma forma de mostrar la carga será diferente
   if (loading) {
     return (
       <div>
-        <h1>Cargando</h1>
+        {/* TODO: Le pueden cambiar el color si lo desean o el tipo de loader */}
+        <LinearProgress color="secondary" />
       </div>
     );
   }
@@ -82,7 +88,27 @@ const TutoringDetail = () => {
             tutoring.startTime,
             "p"
           )} - ${format(tutoring.endingTime, "p")}`}</h4>
-          <h3>Estudiantes</h3>
+          {tutoring.studentsIDs.includes(user.uid) ? (
+            <h3 onClick={() => setShowStudents(true)}>Ver Estudiantes</h3>
+          ) : (
+            <h3>Estudiantes</h3>
+          )}
+
+          <Dialog
+            open={showStudents}
+            onClose={() => setShowStudents(false)}
+            aria-labelledby="form-dialog-title"
+          >
+            <DialogTitle id="form-dialog-title">Estudiantes</DialogTitle>
+            <DialogContent>
+              {tutoring.students.map((student) => (
+                <DialogContentText key={student.name}>
+                  {student.name}
+                </DialogContentText>
+              ))}
+            </DialogContent>
+          </Dialog>
+
           <h4>{`${tutoring.students.length}/15`} </h4>
           <h3>Salón</h3>
           <h4>{tutoring.classRoom}</h4>
