@@ -18,10 +18,11 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const analytics = firebase.analytics();
 const storage = firebase.storage();
+const FieldValue = firebase.firestore.FieldValue;
 
 db.enablePersistence().catch(function (err) {
   // TODO: Manejar el error
   console.log(err.message);
 });
 
-export { auth, db, analytics, storage };
+export { auth, db, analytics, storage, FieldValue };

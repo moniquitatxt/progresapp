@@ -1,5 +1,6 @@
 import { auth, db, storage } from "./config";
 import { subjectDegrees, subjectName } from "../degrees.js";
+import { add } from "date-fns";
 
 // Inicio de sesión de estudiantes con correo y contraseña
 export const studentLogin = (email, password) => {
@@ -65,7 +66,11 @@ export const getTutoringsByDegree = (degree, func) => {
     .where("degrees", "array-contains", degree)
     .onSnapshot((snapshot) => {
       const tutorings = snapshot.docs.map((doc) => {
-        return { ...doc.data(), id: doc.id };
+        const tutoring = doc.data();
+        tutoring.id = doc.id;
+        tutoring.startTime = new Date(tutoring.startTime * 1000);
+        tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
+        return tutoring;
       });
       func(tutorings);
     });
@@ -73,12 +78,14 @@ export const getTutoringsByDegree = (degree, func) => {
 
 // Obtener los detalles de una tutoría
 export const getTutoringById = async (id) => {
-  console.log(id);
   const tutoringDoc = await db.collection("tutorings").doc(id).get();
   if (!tutoringDoc.exists) {
     return null;
   }
   const tutoring = tutoringDoc.data();
+  tutoring.id = tutoringDoc.id;
+  tutoring.startTime = new Date(tutoring.startTime * 1000);
+  tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
   return tutoring;
 };
 
@@ -102,5 +109,17 @@ export const createTutoring = (tutor, tutoring) => {
   };
 
   const promise = db.collection("tutorings").add(data);
+  return promise;
+};
+
+export const joinTutoring = async (tutoring, user) => {
+  const promise = db
+    .collection("tutorings")
+    .doc(tutoring.id)
+    .update({
+      studentsIDs: [...tutoring.studentsIDs, user.uid],
+      students: [...tutoring.students, { name: user.name, attendances: 0 }],
+    });
+
   return promise;
 };
