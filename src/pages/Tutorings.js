@@ -10,9 +10,11 @@ import {
   ListItemSecondaryAction,
   IconButton,
   ListItemIcon,
+  ListItemAvatar,
+  Avatar,
 } from "@material-ui/core";
 import "./Tutorings.css"
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowForwardIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import { degrees } from "../degrees";
 import Divider from '@material-ui/core/Divider';
 import TutoringIcon from '@material-ui/icons/MenuBook'
@@ -39,7 +41,7 @@ const Tutorings = () => {
   return (
     <div className="cTutoring">
       <div className="cTitleTutoring">
-        <p style={{fontSize: '30pt', color: "#000", fontWeight: "bold"}}>Tutorías</p>
+        <p style={{fontSize: '30pt', color: "#3c3b3e", fontWeight: "bold"}}>Tutorías</p>
       </div>
       <TextField
         select
@@ -61,18 +63,25 @@ const Tutorings = () => {
       <div className="cListTutoring">
         <List>
           {tutorings.map((tutoring) => (
-            <ListItem key={tutoring.id} button divider style={{backgroundColor: "#fff", borderRadius: '5pt', marginBottom: '5pt'}}>
-              <div className="cIconList">
-                <ListItemIcon>
-                  <TutoringIcon/>
-                </ListItemIcon>
-              </div>
+            <ListItem key={tutoring.id} button divider style={{backgroundColor: "#fff", borderRadius: '5pt', marginBottom: '10pt', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)'}}>
+              <ListItemAvatar>
+                <Avatar style={{backgroundColor: "#d3485a40"}}>
+                  <TutoringIcon style={{color: "#d3485a"}}/>
+                </Avatar>
+              </ListItemAvatar>
+              <Divider orientation="vertical" flexItem style={{ marginRight: '7pt'}}/>
               <ListItemText
                 key={tutoring.id + "txt"}
                 primary={tutoring.name}
-                secondary={tutoring.tutorName}
+                secondaryTypographyProps={{align: 'left'}}
+                secondary={
+                  tutoring.tutorName+
+                  "\n"+
+                  "Lunes 8:00 pm - 8:30 pm"
+                }
+                style={{whiteSpace: 'pre'}}
               />
-              <ListItemSecondaryAction key={tutoring.id + "sec"}>
+              {/* <ListItemSecondaryAction key={tutoring.id + "sec"}>
                 <IconButton
                   edge="end"
                   aria-label="arrow"
@@ -80,7 +89,7 @@ const Tutorings = () => {
                 >
                   <ArrowForwardIcon key={tutoring.id + "arr"} />
                 </IconButton>
-              </ListItemSecondaryAction>
+              </ListItemSecondaryAction> */}
             </ListItem>
           ))}
         </List>
