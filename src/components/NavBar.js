@@ -72,7 +72,7 @@ function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Inicio" />
           </ListItem>
-          <ListItem button>
+          <ListItem button component={Link} to="/tutorias">
             <ListItemIcon>
               <SearchIcon />
             </ListItemIcon>

@@ -142,6 +142,7 @@ const SignUp = () => {
             <TextField
               fullWidth
               label="Cédula"
+              placeholder="Ej: 28.270.835"
               variant="outlined"
               required
               error={errorMessages.idDocument !== ""}
@@ -155,6 +156,7 @@ const SignUp = () => {
           <TextField
             fullWidth
             label="Teléfono"
+            placeholder="Ej: 0412-9216791"
             variant="outlined"
             error={errorMessages.phone !== ""}
             helperText={errorMessages.phone}
