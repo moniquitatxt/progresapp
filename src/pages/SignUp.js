@@ -113,6 +113,9 @@ const SignUp = () => {
   };
 
   return (
+    /**/
+    <div className="cBackgroundSignUp">
+          {/* Header */}
     <div className="cSignUp">
       {/* Header */}
       <div className="cHeader">
@@ -257,6 +260,7 @@ const SignUp = () => {
           Registrarse
         </Button>
       </div>
+    </div>
     </div>
   );
 };
