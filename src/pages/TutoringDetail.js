@@ -91,6 +91,7 @@ const TutoringDetail = () => {
       ) : (
         <div className="cTutoringDetail">
           <p className="nTutoring" style={{color: "#3c3b3e"}}>{tutoring.name}</p>
+          <p className="nTutor" style={{color: "#3c3b3e"}}>{tutoring.tutor.name}</p>
           <div className="cInfoTutoring">
             <Divider style={{marginBottom: '10pt'}}/>
             <List>

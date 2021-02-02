@@ -1,7 +1,12 @@
 .nTutoring {
   padding-top: 10pt;
-  font-size: 30pt;
+  font-size: 25pt;
   font-weight: bold;
+  text-overflow: ellipsis;
+}
+
+.nTutor {
+  font-size: 20pt;
 }
 
 /* PC */
@@ -13,7 +18,7 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: -31pt;
+    margin-top: -25pt;
   }
 
   .cInfoTutoring {
