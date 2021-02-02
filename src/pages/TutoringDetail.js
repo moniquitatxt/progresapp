@@ -15,11 +15,20 @@ import {
   DialogTitle,
   DialogContent,
   DialogContentText,
+  Divider,
+  Avatar,
+  ListItemAvatar,
 } from "@material-ui/core";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ScheduleIcon from '@material-ui/icons/QueryBuilderOutlined';
 import { degrees } from "../degrees";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
+import "./TutoringDetail.css";
+import StudentsIcon from '@material-ui/icons/PersonOutlined';
+import { faChalkboard } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LogoWhatsapp } from 'react-ionicons'
+import ContactIcon from '@material-ui/icons/MailOutline';
 
 const days = [
   "Lunes",
@@ -80,21 +89,150 @@ const TutoringDetail = () => {
       {!tutoring ? (
         <h1>Not Found</h1>
       ) : (
-        <div>
-          <h1>{tutoring.name}</h1>
-          <h2>{tutoring.tutor.name}</h2>
-          <h3>Horario</h3>
-          <h4>{`${days[tutoring.day]} ${format(
-            tutoring.startTime,
-            "p"
-          )} - ${format(tutoring.endingTime, "p")}`}</h4>
-          {tutoring.studentsIDs.includes(user.uid) ? (
-            <h3 onClick={() => setShowStudents(true)}>Ver Estudiantes</h3>
-          ) : (
-            <h3>Estudiantes</h3>
-          )}
-
-          <Dialog
+        <div className="cTutoringDetail">
+          <p className="nTutoring" style={{color: "#3c3b3e"}}>{tutoring.name}</p>
+          <div className="cInfoTutoring">
+            <Divider style={{marginBottom: '10pt'}}/>
+            <List>
+              <ListItem
+                divider
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: "5pt",
+                  marginBottom: "10pt",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+              >
+                <ListItemAvatar>
+                <Avatar style={{ backgroundColor: "#fca97640" }}>
+                  <ScheduleIcon style={{ color: "#fca976" }} />
+                </Avatar>
+              </ListItemAvatar>
+              <Divider
+                orientation="vertical"
+                flexItem
+                style={{ marginRight: "7pt" }}
+              />
+              <ListItemText
+                primary="Horario"
+                secondary={`${days[tutoring.day]} ${format(
+                  tutoring.startTime,
+                  "p"
+                )} - ${format(tutoring.endingTime, "p")}`}
+                secondaryTypographyProps={{align: "left"}}
+                style={{ whiteSpace: "pre" }}
+              />
+              </ListItem>
+              <ListItem
+                button
+                divider
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: "5pt",
+                  marginBottom: "10pt",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+                onClick={() => setShowStudents(true)}
+              >
+                <ListItemAvatar>
+                <Avatar style={{ backgroundColor: "#B3949040" }}>
+                  <StudentsIcon style={{ color: "#B39490" }} />
+                </Avatar>
+              </ListItemAvatar>
+              <Divider
+                orientation="vertical"
+                flexItem
+                style={{ marginRight: "7pt" }}
+              />
+              <ListItemText
+                primary="Ver estudiantes"
+                secondary={`${tutoring.students.length}/15`}
+                secondaryTypographyProps={{align: "left"}}
+                style={{ whiteSpace: "pre" }}
+              />
+              </ListItem>
+              <ListItem
+                divider
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: "5pt",
+                  marginBottom: "10pt",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+              >
+                <ListItemAvatar>
+                <Avatar style={{ backgroundColor: "#fb86bb40" }}>
+                  <FontAwesomeIcon icon={faChalkboard} style={{color:  "#fb86bb"}}/>
+                </Avatar>
+              </ListItemAvatar>
+              <Divider
+                orientation="vertical"
+                flexItem
+                style={{ marginRight: "7pt" }}
+              />
+              <ListItemText
+                primary="Aula"
+                secondary={tutoring.classRoom}
+                secondaryTypographyProps={{align: "left"}}
+                style={{ whiteSpace: "pre" }}
+              />
+              </ListItem>        
+              <ListItem
+                //CUANDO ESTA UNIDO 
+                divider
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: "5pt",
+                  marginBottom: "10pt",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+              >
+                <ListItemAvatar>
+                <Avatar style={{ backgroundColor: "#25d36640" }}>
+                  <LogoWhatsapp color="#25d366"/>
+                </Avatar>
+              </ListItemAvatar>
+              <Divider
+                orientation="vertical"
+                flexItem
+                style={{ marginRight: "7pt" }}
+              />
+              <ListItemText
+                primary="Link del Grupo"
+                secondary="blablabla.com"  //POR COLOCAR LA VARIABLE DE LINK DEL GRUPO
+                secondaryTypographyProps={{align: "left"}}
+                style={{ whiteSpace: "pre" }}
+              />
+              </ListItem>
+              <ListItem
+                //CUANDO ESTA UNIDO 
+                divider
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: "5pt",
+                  marginBottom: "10pt",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+              >
+                <ListItemAvatar>
+                <Avatar style={{ backgroundColor: "#d3485a40" }}>
+                  <ContactIcon style={{color: "#d3485a"}}/>
+                </Avatar>
+              </ListItemAvatar>
+              <Divider
+                orientation="vertical"
+                flexItem
+                style={{ marginRight: "7pt" }}
+              />
+              <ListItemText
+                primary="Contactar al tutor"
+                secondary="blablabla"  //POR COLOCAR LA VARIABLE DE CONTACTO HACIA EL TUTOR
+                secondaryTypographyProps={{align: "left"}}
+                style={{ whiteSpace: "pre" }}
+              />
+              </ListItem>
+            </List>
+            <Dialog
             open={showStudents}
             onClose={() => setShowStudents(false)}
             aria-labelledby="form-dialog-title"
@@ -108,25 +246,7 @@ const TutoringDetail = () => {
               ))}
             </DialogContent>
           </Dialog>
-
-          <h4>{`${tutoring.students.length}/15`} </h4>
-          <h3>Salón</h3>
-          <h4>{tutoring.classRoom}</h4>
-          {tutoring.studentsIDs.includes(user.uid)}
-          {tutoring.degrees.includes(user.degree) &&
-            tutoring.tutor.id !== user.uid &&
-            !tutoring.studentsIDs.includes(user.uid) && (
-              <div className="bLogin">
-                <Button
-                  variant="contained"
-                  fullWidth
-                  color="primary"
-                  onClick={join}
-                >
-                  Unirse
-                </Button>
-              </div>
-            )}
+          </div>
         </div>
       )}
     </div>

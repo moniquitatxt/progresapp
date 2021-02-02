@@ -64,6 +64,10 @@ const theme = createMuiTheme({
     septenary: {
       main: "#fca976",
     },
+    //negro
+    octonary: {
+      main: "#3c3b3e"
+    },
   },
 });
 
