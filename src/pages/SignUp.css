@@ -15,7 +15,7 @@
 }
 
 /* Contenedor del mensaje de regístrate */
-.hSignUp {
+.hSignUp h1 {
   margin-left: 15px;
   font-family: "QuickSand";
   text-align: center;
@@ -54,12 +54,12 @@
     box-shadow: 3px 3px 3px #3c3b3e;
   }
   /* Contenedor del logo*/
-  .iLogo {
+  .iLogo img {
     max-width: 90px;
     height: 90px;
   }
   /* Contenedor del mensaje de regístrate */
-  .hSignUp {
+  .hSignUp h1 {
     font-size: 2.4em;
     max-width: 250px;
   }
@@ -93,13 +93,13 @@
 /* Pantalla de teléfonos */
 @media only screen and (max-width: 600px) {
   /* Contenedor del mensaje de regístrate */
-  h1 {
+  .hSignUp h1 {
     font-size: 30px;
     max-width: 200px;
   }
 
   /* Contenedor del logo*/
-  .iLogo {
+  .iLogo img {
     max-width: 80px;
   }
 
@@ -129,12 +129,12 @@
 
 @media only screen and (max-width: 270px) {
   /* Contenedor del mensaje de regístrate */
-  .hSignUp {
+  .hSignUp h1 {
     font-size: 18px;
   }
 
   /* Contenedor del logo*/
-  .iLogo {
+  .iLogo img {
     max-width: 55px;
   }
 }
