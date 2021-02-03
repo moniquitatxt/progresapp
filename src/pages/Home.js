@@ -24,9 +24,10 @@ const Home = () => {
 
   return (
     <div className="HomeBackground">
-      <h1>ProgresApp</h1>
-      <h2>{user.name}</h2>
-
+      <div className="cTitleHome">
+        <p style={{ fontSize: "30pt", color: "#3c3b3e", fontWeight: "bold" }}>ProgresApp</p>
+        <p style={{color: "#3c3b3e", fontSize: "20pt"}}>{user.name}</p>
+      </div>
       {/* TODO: OJO el hecho de lo haya puesto aquí no significa que sea su lugar, es una prueba */}
       <Dialog
         open={showCreate}

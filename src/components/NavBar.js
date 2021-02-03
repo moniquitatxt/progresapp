@@ -18,6 +18,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import Divider from "@material-ui/core/Divider";
 import EditT from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
+import Background from "../assets/background-appbar.svg";
+
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -27,7 +29,7 @@ function NavBar() {
   };
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="fixed" style={{backgroundImage: `url(${Background})`}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -72,7 +74,7 @@ function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Inicio" />
           </ListItem>
-          <ListItem button component={Link} to="/tutorias">
+          <ListItem button component={Link} to="/tutorias" onClick={() => setOpen(false)}>
             <ListItemIcon>
               <SearchIcon />
             </ListItemIcon>

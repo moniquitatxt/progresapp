@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.cTitleHome {
+  padding-top: 50pt;
+}
+
 /* PC */
 @media screen and (min-width: 600px) {
 }

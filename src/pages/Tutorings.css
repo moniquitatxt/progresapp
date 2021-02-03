@@ -2,8 +2,7 @@
 
 /* Estilo del titulo */
 .cTitleTutoring {
-  padding-bottom: 5vh;
-  padding-top: 5vh;
+  padding-top: 50pt;
 }
 
 /* Pantalla computadores*/
@@ -17,7 +16,7 @@
   /* Contenedor de la pantalla de tutorias */
   .cTutoring {
     background-color: #faf3f0;
-    height: 90.3vh;
+    height: 100%;
     text-align: center;
     justify-content: center;
     align-content: center;
@@ -43,7 +42,7 @@
   /* Contenedor de la pantalla de tutorias */
   .cTutoring {
     background-color: #faf3f0;
-    height: 90vh;
+    height: 100%;
     text-align: center;
     justify-content: center;
     align-content: center;
