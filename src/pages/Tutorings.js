@@ -52,9 +52,7 @@ const Tutorings = () => {
 
   return (
     <div className="cTutoring">
-      <div>
-        <LinearProgress color="secondary" />
-      </div>
+      <div>{loading && <LinearProgress color="secondary" />}</div>
       <div className="cTitleTutoring">
         <p style={{ fontSize: "30pt", color: "#3c3b3e", fontWeight: "bold" }}>
           Tutorías

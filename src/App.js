@@ -10,16 +10,12 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Tutorings from "./pages/Tutorings";
 import TutoringDetail from "./pages/TutoringDetail";
-import CreateTutoring from "./pages/CreateTutoring";
+import MyTutorings from "./pages/MyTutorings";
 import { UserProvider } from "./contexts/UserContext";
 import CustomRoute from "./components/CustomRoute";
-import { light } from "@material-ui/core/styles/createPalette";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 //Tema
 const theme = createMuiTheme({
@@ -66,7 +62,7 @@ const theme = createMuiTheme({
     },
     //negro
     octonary: {
-      main: "#3c3b3e"
+      main: "#3c3b3e",
     },
   },
 });
@@ -95,10 +91,10 @@ function App() {
                   <NavBar />
                   <TutoringDetail />
                 </CustomRoute>
-                {/* Crear tutoría TODO: No es definitivo que sea una página */}
-                <CustomRoute path="/crearTutoria" auth={true}>
+                {/* Tutorías de un totr */}
+                <CustomRoute exact path="/mistutorias" auth={true}>
                   <NavBar />
-                  <CreateTutoring />
+                  <MyTutorings />
                 </CustomRoute>
                 {/* Página de registro */}
                 <CustomRoute path="/signup" auth={false}>

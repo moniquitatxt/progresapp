@@ -113,6 +113,7 @@ export const createTutoring = (tutor, tutoring) => {
   return promise;
 };
 
+// Unirsea una tutoría
 export const joinTutoring = async (tutoring, user) => {
   const promise = db
     .collection("tutorings")
@@ -123,4 +124,21 @@ export const joinTutoring = async (tutoring, user) => {
     });
 
   return promise;
+};
+
+// Obtener todas las tutorías de un tutor
+export const getTutorTutorings = (tutorID, func) => {
+  return db
+    .collection("tutorings")
+    .where("tutor.id", "==", tutorID)
+    .onSnapshot((snapshot) => {
+      const tutorings = snapshot.docs.map((doc) => {
+        const tutoring = doc.data();
+        tutoring.id = doc.id;
+        tutoring.startTime = new Date(tutoring.startTime * 1000);
+        tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
+        return tutoring;
+      });
+      func(tutorings);
+    });
 };

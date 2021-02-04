@@ -50,7 +50,6 @@ const TutoringDetail = () => {
   const history = useHistory();
 
   useEffect(() => {
-    // TODO: Manejar aquí la redirección si yo soy el tutor o si ya me uní
     getTutoring();
   }, []);
 
@@ -58,8 +57,7 @@ const TutoringDetail = () => {
     const tutoring = await getTutoringById(params.id);
     // Si soy el tutor
     if (tutoring && user.uid === tutoring.tutor.id) {
-      // TODO: Cambiar luego al "/" de mis tutorías
-      history.push("/");
+      history.replace(`/mistutorias/${params.id}`);
       return;
     }
     setTutoring(tutoring);
