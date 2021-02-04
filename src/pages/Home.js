@@ -34,7 +34,7 @@ const Home = () => {
         onClose={() => setShowCreate(false)}
         aria-labelledby="create-dialog-title"
       >
-        <DialogTitle id="create-dialog-title">Nueva Tutoría</DialogTitle>
+        <DialogTitle id="create-dialog-title">Crear Tutoría</DialogTitle>
         <DialogContent>
           <CreateTutoring />
         </DialogContent>

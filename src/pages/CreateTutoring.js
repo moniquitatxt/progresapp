@@ -15,6 +15,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degreeSubjects } from "../degrees";
 import { useParams } from "react-router-dom";
 import { KeyboardTimePicker } from "@material-ui/pickers";
+import "./CreateTutoring.css";
 
 const days = [
   {
@@ -104,11 +105,10 @@ const CreateTutoring = () => {
   };
 
   return (
-    <div>
-      <h1>Crear Tutoría</h1>
+    <div className="cCreateT">
       {/* TODO: Recordar que pueden cambiar el orden de los input a lo que quede mejor */}
       {/* Select de la materia */}
-      <div>
+      <div className="cInputCreate">
         <TextField
           fullWidth
           select
@@ -127,7 +127,7 @@ const CreateTutoring = () => {
           ))}
         </TextField>
       </div>
-      <div>
+      <div className="cInputCreate">
         <TextField
           fullWidth
           select
@@ -146,7 +146,7 @@ const CreateTutoring = () => {
           ))}
         </TextField>
       </div>
-      <div>
+      <div className="cInputCreate">
         <KeyboardTimePicker
           required
           fullWidth
@@ -158,7 +158,7 @@ const CreateTutoring = () => {
           cancelLabel="Cancelar"
         />
       </div>
-      <div>
+      <div className="cInputCreate">
         <TextField
           fullWidth
           label="Salón"
@@ -170,7 +170,7 @@ const CreateTutoring = () => {
           onChange={(e) => handleChangeText("classRoom", e.target.value)}
         ></TextField>
       </div>
-      <div>
+      <div className="cInputCreate">
         <TextField
           fullWidth
           label="Enlace de Grupo (WhatsApp)"
@@ -180,7 +180,7 @@ const CreateTutoring = () => {
           onChange={(e) => handleChangeText("groupLink", e.target.value)}
         ></TextField>
       </div>
-      <div>
+      <div className="cButtonCreate">
         <Button variant="contained" fullWidth color="primary" onClick={publish}>
           Publicar Tutoría
         </Button>
