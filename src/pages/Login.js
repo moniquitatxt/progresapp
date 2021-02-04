@@ -133,8 +133,9 @@ const Login = () => {
             Ingresar
           </Button>
         </div>
-        <div className="cBSignUp">
-          <Link to="/signup" className="bSignUp">
+        {/* Botón que redirige al SignUp */}
+        <div className="clSignUp">
+          <Link to="/signup" className="lSignUp">
             ¿No tienes cuenta? ¡Regístrate aquí!
           </Link>
         </div>

@@ -33,6 +33,33 @@
   margin-top: 15px;
 }
 
+/* Contenedor del botón para registrarse*/
+.bSignUp {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20pt;
+  padding-bottom: 10pt;
+}
+
+/* Contenedor del link que lleva al login */
+.clLogin {
+  text-align: center;
+  padding-bottom: 10pt;
+}
+
+/* Link que lleva al login*/
+.lLogin {
+  text-decoration: none;
+  color: #475694;
+}
+
+.lLogin:hover {
+  text-decoration: underline;
+  color: #232b4a;
+}
+
+/* Computador*/
 @media screen and (min-width: 600px) {
   /* Fondo de la pantalla */
   .cBackgroundSignUp {
@@ -80,16 +107,8 @@
   .tfId {
     margin-left: 10px;
   }
-
-  /* Contenedor del botón para registrarse*/
-  .bSignUp {
-    max-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 20pt;
-    padding-bottom: 20pt;
-  }
 }
+
 /* Pantalla de teléfonos */
 @media only screen and (max-width: 600px) {
   /* Contenedor del mensaje de regístrate */
@@ -115,15 +134,6 @@
   .tfInfo {
     margin-left: 12px;
     margin-right: 12px;
-  }
-
-  /* Contenedor del botón para registrarse*/
-  .bSignUp {
-    max-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 20pt;
-    padding-bottom: 20pt;
   }
 }
 
