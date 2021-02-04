@@ -50,17 +50,11 @@ const Tutorings = () => {
     setDegree(e.target.value);
   };
 
-  if (loading) {
-    return (
-      <div>
-        {/* TODO: Le pueden cambiar el color si lo desean o el tipo de loader */}
-        <LinearProgress color="secondary" />
-      </div>
-    );
-  }
-
   return (
     <div className="cTutoring">
+      <div>
+        <LinearProgress color="secondary" />
+      </div>
       <div className="cTitleTutoring">
         <p style={{ fontSize: "30pt", color: "#3c3b3e", fontWeight: "bold" }}>
           Tutorías
@@ -83,57 +77,50 @@ const Tutorings = () => {
       <div className="divTutoring">
         <Divider />
       </div>
-      <div className="cListTutoring">
-        <List>
-          {tutorings.map((tutoring) => (
-            <ListItem
-              key={tutoring.id}
-              button
-              divider
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: "5pt",
-                marginBottom: "10pt",
-                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              }}
-              component={Link}
-              to={"/tutorias/" + tutoring.id}
-            >
-              <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "#d3485a40" }}>
-                  <TutoringIcon style={{ color: "#d3485a" }} />
-                </Avatar>
-              </ListItemAvatar>
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{ marginRight: "7pt" }}
-              />
-              <ListItemText
-                key={tutoring.id + "txt"}
-                primary={tutoring.name}
-                secondaryTypographyProps={{ align: "left" }}
-                secondary={`${tutoring.tutor.name}\n${
-                  days[tutoring.day]
-                } ${format(tutoring.startTime, "p")} - ${format(
-                  tutoring.endingTime,
-                  "p"
-                )}`}
-                style={{ whiteSpace: "pre" }}
-              />
-              {/* <ListItemSecondaryAction key={tutoring.id + "sec"}>
-                <IconButton
-                  edge="end"
-                  aria-label="arrow"
-                  key={tutoring.id + "ico"}
-                >
-                  <ArrowForwardIcon key={tutoring.id + "arr"} />
-                </IconButton>
-              </ListItemSecondaryAction> */}
-            </ListItem>
-          ))}
-        </List>
-      </div>
+      {!loading && (
+        <div className="cListTutoring">
+          <List>
+            {tutorings.map((tutoring) => (
+              <ListItem
+                key={tutoring.id}
+                button
+                divider
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: "5pt",
+                  marginBottom: "10pt",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                }}
+                component={Link}
+                to={"/tutorias/" + tutoring.id}
+              >
+                <ListItemAvatar>
+                  <Avatar style={{ backgroundColor: "#d3485a40" }}>
+                    <TutoringIcon style={{ color: "#d3485a" }} />
+                  </Avatar>
+                </ListItemAvatar>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  style={{ marginRight: "7pt" }}
+                />
+                <ListItemText
+                  key={tutoring.id + "txt"}
+                  primary={tutoring.name}
+                  secondaryTypographyProps={{ align: "left" }}
+                  secondary={`${tutoring.tutor.name}\n${
+                    days[tutoring.day]
+                  } ${format(tutoring.startTime, "p")} - ${format(
+                    tutoring.endingTime,
+                    "p"
+                  )}`}
+                  style={{ whiteSpace: "pre" }}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </div>
+      )}
     </div>
   );
 };

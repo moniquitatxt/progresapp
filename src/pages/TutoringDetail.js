@@ -19,16 +19,16 @@ import {
   Avatar,
   ListItemAvatar,
 } from "@material-ui/core";
-import ScheduleIcon from '@material-ui/icons/QueryBuilderOutlined';
+import ScheduleIcon from "@material-ui/icons/QueryBuilderOutlined";
 import { degrees } from "../degrees";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { format } from "date-fns";
 import "./TutoringDetail.css";
-import StudentsIcon from '@material-ui/icons/PersonOutlined';
+import StudentsIcon from "@material-ui/icons/PersonOutlined";
 import { faChalkboard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { LogoWhatsapp } from 'react-ionicons'
-import ContactIcon from '@material-ui/icons/MailOutline';
+import { LogoWhatsapp } from "react-ionicons";
+import ContactIcon from "@material-ui/icons/MailOutline";
 
 const days = [
   "Lunes",
@@ -47,13 +47,21 @@ const TutoringDetail = () => {
 
   const user = useUser();
   const params = useParams();
+  const history = useHistory();
 
   useEffect(() => {
+    // TODO: Manejar aquí la redirección si yo soy el tutor o si ya me uní
     getTutoring();
   }, []);
 
   const getTutoring = async () => {
     const tutoring = await getTutoringById(params.id);
+    // Si soy el tutor
+    if (tutoring && user.uid === tutoring.tutor.id) {
+      // TODO: Cambiar luego al "/" de mis tutorías
+      history.push("/");
+      return;
+    }
     setTutoring(tutoring);
     setLoading(false);
   };
@@ -67,11 +75,17 @@ const TutoringDetail = () => {
 
     try {
       await joinTutoring(tutoring, user);
+      await getTutoring();
       alert("TE UNISTE");
     } catch (error) {
       console.log(error);
       // TODO: Colocar de alguna forma el error
     }
+  };
+
+  // Verifica la pertenencia a la tutoría
+  const belongs = () => {
+    return tutoring.studentsIDs.includes(user.uid);
   };
 
   if (loading) {
@@ -84,16 +98,28 @@ const TutoringDetail = () => {
   }
 
   return (
-    <div>
+    <div className="cTutoringDetail">
       {/* TODO: Obviamente la forma de mostrar este error será diferente */}
+      {/* TODO: Pongan un título bonito que sea tipo tutoría no encontrada, o no sé */}
       {!tutoring ? (
-        <h1>Not Found</h1>
+        <div>
+          <p className="nTutoring" style={{ color: "#3c3b3e" }}>
+            Tutoría no encontrada
+          </p>
+          <p className="nTutor" style={{ color: "#3c3b3e" }}>
+            La tutoría que buscabas desafortunadamente ya no existe
+          </p>
+        </div>
       ) : (
-        <div className="cTutoringDetail">
-          <p className="nTutoring" style={{color: "#3c3b3e"}}>{tutoring.name}</p>
-          <p className="nTutor" style={{color: "#3c3b3e"}}>{tutoring.tutor.name}</p>
+        <div>
+          <p className="nTutoring" style={{ color: "#3c3b3e" }}>
+            {tutoring.name}
+          </p>
+          <p className="nTutor" style={{ color: "#3c3b3e" }}>
+            {tutoring.tutor.name}
+          </p>
           <div className="cInfoTutoring">
-            <Divider style={{marginBottom: '10pt'}}/>
+            <Divider style={{ marginBottom: "10pt" }} />
             <List>
               <ListItem
                 divider
@@ -105,27 +131,27 @@ const TutoringDetail = () => {
                 }}
               >
                 <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "#fca97640" }}>
-                  <ScheduleIcon style={{ color: "#fca976" }} />
-                </Avatar>
-              </ListItemAvatar>
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{ marginRight: "7pt" }}
-              />
-              <ListItemText
-                primary="Horario"
-                secondary={`${days[tutoring.day]} ${format(
-                  tutoring.startTime,
-                  "p"
-                )} - ${format(tutoring.endingTime, "p")}`}
-                secondaryTypographyProps={{align: "left"}}
-                style={{ whiteSpace: "pre" }}
-              />
+                  <Avatar style={{ backgroundColor: "#fca97640" }}>
+                    <ScheduleIcon style={{ color: "#fca976" }} />
+                  </Avatar>
+                </ListItemAvatar>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  style={{ marginRight: "7pt" }}
+                />
+                <ListItemText
+                  primary="Horario"
+                  secondary={`${days[tutoring.day]} ${format(
+                    tutoring.startTime,
+                    "p"
+                  )} - ${format(tutoring.endingTime, "p")}`}
+                  secondaryTypographyProps={{ align: "left" }}
+                  style={{ whiteSpace: "pre" }}
+                />
               </ListItem>
               <ListItem
-                button
+                button={belongs()}
                 divider
                 style={{
                   backgroundColor: "#fff",
@@ -133,53 +159,26 @@ const TutoringDetail = () => {
                   marginBottom: "10pt",
                   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                 }}
-                onClick={() => setShowStudents(true)}
+                onClick={() => belongs() && setShowStudents(true)}
               >
                 <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "#B3949040" }}>
-                  <StudentsIcon style={{ color: "#B39490" }} />
-                </Avatar>
-              </ListItemAvatar>
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{ marginRight: "7pt" }}
-              />
-              <ListItemText
-                primary="Ver estudiantes"
-                secondary={`${tutoring.students.length}/15`}
-                secondaryTypographyProps={{align: "left"}}
-                style={{ whiteSpace: "pre" }}
-              />
+                  <Avatar style={{ backgroundColor: "#B3949040" }}>
+                    <StudentsIcon style={{ color: "#B39490" }} />
+                  </Avatar>
+                </ListItemAvatar>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  style={{ marginRight: "7pt" }}
+                />
+                <ListItemText
+                  primary={belongs() ? "Ver estudiantes" : "Estudiantes"}
+                  secondary={`${tutoring.students.length}/15`}
+                  secondaryTypographyProps={{ align: "left" }}
+                  style={{ whiteSpace: "pre" }}
+                />
               </ListItem>
               <ListItem
-                divider
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: "5pt",
-                  marginBottom: "10pt",
-                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                }}
-              >
-                <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "#fb86bb40" }}>
-                  <FontAwesomeIcon icon={faChalkboard} style={{color:  "#fb86bb"}}/>
-                </Avatar>
-              </ListItemAvatar>
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{ marginRight: "7pt" }}
-              />
-              <ListItemText
-                primary="Aula"
-                secondary={tutoring.classRoom}
-                secondaryTypographyProps={{align: "left"}}
-                style={{ whiteSpace: "pre" }}
-              />
-              </ListItem>        
-              <ListItem
-                //CUANDO ESTA UNIDO 
                 divider
                 style={{
                   backgroundColor: "#fff",
@@ -189,64 +188,116 @@ const TutoringDetail = () => {
                 }}
               >
                 <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "#25d36640" }}>
-                  <LogoWhatsapp color="#25d366"/>
-                </Avatar>
-              </ListItemAvatar>
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{ marginRight: "7pt" }}
-              />
-              <ListItemText
-                primary="Link del Grupo"
-                secondary="blablabla.com"  //POR COLOCAR LA VARIABLE DE LINK DEL GRUPO
-                secondaryTypographyProps={{align: "left"}}
-                style={{ whiteSpace: "pre" }}
-              />
+                  <Avatar style={{ backgroundColor: "#fb86bb40" }}>
+                    <FontAwesomeIcon
+                      icon={faChalkboard}
+                      style={{ color: "#fb86bb" }}
+                    />
+                  </Avatar>
+                </ListItemAvatar>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  style={{ marginRight: "7pt" }}
+                />
+                <ListItemText
+                  primary="Aula"
+                  secondary={tutoring.classRoom}
+                  secondaryTypographyProps={{ align: "left" }}
+                  style={{ whiteSpace: "pre" }}
+                />
               </ListItem>
-              <ListItem
-                //CUANDO ESTA UNIDO 
-                divider
-                style={{
-                  backgroundColor: "#fff",
-                  borderRadius: "5pt",
-                  marginBottom: "10pt",
-                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                }}
-              >
-                <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "#d3485a40" }}>
-                  <ContactIcon style={{color: "#d3485a"}}/>
-                </Avatar>
-              </ListItemAvatar>
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{ marginRight: "7pt" }}
-              />
-              <ListItemText
-                primary="Contactar al tutor"
-                secondary="blablabla"  //POR COLOCAR LA VARIABLE DE CONTACTO HACIA EL TUTOR
-                secondaryTypographyProps={{align: "left"}}
-                style={{ whiteSpace: "pre" }}
-              />
-              </ListItem>
+              {belongs() ? (
+                <div>
+                  <ListItem
+                    divider
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: "5pt",
+                      marginBottom: "10pt",
+                      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                  >
+                    <ListItemAvatar>
+                      <Avatar style={{ backgroundColor: "#25d36640" }}>
+                        <LogoWhatsapp color="#25d366" />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      style={{ marginRight: "7pt" }}
+                    />
+                    <ListItemText
+                      primary="Link del Grupo"
+                      secondary={
+                        <a
+                          // TODO: Asegurarme de ponerle el https luego al guardar en firebase
+                          href={tutoring.groupLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {tutoring.groupLink}
+                        </a>
+                      }
+                      secondaryTypographyProps={{ align: "left" }}
+                      style={{ whiteSpace: "pre" }}
+                    />
+                  </ListItem>
+                  <ListItem
+                    divider
+                    style={{
+                      backgroundColor: "#fff",
+                      borderRadius: "5pt",
+                      marginBottom: "10pt",
+                      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                  >
+                    <ListItemAvatar>
+                      <Avatar style={{ backgroundColor: "#d3485a40" }}>
+                        <ContactIcon style={{ color: "#d3485a" }} />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      style={{ marginRight: "7pt" }}
+                    />
+                    <ListItemText
+                      primary="Contactar al tutor"
+                      secondary={`${tutoring.tutor.phone} / ${tutoring.tutor.email}`}
+                      secondaryTypographyProps={{ align: "left" }}
+                      style={{ whiteSpace: "pre" }}
+                    />
+                  </ListItem>
+                </div>
+              ) : (
+                <div>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    color="primary"
+                    onClick={join}
+                  >
+                    Unirse
+                  </Button>
+                </div>
+              )}
             </List>
             <Dialog
-            open={showStudents}
-            onClose={() => setShowStudents(false)}
-            aria-labelledby="form-dialog-title"
-          >
-            <DialogTitle id="form-dialog-title">Estudiantes</DialogTitle>
-            <DialogContent>
-              {tutoring.students.map((student) => (
-                <DialogContentText key={student.name}>
-                  {student.name}
-                </DialogContentText>
-              ))}
-            </DialogContent>
-          </Dialog>
+              open={showStudents}
+              onClose={() => setShowStudents(false)}
+              aria-labelledby="form-dialog-title"
+            >
+              <DialogTitle id="form-dialog-title">Estudiantes</DialogTitle>
+              <DialogContent>
+                {tutoring.students.map((student) => (
+                  <DialogContentText key={student.name}>
+                    {student.name}
+                  </DialogContentText>
+                ))}
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       )}

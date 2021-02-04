@@ -20,7 +20,6 @@ import EditT from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import Background from "../assets/background-appbar.svg";
 
-
 function NavBar() {
   const [open, setOpen] = useState(false);
 
@@ -29,7 +28,10 @@ function NavBar() {
   };
   return (
     <>
-      <AppBar position="fixed" style={{backgroundImage: `url(${Background})`}}>
+      <AppBar
+        position="fixed"
+        style={{ backgroundImage: `url(${Background})` }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -68,13 +70,23 @@ function NavBar() {
       </AppBar>
       <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
         <div className="drawerContainer">
-          <ListItem button>
+          <ListItem
+            button
+            component={Link}
+            to="/"
+            onClick={() => setOpen(false)}
+          >
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Inicio" />
           </ListItem>
-          <ListItem button component={Link} to="/tutorias" onClick={() => setOpen(false)}>
+          <ListItem
+            button
+            component={Link}
+            to="/tutorias"
+            onClick={() => setOpen(false)}
+          >
             <ListItemIcon>
               <SearchIcon />
             </ListItemIcon>

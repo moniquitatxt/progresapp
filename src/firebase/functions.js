@@ -97,6 +97,7 @@ export const createTutoring = (tutor, tutoring) => {
       id: tutor.uid,
       name: tutor.name,
       phone: tutor.phone,
+      email: tutor.email,
     },
     subjectID: tutoring.subjectID,
     degrees: subjectDegrees(tutoring.subjectID),
