@@ -20,19 +20,19 @@ p {
   margin-bottom: 10%;
 }
 /* Contenedor de botón que lleva a la página del registro*/
-.cBSignUp {
+.clSignUp {
   text-align: center;
   padding-top: 10pt;
   padding-bottom: 10pt;
 }
 
 /*Botón que lleva a la página del registro*/
-.bSignUp {
+.lSignUp {
   text-decoration: none;
   color: #475694;
 }
 
-.bSignUp:hover {
+.lSignUp:hover {
   text-decoration: underline;
   color: #232b4a;
 }
