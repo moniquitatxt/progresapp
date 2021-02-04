@@ -7,15 +7,11 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
-  ListItemIcon,
   ListItemAvatar,
   Avatar,
   LinearProgress,
 } from "@material-ui/core";
 import "./Tutorings.css";
-import ArrowForwardIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import { degrees } from "../degrees";
 import Divider from "@material-ui/core/Divider";
 import TutoringIcon from "@material-ui/icons/MenuBook";

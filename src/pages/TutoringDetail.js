@@ -89,7 +89,6 @@ const TutoringDetail = () => {
   if (loading) {
     return (
       <div>
-        {/* TODO: Le pueden cambiar el color si lo desean o el tipo de loader */}
         <LinearProgress color="secondary" />
       </div>
     );
@@ -97,10 +96,9 @@ const TutoringDetail = () => {
 
   return (
     <div className="cTutoringDetail">
-      {/* TODO: Obviamente la forma de mostrar este error será diferente */}
-      {/* TODO: Pongan un título bonito que sea tipo tutoría no encontrada, o no sé */}
       {!tutoring ? (
         <div>
+          {/* TODO: No centrar estos por favor */}
           <p className="nTutoring" style={{ color: "#3c3b3e" }}>
             Tutoría no encontrada
           </p>

@@ -106,7 +106,6 @@ const CreateTutoring = () => {
 
   return (
     <div className="cCreateT">
-      {/* TODO: Recordar que pueden cambiar el orden de los input a lo que quede mejor */}
       {/* Select de la materia */}
       <div className="cInputCreate">
         <TextField
@@ -127,6 +126,7 @@ const CreateTutoring = () => {
           ))}
         </TextField>
       </div>
+      {/* TODO: No centrar tanto */}
       <div className="cInputCreate">
         <TextField
           fullWidth

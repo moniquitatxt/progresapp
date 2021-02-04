@@ -25,10 +25,8 @@ export const studentSignUp = async (user) => {
   const data = {
     uid,
     name: user.name,
-    // TODO: Consirar alternativas para estos nombres
     idDocument: user.idDocument,
     degree: user.degree,
-    // TODO: Lo mismo del uid con el email
     email: user.email,
     phone: user.phone,
     isTutor: false,
