@@ -23,11 +23,11 @@ const Home = () => {
   }, [user.uid]);
 
   return (
-    <div className="HomeBackground">
+    <div className="cHomeBackground">
       <div className="cTitleHome">
-        <p style={{ fontSize: "30pt", color: "#3c3b3e", fontWeight: "bold" }}>
+        <h1>
           ProgresApp
-        </p>
+        </h1>
         <p style={{ color: "#3c3b3e", fontSize: "20pt" }}>{user.name}</p>
       </div>
       {/* TODO: OJO el hecho de lo haya puesto aquí no significa que sea su lugar, es una prueba */}
@@ -36,7 +36,7 @@ const Home = () => {
         onClose={() => setShowCreate(false)}
         aria-labelledby="create-dialog-title"
       >
-        <DialogTitle id="create-dialog-title">Crear Tutoría</DialogTitle>
+        <DialogTitle id="create-dialog-title">Nueva Tutoría</DialogTitle>
         <DialogContent>
           <CreateTutoring />
         </DialogContent>

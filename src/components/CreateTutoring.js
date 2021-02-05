@@ -162,7 +162,7 @@ const CreateTutoring = () => {
         <TextField
           fullWidth
           label="Salón"
-          placeholder="Ej: AR-22, o Virtual, si son clases online"
+          placeholder="Ej: AR-22, o Virtual"
           variant="outlined"
           required
           error={errorMessages.classRoom !== ""}

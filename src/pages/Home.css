@@ -1,16 +1,27 @@
-.HomeBackground {
-  width: 100vw;
-  height: 100vh;
-  background-color: #faf3f0;
-  position: fixed;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
+.cHomeBackground {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	text-align: center;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
 }
 
 .cTitleHome {
-  padding-top: 50pt;
+	padding-top: 5pt;
+}
+
+.cTitleHome h1 {
+	font-family: 'Quicksand';
+	font-size: 30pt;
+	color: #3c3b3e;
+	font-weight: bold;
+}
+
+#create-dialog-title {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 /* PC */

@@ -95,7 +95,7 @@ const TutoringDetail = () => {
   }
 
   return (
-    <div className="cTutoringDetail">
+    <div className="cBackgroundTutoringDetail">
       {!tutoring ? (
         <div>
           {/* TODO: No centrar estos por favor */}

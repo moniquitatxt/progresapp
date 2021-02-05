@@ -29,7 +29,7 @@ function NavBar() {
   return (
     <>
       <AppBar
-        position="fixed"
+        position="sticky"
         style={{ backgroundImage: `url(${Background})` }}
       >
         <Toolbar>

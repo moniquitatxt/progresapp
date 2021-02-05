@@ -47,13 +47,16 @@ const Tutorings = () => {
   };
 
   return (
-    <div className="cTutoring">
+    /* Contenedor de la pantalla de tutorías */
+    <div className="cBackgroundTutoring">
       <div>{loading && <LinearProgress color="secondary" />}</div>
+      {/*Título Tutorías*/}
       <div className="cTitleTutoring">
-        <p style={{ fontSize: "30pt", color: "#3c3b3e", fontWeight: "bold" }}>
+        <h1>
           Tutorías
-        </p>
+        </h1>
       </div>
+      {/* Seleccionador de carrera */}
       <TextField
         select
         label="Seleccionar Carrera"
@@ -68,17 +71,20 @@ const Tutorings = () => {
           </MenuItem>
         ))}
       </TextField>
+      {/* Línea divisora */}
       <div className="divTutoring">
         <Divider />
       </div>
       {!loading && (
+        /* Lista de tutorías */
         <div className="cListTutoring">
           <List>
             {tutorings.map((tutoring) => (
+              /* Elemento de la lista */
               <ListItem
                 key={tutoring.id}
                 button
-                divider
+                divider                
                 style={{
                   backgroundColor: "#fff",
                   borderRadius: "5pt",
@@ -90,9 +96,10 @@ const Tutorings = () => {
               >
                 <ListItemAvatar>
                   <Avatar style={{ backgroundColor: "#d3485a40" }}>
-                    <TutoringIcon style={{ color: "#d3485a" }} />
+                    <TutoringIcon color="secondary"/>
                   </Avatar>
                 </ListItemAvatar>
+                {/* Barra vertical */}
                 <Divider
                   orientation="vertical"
                   flexItem
@@ -101,14 +108,14 @@ const Tutorings = () => {
                 <ListItemText
                   key={tutoring.id + "txt"}
                   primary={tutoring.name}
-                  secondaryTypographyProps={{ align: "left" }}
+                  secondaryTypographyProps={{color: "textSecondary", align: "left"}}
                   secondary={`${tutoring.tutor.name}\n${
                     days[tutoring.day]
                   } ${format(tutoring.startTime, "p")} - ${format(
                     tutoring.endingTime,
                     "p"
                   )}`}
-                  style={{ whiteSpace: "pre" }}
+                  style={{ whiteSpace: "pre"}}                  
                 />
               </ListItem>
             ))}
