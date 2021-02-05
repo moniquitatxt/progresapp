@@ -12,6 +12,12 @@
     margin: 10pt;
   }
 
+  .cDrawerBottom {
+    position: absolute;
+    bottom: 0px;
+    width: 25vw;
+  }
+
   .separador1 {
     width: 100vw;
   }
@@ -22,6 +28,12 @@
   .titulo {
     font-size: 0pt;
     text-decoration: none;
+  }
+
+  .cDrawerBottom {
+    position: absolute;
+    bottom: 0px;
+    width: 70vw;
   }
 
   .drawerContainer {

@@ -19,6 +19,7 @@ import Divider from "@material-ui/core/Divider";
 import EditT from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import Background from "../assets/background-appbar.svg";
+import ExitIcon from '@material-ui/icons/ExitToApp';
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -99,6 +100,14 @@ function NavBar() {
                 <EditT />
               </ListItemIcon>
               <ListItemText primary="Editar Tutorías" />
+            </ListItem>
+          </div>
+          <div className="cDrawerBottom">
+            <ListItem button>
+              <ListItemIcon>
+                <ExitIcon />
+              </ListItemIcon>
+              <ListItemText primary="Cerrar Sesión" />
             </ListItem>
           </div>
         </div>
