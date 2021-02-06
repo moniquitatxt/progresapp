@@ -130,7 +130,6 @@ const CreateTutoring = () => {
       </div>
       {/* TODO: No centrar tanto */}
       <div className="cInputCreate">
-        <div className="tfTutoringDate">
           <TextField
             fullWidth
             select
@@ -148,7 +147,6 @@ const CreateTutoring = () => {
               </MenuItem>
             ))}
           </TextField>
-        </div>
       </div>
       <div className="cInputCreate">
         <KeyboardTimePicker

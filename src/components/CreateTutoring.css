@@ -4,7 +4,7 @@
 }
 
 .cCreateT {
-	text-align: center;
+	text-align: left;
 }
 
 .cBCreateTutoring,
@@ -14,8 +14,4 @@
 	padding-bottom: 5pt;
 	margin: auto;
 	max-width: 300px;
-}
-
-.tfTutoringDate {
-	text-align: left;
 }
