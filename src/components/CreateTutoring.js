@@ -16,8 +16,7 @@ import { degreeSubjects } from "../degrees";
 import { useParams } from "react-router-dom";
 import { KeyboardTimePicker } from "@material-ui/pickers";
 import "./CreateTutoring.css";
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 const days = [
   {
@@ -50,7 +49,7 @@ const days = [
   },
 ];
 
-const CreateTutoring = () => {
+const CreateTutoring = ({ close }) => {
   // Estado inicial
   const initialData = {
     subjectID: "",
@@ -130,23 +129,23 @@ const CreateTutoring = () => {
       </div>
       {/* TODO: No centrar tanto */}
       <div className="cInputCreate">
-          <TextField
-            fullWidth
-            select
-            label="Día de la Semana"
-            variant="outlined"
-            required
-            error={errorMessages.day !== ""}
-            helperText={errorMessages.day}
-            onChange={(e) => handleChangeText("day", e.target.value)}
-            value={tutoring.day}
-          >
-            {days.map((option) => (
-              <MenuItem key={option.number} value={option.number}>
-                {option.name}
-              </MenuItem>
-            ))}
-          </TextField>
+        <TextField
+          fullWidth
+          select
+          label="Día de la Semana"
+          variant="outlined"
+          required
+          error={errorMessages.day !== ""}
+          helperText={errorMessages.day}
+          onChange={(e) => handleChangeText("day", e.target.value)}
+          value={tutoring.day}
+        >
+          {days.map((option) => (
+            <MenuItem key={option.number} value={option.number}>
+              {option.name}
+            </MenuItem>
+          ))}
+        </TextField>
       </div>
       <div className="cInputCreate">
         <KeyboardTimePicker
@@ -158,14 +157,14 @@ const CreateTutoring = () => {
           inputVariant="outlined"
           invalidDateMessage="Formato de fecha inválida"
           cancelLabel="Cancelar"
-          keyboardIcon={<AccessTimeIcon/>}
+          keyboardIcon={<AccessTimeIcon />}
         />
       </div>
       <div className="cInputCreate">
         <TextField
           fullWidth
           label="Salón"
-          placeholder="Ej: AR-22, o Virtual"
+          placeholder="Ej: AR-22 o Virtual"
           variant="outlined"
           required
           error={errorMessages.classRoom !== ""}
@@ -184,13 +183,25 @@ const CreateTutoring = () => {
         ></TextField>
       </div>
       <div className="cBCreateTutoring">
-        <Button size="small" variant="contained" fullWidth color="primary" onClick={publish}>
+        <Button
+          size="small"
+          variant="contained"
+          fullWidth
+          color="primary"
+          onClick={publish}
+        >
           Publicar Tutoría
         </Button>
       </div>
       <div className="cBCancelTutoring">
-        <Button size="small" variant="contained" fullWidth color="secondary">
-            Cancelar
+        <Button
+          size="small"
+          variant="contained"
+          fullWidth
+          color="secondary"
+          onClick={close}
+        >
+          Cancelar
         </Button>
       </div>
     </div>

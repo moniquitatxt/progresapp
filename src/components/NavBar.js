@@ -19,7 +19,8 @@ import Divider from "@material-ui/core/Divider";
 import EditT from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import Background from "../assets/background-appbar.svg";
-import ExitIcon from '@material-ui/icons/ExitToApp';
+import ExitIcon from "@material-ui/icons/ExitToApp";
+import { signOut } from "../firebase/functions";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -93,6 +94,19 @@ function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Buscar Tutorías" />
           </ListItem>
+          {/* TODO: Colocar un condicional para que solo le aparezca a tutores */}
+          <ListItem
+            button
+            component={Link}
+            to="/mistutorias"
+            onClick={() => setOpen(false)}
+          >
+            <ListItemIcon>
+              {/* TODO: Cambiar iconooooooo */}
+              <SearchIcon />
+            </ListItemIcon>
+            <ListItemText primary="Mis Tutorías" />
+          </ListItem>
           <div className="tutorOptions">
             <Divider style={{ marginTop: "5pt", marginBottom: "5pt" }} />
             <ListItem button>
@@ -103,7 +117,7 @@ function NavBar() {
             </ListItem>
           </div>
           <div className="cDrawerBottom">
-            <ListItem button>
+            <ListItem button onClick={() => signOut()}>
               <ListItemIcon>
                 <ExitIcon />
               </ListItemIcon>

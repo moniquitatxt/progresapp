@@ -3,10 +3,15 @@ import { useUser } from "../contexts/UserContext";
 import { getTutorTutorings } from "../firebase/functions";
 import { useHistory } from "react-router-dom";
 import { LinearProgress, List, ListItem } from "@material-ui/core";
+import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
+import CreateTutoring from "../components/CreateTutoring";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
 const MyTutoring = () => {
   const [tutorings, setTutorings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showCreate, setShowCreate] = useState(false);
 
   const user = useUser();
   const history = useHistory();
@@ -31,6 +36,22 @@ const MyTutoring = () => {
       <div>
         <h1>Mis tutorías</h1>
       </div>
+      <Dialog
+        open={showCreate}
+        onClose={() => setShowCreate(false)}
+        aria-labelledby="create-dialog-title"
+      >
+        <DialogTitle id="create-dialog-title">Nueva Tutoría</DialogTitle>
+        <DialogContent>
+          <CreateTutoring close={() => setShowCreate(false)} />
+        </DialogContent>
+      </Dialog>
+
+      {/* TODO: Colocarlo en un lugar correcto como la esquina */}
+      <Fab color="primary" aria-label="add" onClick={() => setShowCreate(true)}>
+        <AddIcon />
+      </Fab>
+
       {!loading &&
         (!tutorings ? (
           <div>
