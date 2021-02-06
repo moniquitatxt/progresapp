@@ -16,6 +16,8 @@ import { degreeSubjects } from "../degrees";
 import { useParams } from "react-router-dom";
 import { KeyboardTimePicker } from "@material-ui/pickers";
 import "./CreateTutoring.css";
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+
 
 const days = [
   {
@@ -128,23 +130,25 @@ const CreateTutoring = () => {
       </div>
       {/* TODO: No centrar tanto */}
       <div className="cInputCreate">
-        <TextField
-          fullWidth
-          select
-          label="Día de la Semana"
-          variant="outlined"
-          required
-          error={errorMessages.day !== ""}
-          helperText={errorMessages.day}
-          onChange={(e) => handleChangeText("day", e.target.value)}
-          value={tutoring.day}
-        >
-          {days.map((option) => (
-            <MenuItem key={option.number} value={option.number}>
-              {option.name}
-            </MenuItem>
-          ))}
-        </TextField>
+        <div className="tfTutoringDate">
+          <TextField
+            fullWidth
+            select
+            label="Día de la Semana"
+            variant="outlined"
+            required
+            error={errorMessages.day !== ""}
+            helperText={errorMessages.day}
+            onChange={(e) => handleChangeText("day", e.target.value)}
+            value={tutoring.day}
+          >
+            {days.map((option) => (
+              <MenuItem key={option.number} value={option.number}>
+                {option.name}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
       </div>
       <div className="cInputCreate">
         <KeyboardTimePicker
@@ -156,6 +160,7 @@ const CreateTutoring = () => {
           inputVariant="outlined"
           invalidDateMessage="Formato de fecha inválida"
           cancelLabel="Cancelar"
+          keyboardIcon={<AccessTimeIcon/>}
         />
       </div>
       <div className="cInputCreate">
@@ -180,9 +185,14 @@ const CreateTutoring = () => {
           onChange={(e) => handleChangeText("groupLink", e.target.value)}
         ></TextField>
       </div>
-      <div className="cButtonCreate">
-        <Button variant="contained" fullWidth color="primary" onClick={publish}>
+      <div className="cBCreateTutoring">
+        <Button size="small" variant="contained" fullWidth color="primary" onClick={publish}>
           Publicar Tutoría
+        </Button>
+      </div>
+      <div className="cBCancelTutoring">
+        <Button size="small" variant="contained" fullWidth color="secondary">
+            Cancelar
         </Button>
       </div>
     </div>

@@ -1,15 +1,21 @@
 .cInputCreate {
-  padding-top: 5pt;
-  padding-bottom: 5pt;
+	padding-top: 5pt;
+	padding-bottom: 5pt;
 }
 
 .cCreateT {
-  text-align: center;
+	text-align: center;
 }
 
-.cButtonCreate {
-  padding-top: 5pt;
-  padding-bottom: 5pt;
-  margin: auto;
-  width: 150pt;
+.cBCreateTutoring,
+.cBCancelTutoring {
+	font-size: 12pt;
+	padding-top: 5pt;
+	padding-bottom: 5pt;
+	margin: auto;
+	max-width: 300px;
+}
+
+.tfTutoringDate {
+	text-align: left;
 }

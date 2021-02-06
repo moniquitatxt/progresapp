@@ -12,6 +12,13 @@
 	margin-top: 0px;
 	margin-bottom: 20px;
 }
+
+.cBackgroundTutoringDetail a {
+	font-family: 'Quicksand';
+	text-decoration: none;
+	color: #3c3b3e;
+}
+
 .nTutoring {
 	font-size: 25pt;
 	font-weight: bold;
