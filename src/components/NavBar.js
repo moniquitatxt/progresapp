@@ -20,9 +20,12 @@ import EditT from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import Background from "../assets/background-appbar.svg";
 import ExitIcon from '@material-ui/icons/ExitToApp';
+import Badge from '@material-ui/core/Badge';
 
 function NavBar() {
   const [open, setOpen] = useState(false);
+
+  const numerito = 7;
 
   const handleDrawer = () => {
     setOpen(true);
@@ -57,7 +60,9 @@ function NavBar() {
           </Link>
           <div className="separador1" />
           <IconButton color="inherit">
-            <NotificationsIcon />
+            <Badge color="secondary" badgeContent={numerito} invisible={false}>
+              <NotificationsIcon />
+            </Badge>
           </IconButton>
           <IconButton color="inherit">
             <SvgIcon>
