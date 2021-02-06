@@ -227,14 +227,18 @@ const TutoringDetail = () => {
                     <ListItemText
                       primary="Link del Grupo"
                       secondary={
-                        <a
-                          // TODO: Asegurarme de ponerle el https luego al guardar en firebase
-                          href={tutoring.groupLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {tutoring.groupLink}
-                        </a>
+                        tutoring.groupLink ? (
+                          <a
+                            // TODO: Asegurarme de ponerle el https luego al guardar en firebase
+                            href={tutoring.groupLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {tutoring.groupLink}
+                          </a>
+                        ) : (
+                          "Ninguno"
+                        )
                       }
                       secondaryTypographyProps={{ align: "left" }}
                       style={{ whiteSpace: "pre" }}
@@ -261,7 +265,11 @@ const TutoringDetail = () => {
                     />
                     <ListItemText
                       primary="Contactar al tutor"
-                      secondary={`${tutoring.tutor.phone} / ${tutoring.tutor.email}`}
+                      secondary={
+                        tutoring.tutor.phone
+                          ? `${tutoring.tutor.phone} / ${tutoring.tutor.email}`
+                          : `${tutoring.tutor.email}`
+                      }
                       secondaryTypographyProps={{ align: "left" }}
                       style={{ whiteSpace: "pre" }}
                     />

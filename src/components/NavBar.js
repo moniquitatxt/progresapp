@@ -20,6 +20,7 @@ import EditT from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import Background from "../assets/background-appbar.svg";
 import ExitIcon from "@material-ui/icons/ExitToApp";
+import Assignment from "@material-ui/icons/Assignment"
 import { signOut } from "../firebase/functions";
 
 function NavBar() {
@@ -94,21 +95,21 @@ function NavBar() {
             </ListItemIcon>
             <ListItemText primary="Buscar Tutorías" />
           </ListItem>
-          {/* TODO: Colocar un condicional para que solo le aparezca a tutores */}
-          <ListItem
-            button
-            component={Link}
-            to="/mistutorias"
-            onClick={() => setOpen(false)}
-          >
-            <ListItemIcon>
-              {/* TODO: Cambiar iconooooooo */}
-              <SearchIcon />
-            </ListItemIcon>
-            <ListItemText primary="Mis Tutorías" />
-          </ListItem>
           <div className="tutorOptions">
             <Divider style={{ marginTop: "5pt", marginBottom: "5pt" }} />
+            {/* TODO: Colocar un condicional para que solo le aparezca a tutores */}
+            <ListItem
+              button
+              component={Link}
+              to="/mistutorias"
+              onClick={() => setOpen(false)}
+            >
+              <ListItemIcon>
+                {/* TODO: Cambiar iconooooooo */}
+                <Assignment />
+              </ListItemIcon>
+              <ListItemText primary="Mis Tutorías" />
+            </ListItem>
             <ListItem button>
               <ListItemIcon>
                 <EditT />
