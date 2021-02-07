@@ -16,13 +16,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import Divider from "@material-ui/core/Divider";
-import EditT from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import Background from "../assets/background-appbar.svg";
 import ExitIcon from "@material-ui/icons/ExitToApp";
-import Assignment from "@material-ui/icons/Assignment"
+import Assignment from "@material-ui/icons/Assignment";
 import { signOut } from "../firebase/functions";
-import Badge from '@material-ui/core/Badge';
+import Badge from "@material-ui/core/Badge";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -32,8 +31,6 @@ function NavBar() {
   const handleDrawer = () => {
     setOpen(true);
   };
-
-  
 
   return (
     <>
@@ -69,17 +66,14 @@ function NavBar() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
-            <SvgIcon>
-              <BarDarkMode />
-            </SvgIcon>
-          </IconButton>
-          <IconButton color="inherit">
-            <LogOutIcon />
-          </IconButton>
         </Toolbar>
       </AppBar>
-      <SwipeableDrawer anchor="left" open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)}>
+      <SwipeableDrawer
+        anchor="left"
+        open={open}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
+      >
         <div className="drawerContainer">
           <ListItem
             button
@@ -113,16 +107,9 @@ function NavBar() {
               onClick={() => setOpen(false)}
             >
               <ListItemIcon>
-                {/* TODO: Cambiar iconooooooo */}
                 <Assignment />
               </ListItemIcon>
               <ListItemText primary="Mis Tutorías" />
-            </ListItem>
-            <ListItem button>
-              <ListItemIcon>
-                <EditT />
-              </ListItemIcon>
-              <ListItemText primary="Editar Tutorías" />
             </ListItem>
           </div>
           <div className="cDrawerBottom">
