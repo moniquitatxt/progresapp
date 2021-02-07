@@ -1464,7 +1464,7 @@ export const degrees = [
         name: "Química II",
       },
       {
-        id: "geo_desc1",
+        id: "geo_desc2",
         name: "Geometría Descriptiva II",
       },
       {

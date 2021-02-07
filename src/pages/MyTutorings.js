@@ -8,7 +8,7 @@ import {
   ListItem,
   ListItemText,
   ListItemAvatar,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import "./MyTutorings.css";
 import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import TutoringIcon from "@material-ui/icons/MenuBook";
 import { format } from "date-fns";
-
 
 const days = [
   "Lunes",
@@ -73,7 +72,12 @@ const MyTutoring = () => {
       </Dialog>
       {/* TODO: Colocarlo en un lugar correcto como la esquina */}
       <div className="bAddTutoring">
-        <Fab size="large" color="primary" aria-label="add" onClick={() => setShowCreate(true)}>
+        <Fab
+          size="large"
+          color="primary"
+          aria-label="add"
+          onClick={() => setShowCreate(true)}
+        >
           <AddIcon />
         </Fab>
       </div>
@@ -88,51 +92,53 @@ const MyTutoring = () => {
             <p>Aún no has publicado tutorías</p>
           </div>
         ) : (
-      <div className="cListMyTutorings">
-        <List>
-          {tutorings.map((tutoring) => (
-            /* Elemento de la lista */
-            <ListItem
-              key={tutoring.id}
-              button
-              divider                
-              style={{
-                backgroundColor: "#fff",
-                borderRadius: "5pt",
-                marginBottom: "10pt",
-                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-
-              }}
-              component={Link}
-              to={"/tutorias/" + tutoring.id}
-            >
-              <ListItemAvatar>
-                <Avatar style={{ backgroundColor: "#d3485a40" }}>
-                  <TutoringIcon color="secondary"/>
-                </Avatar>
-              </ListItemAvatar>
-              {/* Barra vertical */}
-              <Divider
-                orientation="vertical"
-                flexItem
-                style={{ marginRight: "7pt" }}
-              />
-              <ListItemText
-                key={tutoring.id + "txt"}
-                primary={tutoring.name}
-                secondaryTypographyProps={{color: "textSecondary", align: "left"}}
-                secondary={`${
-                  days[tutoring.day]
-                } ${format(tutoring.startTime, "p")} - ${format(
-                  tutoring.endingTime,
-                  "p"
-                )}`}
-                style={{ whiteSpace: "pre-wrap"}}                  
-              />
-            </ListItem>
-          ))}
-        </List>
-      </div>
+          <div className="cListMyTutorings">
+            <List>
+              {tutorings.map((tutoring) => (
+                /* Elemento de la lista */
+                <ListItem
+                  key={tutoring.id}
+                  button
+                  divider
+                  style={{
+                    backgroundColor: "#fff",
+                    borderRadius: "5pt",
+                    marginBottom: "10pt",
+                    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                  }}
+                  component={Link}
+                  to={"/mistutorias/" + tutoring.id}
+                >
+                  <ListItemAvatar>
+                    <Avatar style={{ backgroundColor: "#d3485a40" }}>
+                      <TutoringIcon color="secondary" />
+                    </Avatar>
+                  </ListItemAvatar>
+                  {/* Barra vertical */}
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    style={{ marginRight: "7pt" }}
+                  />
+                  <ListItemText
+                    key={tutoring.id + "txt"}
+                    primary={tutoring.name}
+                    secondaryTypographyProps={{
+                      color: "textSecondary",
+                      align: "left",
+                    }}
+                    secondary={`${tutoring.classRoom}\n${
+                      days[tutoring.day]
+                    } ${format(tutoring.startTime, "p")} - ${format(
+                      tutoring.endingTime,
+                      "p"
+                    )}`}
+                    style={{ whiteSpace: "pre-wrap" }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </div>
         ))}
     </div>
   );
