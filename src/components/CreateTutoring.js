@@ -15,8 +15,41 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degreeSubjects } from "../degrees";
 import { useParams } from "react-router-dom";
 import { KeyboardTimePicker } from "@material-ui/pickers";
+import "./CreateTutoring.css";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
-const CreateTutoring = () => {
+const days = [
+  {
+    number: 0,
+    name: "Lunes",
+  },
+  {
+    number: 1,
+    name: "Martes",
+  },
+  {
+    number: 2,
+    name: "Miércoles",
+  },
+  {
+    number: 3,
+    name: "Jueves",
+  },
+  {
+    number: 4,
+    name: "Viernes",
+  },
+  {
+    number: 5,
+    name: "Sábado",
+  },
+  {
+    number: 6,
+    name: "Domingo",
+  },
+];
+
+const CreateTutoring = ({ close }) => {
   // Estado inicial
   const initialData = {
     subjectID: "",
@@ -33,36 +66,6 @@ const CreateTutoring = () => {
   const user = useUser();
 
   const subjects = degreeSubjects(user.degree);
-  const days = [
-    {
-      number: 0,
-      name: "Lunes",
-    },
-    {
-      number: 1,
-      name: "Martes",
-    },
-    {
-      number: 2,
-      name: "Miércoles",
-    },
-    {
-      number: 3,
-      name: "Jueves",
-    },
-    {
-      number: 4,
-      name: "Viernes",
-    },
-    {
-      number: 5,
-      name: "Sábado",
-    },
-    {
-      number: 6,
-      name: "Domingo",
-    },
-  ];
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -103,11 +106,9 @@ const CreateTutoring = () => {
   };
 
   return (
-    <div>
-      <h1>Crear Tutoría</h1>
-      {/* TODO: Recordar que pueden cambiar el orden de los input a lo que quede mejor */}
+    <div className="cCreateT">
       {/* Select de la materia */}
-      <div>
+      <div className="cInputCreate">
         <TextField
           fullWidth
           select
@@ -126,7 +127,8 @@ const CreateTutoring = () => {
           ))}
         </TextField>
       </div>
-      <div>
+      {/* TODO: No centrar tanto */}
+      <div className="cInputCreate">
         <TextField
           fullWidth
           select
@@ -145,7 +147,7 @@ const CreateTutoring = () => {
           ))}
         </TextField>
       </div>
-      <div>
+      <div className="cInputCreate">
         <KeyboardTimePicker
           required
           fullWidth
@@ -155,13 +157,14 @@ const CreateTutoring = () => {
           inputVariant="outlined"
           invalidDateMessage="Formato de fecha inválida"
           cancelLabel="Cancelar"
+          keyboardIcon={<AccessTimeIcon />}
         />
       </div>
-      <div>
+      <div className="cInputCreate">
         <TextField
           fullWidth
           label="Salón"
-          placeholder="Ej: AR-22, o Virtual, si son clases online"
+          placeholder="Ej: AR-22 o Virtual"
           variant="outlined"
           required
           error={errorMessages.classRoom !== ""}
@@ -169,7 +172,7 @@ const CreateTutoring = () => {
           onChange={(e) => handleChangeText("classRoom", e.target.value)}
         ></TextField>
       </div>
-      <div>
+      <div className="cInputCreate">
         <TextField
           fullWidth
           label="Enlace de Grupo (WhatsApp)"
@@ -179,9 +182,26 @@ const CreateTutoring = () => {
           onChange={(e) => handleChangeText("groupLink", e.target.value)}
         ></TextField>
       </div>
-      <div>
-        <Button variant="contained" fullWidth color="primary" onClick={publish}>
+      <div className="cBCreateTutoring">
+        <Button
+          size="medium"
+          variant="contained"
+          fullWidth
+          color="primary"
+          onClick={publish}
+        >
           Publicar Tutoría
+        </Button>
+      </div>
+      <div className="cBCancelTutoring">
+        <Button
+          size="medium"
+          variant="contained"
+          fullWidth
+          color="secondary"
+          onClick={close}
+        >
+          Cancelar
         </Button>
       </div>
     </div>
@@ -189,3 +209,4 @@ const CreateTutoring = () => {
 };
 
 export default CreateTutoring;
+export { days };

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import "./Home.css";
-import { getStudentTutorings } from "../firebase/functions";
-import { Link } from "react-router-dom";
+import { getTutorTutorings } from "../firebase/functions";
+import { useHistory } from "react-router-dom";
 import {
   LinearProgress,
   List,
@@ -11,6 +10,12 @@ import {
   ListItemAvatar,
   Avatar
 } from "@material-ui/core";
+import "./MyTutorings.css";
+import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
+import CreateTutoring from "../components/CreateTutoring";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import { Link } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import TutoringIcon from "@material-ui/icons/MenuBook";
 import { format } from "date-fns";
@@ -25,29 +30,65 @@ const days = [
   "Sábado",
   "Domingo",
 ];
-const Home = () => {
-  const user = useUser();
+
+const MyTutoring = () => {
   const [tutorings, setTutorings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showCreate, setShowCreate] = useState(false);
+
+  const user = useUser();
+  const history = useHistory();
 
   useEffect(() => {
     setLoading(true);
-    return getStudentTutorings(user.uid, (tutorings) => {
+
+    // TODO: Poner esto cuando sea posible asignar tutores
+    // if (!user.isTutor) {
+    //   history.replace("/");
+    // }
+
+    return getTutorTutorings(user.uid, (tutorings) => {
       setTutorings(tutorings);
       setLoading(false);
     });
-  }, [user.uid]);
+  }, []);
 
   return (
-    <div className="cHomeBackground">
-      <div className="cTitleHome">
-        <h1>ProgresApp</h1>
-        <p style={{ color: "#3c3b3e", fontSize: "20pt" }}>{user.name}</p>
-        {/* Línea divisora */}
-        <div className="divHomeTutorings">
-          <Divider />
-        </div>
-        <div className="cListHomeTutorings">
+    /* Contenedor de la pantalla de mis tutorías */
+    <div className="cBackgroundMyTutorings">
+      <div>{loading && <LinearProgress color="secondary" />}</div>
+      {/* Título Mis Tutorías */}
+      <div className="cTitleMyTutorings">
+        <h1>Mis tutorías</h1>
+      </div>
+      <Dialog
+        open={showCreate}
+        onClose={() => setShowCreate(false)}
+        aria-labelledby="create-dialog-title"
+      >
+        <DialogTitle id="create-dialog-title">Nueva Tutoría</DialogTitle>
+        <DialogContent>
+          <CreateTutoring close={() => setShowCreate(false)} />
+        </DialogContent>
+      </Dialog>
+      {/* TODO: Colocarlo en un lugar correcto como la esquina */}
+      <div className="bAddTutoring">
+        <Fab size="large" color="primary" aria-label="add" onClick={() => setShowCreate(true)}>
+          <AddIcon />
+        </Fab>
+      </div>
+      {/* Línea divisora */}
+      <div className="divMyTutorings">
+        <Divider />
+      </div>
+      {/* Lista de tutorías */}
+      {!loading &&
+        (!tutorings ? (
+          <div>
+            <p>Aún no has publicado tutorías</p>
+          </div>
+        ) : (
+      <div className="cListMyTutorings">
         <List>
           {tutorings.map((tutoring) => (
             /* Elemento de la lista */
@@ -92,10 +133,9 @@ const Home = () => {
           ))}
         </List>
       </div>
-
-      </div>
+        ))}
     </div>
   );
 };
 
-export default Home;
+export default MyTutoring;

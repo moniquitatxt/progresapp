@@ -13,41 +13,6 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { studentLogin } from "../firebase/functions";
 import { Link } from "react-router-dom";
 
-/*const CssTextField = withStyles({        //Editar estilos de TextField
-  root: {
-    
-    width: 250,
-
-    '& label.Mui-focused': { //color del label cuando se haga clck
-      color: '#475694',
-    },
-    '& .MuiOutlinedInput-root': {    //color del borde del textfield
-      '& fieldset': {
-        borderColor: '#b39490',
-      },
-      '&:hover fieldset': {        //color del borde del textfield cuando el mouse este encima
-        borderColor: '#b39490',
-      },
-      '&.Mui-focused fieldset': {   //color del borde del textfield cuando se clickea
-        borderColor: '#475694',
-      },
-    },
-  },
-})(TextField);*/
-
-// const ColorButton = withStyles((theme) => ({
-//   //estilos del boton
-//   root: {
-//     color: theme.palette.getContrastText("#475694"),
-//     backgroundColor: "#475694",
-//     width: 250,
-//     height: 45,
-//     "&:hover": {
-//       //cuando el mouse este encima del boton, o en su defecto lo clickee
-//       backgroundColor: "#232b4a",
-//     },
-//   },
-// }))(Button);
 
 // Página de Inicio de Sesión
 const Login = () => {
@@ -113,66 +78,71 @@ const Login = () => {
   };
 
   return (
-    <div className="cLogin">
-      {/* Logo */}
-      <div className="cHeader">
-        <img className="imgLogo" src={titlepc} alt="logo" />
-      </div>
-      {/* Inputs */}
-      <div className="cInputs">
-        {/* TextField del correo */}
-        <div className="tfMail">
-          <TextField
-            fullWidth
-            label="Correo"
-            variant="outlined"
-            type="email"
-            error={errorMessages.email !== ""}
-            helperText={errorMessages.email}
-            onChange={(e) => handleChangeText("email", e.target.value)}
-          ></TextField>
+    /* Contenedor del fondo */
+    <div className="cBackgroundLogin">
+      {/* Contenedor del login */}
+      <div className="cLogin">
+        {/* Logo */}
+        <div className="cHeader">
+          <img className="imgLogo" src={titlepc} alt="logo" />
         </div>
-        {/* TextField de la contraseña */}
-        <div className="tfPassword">
-          <TextField
-            fullWidth
-            label="Contraseña"
-            variant="outlined"
-            type={showPassword ? "text" : "password"}
-            error={errorMessages.password !== ""}
-            helperText={errorMessages.password}
-            onChange={(e) => handleChangeText("password", e.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          ></TextField>
+        {/* Inputs */}
+        <div className="cInputs">
+          {/* TextField del correo */}
+          <div className="tfMail">
+            <TextField
+              fullWidth
+              label="Correo"
+              variant="outlined"
+              type="email"
+              error={errorMessages.email !== ""}
+              helperText={errorMessages.email}
+              onChange={(e) => handleChangeText("email", e.target.value)}
+            ></TextField>
+          </div>
+          {/* TextField de la contraseña */}
+          <div className="tfPassword">
+            <TextField
+              fullWidth
+              label="Contraseña"
+              variant="outlined"
+              type={showPassword ? "text" : "password"}
+              error={errorMessages.password !== ""}
+              helperText={errorMessages.password}
+              onChange={(e) => handleChangeText("password", e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            ></TextField>
+          </div>
         </div>
+        {/* Boton para ingresar */}
+        <div className="bLogin">
+          <Button variant="contained" fullWidth color="primary" onClick={login}>
+            Ingresar
+          </Button>
+        </div>
+        {/* Botón que redirige al SignUp */}
+        <div className="clSignUp">
+          <Link to="/signup" className="lSignUp">
+            ¿No tienes cuenta? ¡Regístrate aquí!
+          </Link>
+        </div>
+        <Backdrop open={loading}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
       </div>
-      {/* Boton para ingresar */}
-      <div className="bLogin">
-        <Button variant="contained" fullWidth color="primary" onClick={login}>
-          Ingresar
-        </Button>
-      </div>
-      <div className="cBSignUp">
-        <Link to="/signup" className="bSignUp">
-          ¿No tienes cuenta? ¡Regístrate aquí!
-        </Link>
-      </div>
-      <Backdrop open={loading}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
     </div>
   );
 };
