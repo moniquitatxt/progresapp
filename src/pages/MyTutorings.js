@@ -70,17 +70,6 @@ const MyTutoring = () => {
           <CreateTutoring close={() => setShowCreate(false)} />
         </DialogContent>
       </Dialog>
-      {/* TODO: Colocarlo en un lugar correcto como la esquina */}
-      <div className="bAddTutoring">
-        <Fab
-          size="large"
-          color="primary"
-          aria-label="add"
-          onClick={() => setShowCreate(true)}
-        >
-          <AddIcon />
-        </Fab>
-      </div>
       {/* Línea divisora */}
       <div className="divMyTutorings">
         <Divider />
@@ -141,6 +130,16 @@ const MyTutoring = () => {
             </List>
           </div>
         ))}
+      <div className="bAddTutoring">
+        <Fab
+          size="large"
+          color="primary"
+          aria-label="add"
+          onClick={() => setShowCreate(true)}
+        >
+          <AddIcon />
+        </Fab>
+      </div>
     </div>
   );
 };

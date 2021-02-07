@@ -22,6 +22,8 @@ import ExitIcon from "@material-ui/icons/ExitToApp";
 import Assignment from "@material-ui/icons/Assignment";
 import { signOut } from "../firebase/functions";
 import Badge from "@material-ui/core/Badge";
+import Tooltip from "@material-ui/core/Tooltip";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -61,11 +63,22 @@ function NavBar() {
             ProgresApp
           </Link>
           <div className="separador1" />
-          <IconButton color="inherit">
-            <Badge color="secondary" badgeContent={numerito} invisible={false}>
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <Tooltip title="Notificaciones">
+            <IconButton color="inherit">
+              <Badge
+                color="secondary"
+                badgeContent={numerito}
+                invisible={false}
+              >
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Perfil">
+            <IconButton color="inherit">
+              <AccountCircle />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <SwipeableDrawer
