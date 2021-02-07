@@ -47,6 +47,7 @@ const Home = () => {
         <div className="divHomeTutorings">
           <Divider />
         </div>
+        {/* TODO: Colocar un texto alternativo si no se está inscrito en nada */}
         <div className="cListHomeTutorings">
           <List>
             {tutorings.map((tutoring) => (

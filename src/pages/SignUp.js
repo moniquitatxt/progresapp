@@ -5,6 +5,8 @@ import {
   InputAdornment,
   IconButton,
   MenuItem,
+  Backdrop,
+  CircularProgress,
 } from "@material-ui/core";
 import logo from "../assets/logo.svg";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
@@ -30,6 +32,7 @@ const SignUp = () => {
   const [user, setUser] = useState(initialData);
   const [errorMessages, setErrorMessages] = useState(initialData);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -96,6 +99,7 @@ const SignUp = () => {
 
     // Intenta registrar al usuario
     try {
+      setLoading(true);
       await studentSignUp(user);
     } catch (error) {
       if (error.code === "auth/invalid-email") {
@@ -110,13 +114,14 @@ const SignUp = () => {
       }
       // TODO: Pensar en cómo manejar el error de desconexión
       setErrorMessages(errorMessages);
+      setLoading(false);
     }
   };
 
   return (
     /*Fondo del registro*/
     <div className="cBackgroundSignUp">
-            {/* Header */}
+      {/* Header */}
       <div className="cSignUp">
         {/* Header */}
         <div className="cHeader">
@@ -126,7 +131,7 @@ const SignUp = () => {
           </div>
           {/* Regístrate */}
           <div className="hSignUp">
-          <h1>Regístrate en ProgresApp</h1>
+            <h1>Regístrate en ProgresApp</h1>
           </div>
         </div>
         <div className="cTextFields">
@@ -259,16 +264,24 @@ const SignUp = () => {
         </div>
         {/* Boton para registrarse */}
         <div className="bSignUp">
-          <Button variant="contained" fullWidth color="primary" onClick={signUp}>
+          <Button
+            variant="contained"
+            fullWidth
+            color="primary"
+            onClick={signUp}
+          >
             Registrarse
           </Button>
         </div>
-         {/* Botón que redirige al Login */}
-         <div className="clLogin">
+        {/* Botón que redirige al Login */}
+        <div className="clLogin">
           <Link to="/login" className="lLogin">
             ¿Tienes una cuenta? ¡Inicia sesión aquí!
           </Link>
         </div>
+        <Backdrop style={{ zIndex: 1, color: "#fff" }} open={loading}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
       </div>
     </div>
   );
