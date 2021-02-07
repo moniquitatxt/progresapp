@@ -8,7 +8,7 @@ import LogOutIcon from "@material-ui/icons/ExitToApp";
 import { ReactComponent as BarLogo } from "../assets/bar-logo.svg";
 import BarDarkMode from "@material-ui/icons/Brightness4";
 import DrawerIcon from "@material-ui/icons/Menu";
-import Drawer from "@material-ui/core/Drawer";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import "./NavBar.css";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -32,6 +32,9 @@ function NavBar() {
   const handleDrawer = () => {
     setOpen(true);
   };
+
+  
+
   return (
     <>
       <AppBar
@@ -76,7 +79,7 @@ function NavBar() {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
+      <SwipeableDrawer anchor="left" open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)}>
         <div className="drawerContainer">
           <ListItem
             button
@@ -131,7 +134,7 @@ function NavBar() {
             </ListItem>
           </div>
         </div>
-      </Drawer>
+      </SwipeableDrawer>
     </>
   );
 }

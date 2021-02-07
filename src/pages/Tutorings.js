@@ -90,6 +90,7 @@ const Tutorings = () => {
                   borderRadius: "5pt",
                   marginBottom: "10pt",
                   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+
                 }}
                 component={Link}
                 to={"/tutorias/" + tutoring.id}
@@ -115,7 +116,7 @@ const Tutorings = () => {
                     tutoring.endingTime,
                     "p"
                   )}`}
-                  style={{ whiteSpace: "pre"}}                  
+                  style={{ whiteSpace: "pre-wrap"}}                  
                 />
               </ListItem>
             ))}

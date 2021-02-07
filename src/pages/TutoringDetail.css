@@ -8,7 +8,7 @@
 	align-items: center;
 	padding-top: 20pt;
 }
-.cBackgroundTutoringDetail p {
+.pTitlesTutoring p {
 	margin-top: 0px;
 	margin-bottom: 20px;
 }
@@ -20,13 +20,12 @@
 }
 
 .nTutoring {
-	font-size: 25pt;
 	font-weight: bold;
 	text-overflow: ellipsis;
 }
 
-.nTutor {
-	font-size: 20pt;
+.cInfoTutoring {
+	overflow-wrap: break-word;
 }
 
 /* PC */
@@ -38,6 +37,13 @@
 		padding-right: 5%;
 		max-width: 800px;
 	}
+	.nTutoring {
+		font-size: 30pt;
+	}
+
+	.nTutor {
+		font-size: 20pt;
+	}
 }
 
 /* Telefonos */
@@ -45,5 +51,15 @@
 	.cInfoTutoring {
 		padding-left: 5vw;
 		padding-right: 5vw;
+	}
+	.nTutoring {
+		font-size: 25pt;
+		margin-left: 10px;
+		margin-right: 10px;
+		max-width: 580px;
+	}
+
+	.nTutor {
+		font-size: 20pt;
 	}
 }

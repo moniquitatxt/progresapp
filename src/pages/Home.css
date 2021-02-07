@@ -14,7 +14,6 @@
 
 .cTitleHome h1 {
 	font-family: 'Quicksand';
-	font-size: 30pt;
 	color: #3c3b3e;
 	font-weight: bold;
 }
@@ -26,8 +25,17 @@
 
 /* PC */
 @media screen and (min-width: 600px) {
+	.cTitleHome h1 {
+		font-size: 30pt;
+	}
 }
 
 /* Telefonos */
 @media only screen and (max-width: 600px) {
+	.cTitleHome h1 {
+		font-size: 25pt;
+	}
+	.cTitleHome p {
+		font-size: 20pt;
+	}
 }

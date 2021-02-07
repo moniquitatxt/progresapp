@@ -97,7 +97,7 @@ const TutoringDetail = () => {
   return (
     <div className="cBackgroundTutoringDetail">
       {!tutoring ? (
-        <div>
+        <div className="pTitlesTutoring">
           {/* TODO: No centrar estos por favor */}
           <p className="nTutoring" style={{ color: "#3c3b3e" }}>
             Tutoría no encontrada
@@ -108,12 +108,14 @@ const TutoringDetail = () => {
         </div>
       ) : (
         <div>
-          <p className="nTutoring" style={{ color: "#3c3b3e" }}>
-            {tutoring.name}
-          </p>
-          <p className="nTutor" style={{ color: "#3c3b3e" }}>
-            {tutoring.tutor.name}
-          </p>
+          <div className="pTitlesTutoring">
+            <p className="nTutoring" style={{ color: "#3c3b3e" }}>
+              {tutoring.name}
+            </p>
+            <p className="nTutor" style={{ color: "#3c3b3e" }}>
+              {tutoring.tutor.name}
+            </p>
+          </div>
           <div className="cInfoTutoring">
             <Divider style={{ marginBottom: "10pt" }} />
             <List>
@@ -143,7 +145,6 @@ const TutoringDetail = () => {
                     "p"
                   )} - ${format(tutoring.endingTime, "p")}`}
                   secondaryTypographyProps={{ align: "left" }}
-                  style={{ whiteSpace: "pre" }}
                 />
               </ListItem>
               <ListItem
@@ -171,7 +172,6 @@ const TutoringDetail = () => {
                   primary={belongs() ? "Ver estudiantes" : "Estudiantes"}
                   secondary={`${tutoring.students.length}/15`}
                   secondaryTypographyProps={{ align: "left" }}
-                  style={{ whiteSpace: "pre" }}
                 />
               </ListItem>
               <ListItem
@@ -200,7 +200,6 @@ const TutoringDetail = () => {
                   primary="Aula"
                   secondary={tutoring.classRoom}
                   secondaryTypographyProps={{ align: "left" }}
-                  style={{ whiteSpace: "pre" }}
                 />
               </ListItem>
               {belongs() ? (
@@ -241,7 +240,6 @@ const TutoringDetail = () => {
                         )
                       }
                       secondaryTypographyProps={{ align: "left" }}
-                      style={{ whiteSpace: "pre" }}
                     />
                   </ListItem>
                   <ListItem
@@ -271,7 +269,6 @@ const TutoringDetail = () => {
                           : `${tutoring.tutor.email}`
                       }
                       secondaryTypographyProps={{ align: "left" }}
-                      style={{ whiteSpace: "pre" }}
                     />
                   </ListItem>
                 </div>
