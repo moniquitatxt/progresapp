@@ -32,7 +32,6 @@ const Home = () => {
   useEffect(() => {
     setLoading(true);
     return getStudentTutorings(user.uid, (tutorings) => {
-      console.log(tutorings);
       setTutorings(tutorings);
       setLoading(false);
     });
@@ -40,6 +39,7 @@ const Home = () => {
 
   return (
     <div className="cHomeBackground">
+      <div>{loading && <LinearProgress color="secondary" />}</div>
       <div className="cTitleHome">
         <h1>ProgresApp</h1>
         <p style={{ color: "#3c3b3e", fontSize: "20pt" }}>{user.name}</p>
