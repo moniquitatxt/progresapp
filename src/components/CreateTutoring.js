@@ -184,7 +184,7 @@ const CreateTutoring = ({ close }) => {
       </div>
       <div className="cBCreateTutoring">
         <Button
-          size="small"
+          size="medium"
           variant="contained"
           fullWidth
           color="primary"
@@ -195,7 +195,7 @@ const CreateTutoring = ({ close }) => {
       </div>
       <div className="cBCancelTutoring">
         <Button
-          size="small"
+          size="medium"
           variant="contained"
           fullWidth
           color="secondary"

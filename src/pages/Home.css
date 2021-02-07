@@ -25,8 +25,22 @@
 
 /* PC */
 @media screen and (min-width: 600px) {
+	.cListHomeTutorings,
+	.divHomeTutorings {
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 5%;
+		padding-right: 5%;
+		max-width: 800px;
+	}
+
 	.cTitleHome h1 {
 		font-size: 30pt;
+	}
+
+	.divHomeTutorings {
+		padding-top: 2vh;
+		padding-bottom: 3vh;
 	}
 }
 
@@ -37,5 +51,15 @@
 	}
 	.cTitleHome p {
 		font-size: 20pt;
+	}
+
+	.cListHomeTutorings,
+	.divHomeTutorings {
+		padding-left: 5vw;
+		padding-right: 5vw;
+	}
+	.divHomeTutorings {
+		padding-top: 2vh;
+		padding-bottom: 2vh;
 	}
 }

@@ -2,11 +2,34 @@ import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
 import { getTutorTutorings } from "../firebase/functions";
 import { useHistory } from "react-router-dom";
-import { LinearProgress, List, ListItem } from "@material-ui/core";
+import {
+  LinearProgress,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar
+} from "@material-ui/core";
+import "./MyTutorings.css";
 import { Dialog, DialogTitle, DialogContent } from "@material-ui/core";
 import CreateTutoring from "../components/CreateTutoring";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import { Link } from "react-router-dom";
+import Divider from "@material-ui/core/Divider";
+import TutoringIcon from "@material-ui/icons/MenuBook";
+import { format } from "date-fns";
+
+
+const days = [
+  "Lunes",
+  "Martes",
+  "Miércoles",
+  "Jueves",
+  "Viernes",
+  "Sábado",
+  "Domingo",
+];
 
 const MyTutoring = () => {
   const [tutorings, setTutorings] = useState([]);
@@ -31,9 +54,11 @@ const MyTutoring = () => {
   }, []);
 
   return (
-    <div>
+    /* Contenedor de la pantalla de mis tutorías */
+    <div className="cBackgroundMyTutorings">
       <div>{loading && <LinearProgress color="secondary" />}</div>
-      <div>
+      {/* Título Mis Tutorías */}
+      <div className="cTitleMyTutorings">
         <h1>Mis tutorías</h1>
       </div>
       <Dialog
@@ -46,30 +71,68 @@ const MyTutoring = () => {
           <CreateTutoring close={() => setShowCreate(false)} />
         </DialogContent>
       </Dialog>
-
       {/* TODO: Colocarlo en un lugar correcto como la esquina */}
-      <Fab color="primary" aria-label="add" onClick={() => setShowCreate(true)}>
-        <AddIcon />
-      </Fab>
-
+      <div className="bAddTutoring">
+        <Fab size="large" color="primary" aria-label="add" onClick={() => setShowCreate(true)}>
+          <AddIcon />
+        </Fab>
+      </div>
+      {/* Línea divisora */}
+      <div className="divMyTutorings">
+        <Divider />
+      </div>
+      {/* Lista de tutorías */}
       {!loading &&
         (!tutorings ? (
           <div>
             <p>Aún no has publicado tutorías</p>
           </div>
         ) : (
-          <div>
-            <p>Las tutos van aquí</p>
-            <div className="cListTutoring">
-              <List>
-                {tutorings.map((tutoring) => (
-                  <ListItem>
-                    <h2>{tutoring.name}</h2>
-                  </ListItem>
-                ))}
-              </List>
-            </div>
-          </div>
+      <div className="cListMyTutorings">
+        <List>
+          {tutorings.map((tutoring) => (
+            /* Elemento de la lista */
+            <ListItem
+              key={tutoring.id}
+              button
+              divider                
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: "5pt",
+                marginBottom: "10pt",
+                boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+
+              }}
+              component={Link}
+              to={"/tutorias/" + tutoring.id}
+            >
+              <ListItemAvatar>
+                <Avatar style={{ backgroundColor: "#d3485a40" }}>
+                  <TutoringIcon color="secondary"/>
+                </Avatar>
+              </ListItemAvatar>
+              {/* Barra vertical */}
+              <Divider
+                orientation="vertical"
+                flexItem
+                style={{ marginRight: "7pt" }}
+              />
+              <ListItemText
+                key={tutoring.id + "txt"}
+                primary={tutoring.name}
+                secondaryTypographyProps={{color: "textSecondary", align: "left"}}
+                secondary={`${
+                  days[tutoring.day]
+                } ${format(tutoring.startTime, "p")} - ${format(
+                  tutoring.endingTime,
+                  "p"
+                )}`}
+                style={{ whiteSpace: "pre-wrap"}}                  
+              />
+            </ListItem>
+          ))}
+        </List>
+      </div>
         ))}
     </div>
   );

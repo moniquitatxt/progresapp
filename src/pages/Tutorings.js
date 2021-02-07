@@ -22,7 +22,7 @@ const days = [
   "Lunes",
   "Martes",
   "Miércoles",
-  "Juéves",
+  "Jueves",
   "Viernes",
   "Sábado",
   "Domingo",
