@@ -16,7 +16,7 @@ import CustomRoute from "./components/CustomRoute";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import TablesPage from "./pages/TablesPage"
+import TablesPage from "./pages/TablesPage";
 //Tema
 const theme = createMuiTheme({
   typography: {
@@ -97,8 +97,8 @@ function App() {
                   <MyTutorings />
                 </CustomRoute>
                 {/* Pagina de tabla */}
-                <CustomRoute exact path="/tablas" auth={true}>
-                  <TablesPage/>
+                <CustomRoute path="/tablas" auth={true}>
+                  <TablesPage />
                 </CustomRoute>
                 {/* Página de registro */}
                 <CustomRoute path="/signup" auth={false}>

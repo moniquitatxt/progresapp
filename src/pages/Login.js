@@ -13,7 +13,6 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { studentLogin } from "../firebase/functions";
 import { Link } from "react-router-dom";
 
-
 // Página de Inicio de Sesión
 const Login = () => {
   const initialState = {
@@ -139,7 +138,7 @@ const Login = () => {
             ¿No tienes cuenta? ¡Regístrate aquí!
           </Link>
         </div>
-        <Backdrop open={loading}>
+        <Backdrop style={{ zIndex: 1, color: "#fff" }} open={loading}>
           <CircularProgress color="inherit" />
         </Backdrop>
       </div>

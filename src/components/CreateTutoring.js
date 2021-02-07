@@ -97,7 +97,7 @@ const CreateTutoring = ({ close }) => {
 
     try {
       await createTutoring(user, tutoring);
-      alert("Tutoría creada");
+      close();
     } catch (error) {
       console.log(error);
       // TODO: Error de desconexión

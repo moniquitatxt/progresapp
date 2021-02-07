@@ -49,10 +49,16 @@ export const uploadFile = async (file, path) => {
 // Obtener las tutorías de un estudiante dado su uid
 export const getStudentTutorings = (uid, func) => {
   return db
-    .collectionGroup("tutorings")
-    .where("studentsUIDs", "array-contains", uid)
+    .collection("tutorings")
+    .where("studentsIDs", "array-contains", uid)
     .onSnapshot((snapshot) => {
-      const tutorings = snapshot.docs.map((doc) => doc.data());
+      const tutorings = snapshot.docs.map((doc) => {
+        const tutoring = doc.data();
+        tutoring.id = doc.id;
+        tutoring.startTime = new Date(tutoring.startTime * 1000);
+        tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
+        return tutoring;
+      });
       func(tutorings);
     });
 };

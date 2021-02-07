@@ -74,7 +74,7 @@ const TutoringDetail = () => {
     try {
       await joinTutoring(tutoring, user);
       await getTutoring();
-      alert("TE UNISTE");
+      // TODO: MENSAJE
     } catch (error) {
       console.log(error);
       // TODO: Colocar de alguna forma el error
@@ -98,7 +98,6 @@ const TutoringDetail = () => {
     <div className="cBackgroundTutoringDetail">
       {!tutoring ? (
         <div className="pTitlesTutoring">
-          {/* TODO: No centrar estos por favor */}
           <p className="nTutoring" style={{ color: "#3c3b3e" }}>
             Tutoría no encontrada
           </p>
