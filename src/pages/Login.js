@@ -5,13 +5,15 @@ import {
   TextField,
   Button,
   InputAdornment,
-  IconButton,
   Backdrop,
   CircularProgress,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { studentLogin } from "../firebase/functions";
 import { Link } from "react-router-dom";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 // Página de Inicio de Sesión
 const Login = () => {
@@ -24,6 +26,7 @@ const Login = () => {
   const [errorMessages, setErrorMessages] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [connectionError, setConnectionError] = useState(false);
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -38,6 +41,15 @@ const Login = () => {
   // Función del icono de de visibilidad
   const handleMouseDownPassword = (e) => {
     e.preventDefault();
+  };
+
+  // Función del Snackbar
+  const handleCloseSnack = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setConnectionError(false);
   };
 
   // Función que inicia sesión al clickear el botón
@@ -69,8 +81,10 @@ const Login = () => {
           "No hay usuarios con este correo, intenta de nuevo";
       } else if (error.code === "auth/wrong-password") {
         errorMessages.password = "Contraseña incorrecta, intenta nuevamente";
+      } else {
+        setConnectionError(true);
       }
-      // TODO: Pensar en cómo manejar el error de desconexión
+
       setErrorMessages(errorMessages);
       setLoading(false);
     }
@@ -141,6 +155,26 @@ const Login = () => {
         <Backdrop style={{ zIndex: 1, color: "#fff" }} open={loading}>
           <CircularProgress color="inherit" />
         </Backdrop>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          open={connectionError}
+          autoHideDuration={6000}
+          onClose={handleCloseSnack}
+          message="Error de conexión"
+          action={
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleCloseSnack}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        />
       </div>
     </div>
   );
