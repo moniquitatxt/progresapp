@@ -24,14 +24,26 @@ import { signOut } from "../firebase/functions";
 import Badge from "@material-ui/core/Badge";
 import Tooltip from "@material-ui/core/Tooltip";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
 
   const numerito = 7;
 
   const handleDrawer = () => {
     setOpen(true);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -75,10 +87,27 @@ function NavBar() {
             </IconButton>
           </Tooltip>
           <Tooltip title="Perfil">
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={handleMenu}>
               <AccountCircle />
             </IconButton>
           </Tooltip>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={openMenu}
+            onClose={handleCloseMenu}
+          >
+            <MenuItem onClick={signOut}>Cerrar sesión</MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
       <SwipeableDrawer
