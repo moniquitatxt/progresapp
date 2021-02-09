@@ -14,6 +14,8 @@ import "./SignUp.css";
 import { studentSignUp } from "../firebase/functions";
 import { Link } from "react-router-dom";
 import { degrees } from "../degrees";
+import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
 
 // Pantalla de registro
 const SignUp = () => {
@@ -33,6 +35,16 @@ const SignUp = () => {
   const [errorMessages, setErrorMessages] = useState(initialData);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [connectionError, setConnectionError] = useState(false);
+
+  // Función del Snackbar
+  const handleCloseSnack = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setConnectionError(false);
+  };
 
   // Función llamada al cambiar el texto del input
   const handleChangeText = (name, value) => {
@@ -111,8 +123,9 @@ const SignUp = () => {
       } else if (error.code === "auth/weak-password") {
         errorMessages.password =
           "Ingresa una contraseña de al menos 6 caracteres, por favor";
+      } else {
+        setConnectionError(true);
       }
-      // TODO: Pensar en cómo manejar el error de desconexión
       setErrorMessages(errorMessages);
       setLoading(false);
     }
@@ -282,6 +295,26 @@ const SignUp = () => {
         <Backdrop style={{ zIndex: 1, color: "#fff" }} open={loading}>
           <CircularProgress color="inherit" />
         </Backdrop>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          open={connectionError}
+          autoHideDuration={6000}
+          onClose={handleCloseSnack}
+          message="Error de conexión"
+          action={
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleCloseSnack}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        />
       </div>
     </div>
   );
