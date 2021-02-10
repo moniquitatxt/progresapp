@@ -76,10 +76,13 @@ const MyTutoring = () => {
       </div>
       {/* Lista de tutorías */}
       {!loading &&
-        (!tutorings ? (
+        (!tutorings.length ? (
           <div>
             {/* TODO: ESTO */}
-            <p>Aún no has publicado tutorías</p>
+            <p>
+              Aún no has publicado tutorías. ¡Haz click en el botón para
+              hacerlo!
+            </p>
           </div>
         ) : (
           <div className="cListMyTutorings">
