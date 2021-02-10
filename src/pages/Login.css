@@ -97,8 +97,6 @@ p {
 @media only screen and (max-width: 600px) {
 	/* Fondo de la pantalla */
 	.cBackgroundLogin {
-		background-color: #faf3f0;
-
 		padding-bottom: 5%;
 	}
 
