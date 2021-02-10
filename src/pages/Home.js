@@ -43,6 +43,7 @@ const Home = () => {
       <div className="cTitleHome">
         <h1>ProgresApp</h1>
         <p style={{ color: "#3c3b3e", fontSize: "20pt" }}>{user.name}</p>
+      </div>
         {/* Línea divisora */}
         <div className="divHomeTutorings">
           <Divider />
@@ -95,7 +96,6 @@ const Home = () => {
             ))}
           </List>
         </div>
-      </div>
     </div>
   );
 };
