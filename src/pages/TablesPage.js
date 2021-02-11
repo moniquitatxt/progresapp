@@ -1,70 +1,133 @@
-import React from 'react';
-import MaterialTable from 'material-table'
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-import "./TablesPage.css"
+import React, { useState, useEffect } from "react";
+import MaterialTable from "material-table";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import "./TablesPage.css";
+import { useUser } from "../contexts/UserContext";
+import { getTutoringById } from "../firebase/functions";
+import { useParams, useHistory } from "react-router-dom";
+import { LinearProgress, Divider } from "@material-ui/core";
+import { degreeName } from "../degrees";
+import { updateTutoring } from "../firebase/functions";
 
 const TablesPage = () => {
+  const [tutoring, setTutoring] = useState(null);
+  const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const columnas = [
+  const user = useUser();
+  const params = useParams();
+  const history = useHistory();
+
+  useEffect(() => {
+    const unsubscribe = getTutoringById(params.id, (tutoring) => {
+      improveData(tutoring.students);
+      setStudents(tutoring.students);
+      setTutoring(tutoring);
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const improveData = (students) => {
+    students.forEach((student) => {
+      student.degree = degreeName(student.degree);
+    });
+  };
+
+  const columns = [
     {
       title: "Nombre completo",
-      field: "nombre",
+      field: "name",
     },
     {
       title: "Cédula",
-      field: "cedula",
+      field: "idDocument",
     },
     {
       title: "Teléfono",
-      field: "telefono",
+      field: "phone",
     },
     {
       title: "Carrera",
-      field: "carrera",
+      field: "degree",
     },
     {
       title: "Asistencias",
-      field: "asistencias",
+      field: "attendances",
     },
-  ]
-  // La variable max contiene el numero de estudiantes maximos, no puede ser const porque no hace efecto
+  ];
 
-  const data = [
-    {nombre: "Miguelanggelo Sumoza", cedula: "30453753", telefono: "0424-9125727", carrera: "Ing. Informatica", asistencias: 7},
-    {nombre: "Roman Rodriguez", cedula: "29547813", telefono: "0424-9695717", carrera: "Ing. Informatica", asistencias: 20},
-    {nombre: "Jose Saad", cedula: "28954172", telefono: "0414-1879524", carrera: "Ing. Informatica", asistencias: 0},
-    {nombre: "Mónica Cuaulma", cedula: "294731478", telefono: "0416-3935478", carrera: "Ing. Informatica", asistencias: 11},
-    {nombre: "Miguelanggelo Sumoza", cedula: "30453753", telefono: "0424-9125727", carrera: "Ing. Informatica", asistencias: 7},
-    {nombre: "Roman Rodriguez", cedula: "29547813", telefono: "0424-9695717", carrera: "Ing. Informatica", asistencias: 20},
-  ]
+  const increment = async (uid) => {
+    const students = tutoring.students.map((student) => {
+      if (student.uid === uid) {
+        student.attendances++;
+      }
 
-  return(
-    <div className="table-container">
-      <MaterialTable columns={columnas} data={data} title="Estudiantes" 
-      options={{
-        searchFieldStyle:{display:'none'}, headerStyle:{fontWeight:'bold'}, pageSizeOptions:[], 
-        emptyRowsWhenPaging: false, pageSize:15, actionsColumnIndex: -1
-      }}
-      localization={{header:{actions:"Control de asistencia"}}}
-      actions={[
-        {
-          icon: AddIcon,
-          tooltip: "Incrementar asistencia",
-          onClick: (event, rowData) => console.log("*aumenta* la asistencia de " + rowData.nombre),
-        },
-        {
-          icon: RemoveIcon,
-          tooltip: "Disminuir asistencia",
-          onClick: (event, rowData) => console.log("*disminuye* la asistencia de " + rowData.nombre),
-        }
-      ]}
-      components={{
-        Pagination: () => null,
-      }}
-      />
+      return students;
+    });
+
+    console.log(students);
+    await updateTutoring(tutoring.id, { students });
+  };
+
+  const decrement = (uid) => {};
+
+  if (loading) {
+    return (
+      <div>
+        <LinearProgress color="secondary" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="cBackgroundTutoringDetail">
+      <div className="pTitlesTutoring">
+        <p className="nTutoring" style={{ color: "#3c3b3e" }}>
+          {tutoring.name}
+        </p>
+      </div>
+      <div className="cInfoTutoring">
+        <Divider style={{ marginBottom: "10pt" }} />
+      </div>
+      <div className="table-container">
+        <MaterialTable
+          columns={columns}
+          data={students}
+          title="Estudiantes"
+          options={{
+            searchFieldStyle: { display: "none" },
+            headerStyle: { fontWeight: "bold" },
+            pageSizeOptions: [],
+            emptyRowsWhenPaging: false,
+            pageSize: 15,
+            actionsColumnIndex: -1,
+          }}
+          localization={{
+            header: { actions: "Control de asistencia" },
+            body: { emptyDataSourceMessage: "No hay estudiantes inscritos" },
+          }}
+          actions={[
+            {
+              icon: AddIcon,
+              tooltip: "Incrementar asistencia",
+              onClick: (event, rowData) => increment(rowData.uid),
+            },
+            {
+              icon: RemoveIcon,
+              tooltip: "Disminuir asistencia",
+              onClick: (event, rowData) => decrement(rowData.uid),
+            },
+          ]}
+          components={{
+            Pagination: () => null,
+          }}
+        />
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default TablesPage;

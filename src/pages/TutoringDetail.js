@@ -50,19 +50,18 @@ const TutoringDetail = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getTutoring();
-  }, []);
+    const unsubscribe = getTutoringById(params.id, (tutoring) => {
+      // Si soy el tutor
+      if (tutoring && user.uid === tutoring.tutor.id) {
+        history.replace(`/mistutorias/${params.id}`);
+        return;
+      }
+      setTutoring(tutoring);
+      setLoading(false);
+    });
 
-  const getTutoring = async () => {
-    const tutoring = await getTutoringById(params.id);
-    // Si soy el tutor
-    if (tutoring && user.uid === tutoring.tutor.id) {
-      history.replace(`/mistutorias/${params.id}`);
-      return;
-    }
-    setTutoring(tutoring);
-    setLoading(false);
-  };
+    return unsubscribe;
+  }, []);
 
   const join = async () => {
     if (tutoring.students.length === 15) {
@@ -73,7 +72,6 @@ const TutoringDetail = () => {
 
     try {
       await joinTutoring(tutoring, user);
-      await getTutoring();
       // TODO: MENSAJE
     } catch (error) {
       console.log(error);

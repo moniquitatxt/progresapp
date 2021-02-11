@@ -81,16 +81,20 @@ export const getTutoringsByDegree = (degree, func) => {
 };
 
 // Obtener los detalles de una tutoría
-export const getTutoringById = async (id) => {
-  const tutoringDoc = await db.collection("tutorings").doc(id).get();
-  if (!tutoringDoc.exists) {
-    return null;
-  }
-  const tutoring = tutoringDoc.data();
-  tutoring.id = tutoringDoc.id;
-  tutoring.startTime = new Date(tutoring.startTime * 1000);
-  tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
-  return tutoring;
+export const getTutoringById = (id, func) => {
+  return db
+    .collection("tutorings")
+    .doc(id)
+    .onSnapshot((tutoringDoc) => {
+      if (!tutoringDoc.exists) {
+        return null;
+      }
+      const tutoring = tutoringDoc.data();
+      tutoring.id = tutoringDoc.id;
+      tutoring.startTime = new Date(tutoring.startTime * 1000);
+      tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
+      func(tutoring);
+    });
 };
 
 // Crear una tutoría nueva
@@ -124,7 +128,7 @@ export const joinTutoring = async (tutoring, user) => {
     .doc(tutoring.id)
     .update({
       studentsIDs: [...tutoring.studentsIDs, user.uid],
-      students: [...tutoring.students, { name: user.name, attendances: 0 }],
+      students: [...tutoring.students, { ...user, attendances: 0 }],
     });
 
   return promise;
@@ -145,4 +149,9 @@ export const getTutorTutorings = (tutorID, func) => {
       });
       func(tutorings);
     });
+};
+
+// Actualizar los datos de una tutoría
+export const updateTutoring = async (tutoringID, newData) => {
+  await db.collection("tutorings").doc(tutoringID).update(newData);
 };
