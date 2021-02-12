@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import { getTutoringById } from "../firebase/functions";
+import { getTutoringById, updateTutoring } from "../firebase/functions";
 import {
   Button,
   TextField,
@@ -14,6 +14,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  DialogActions,
   DialogContentText,
   Divider,
   Avatar,
@@ -31,6 +32,8 @@ import { LogoWhatsapp } from "react-ionicons";
 import ContactIcon from "@material-ui/icons/MailOutline";
 import EditIcon from "@material-ui/icons/Edit";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { KeyboardTimePicker } from "@material-ui/pickers";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 const days = [
   "Lunes",
@@ -42,9 +45,47 @@ const days = [
   "Domingo",
 ];
 
+const otherDays = [
+  {
+    number: 0,
+    name: "Lunes",
+  },
+  {
+    number: 1,
+    name: "Martes",
+  },
+  {
+    number: 2,
+    name: "Miércoles",
+  },
+  {
+    number: 3,
+    name: "Jueves",
+  },
+  {
+    number: 4,
+    name: "Viernes",
+  },
+  {
+    number: 5,
+    name: "Sábado",
+  },
+  {
+    number: 6,
+    name: "Domingo",
+  },
+];
+
 const MyTutoringDetail = () => {
   const [tutoring, setTutoring] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [changeClassRoom, setChangeClassRoom] = useState(false);
+  const [changeGroupLink, setChangeGroupLink] = useState(false);
+  const [changeTime, setChangeTime] = useState(false);
+  const [day, setDay] = useState("");
+  const [startTime, setStartTime] = useState(new Date());
+  const [classRoom, setClassRoom] = useState("");
+  const [groupLink, setGroupLink] = useState("");
 
   const user = useUser();
   const params = useParams();
@@ -58,6 +99,14 @@ const MyTutoringDetail = () => {
 
     return unsubscribe;
   }, []);
+
+  const update = async (data) => {
+    try {
+      await updateTutoring(tutoring.id, data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (loading) {
     return (
@@ -152,7 +201,7 @@ const MyTutoringDetail = () => {
                   secondaryTypographyProps={{ align: "left" }}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end">
+                  <IconButton edge="end" onClick={() => setChangeTime(true)}>
                     <EditIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -185,7 +234,10 @@ const MyTutoringDetail = () => {
                   secondaryTypographyProps={{ align: "left" }}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end">
+                  <IconButton
+                    edge="end"
+                    onClick={() => setChangeClassRoom(true)}
+                  >
                     <EditIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -228,12 +280,142 @@ const MyTutoringDetail = () => {
                   secondaryTypographyProps={{ align: "left" }}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end">
+                  <IconButton
+                    edge="end"
+                    onClick={() => setChangeGroupLink(true)}
+                  >
                     <EditIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
               </ListItem>
             </List>
+            <Dialog
+              open={changeTime}
+              onClose={() => {
+                setChangeTime(false);
+                setDay("");
+              }}
+            >
+              <DialogTitle>Cambiar Horario de Tutoría</DialogTitle>
+              <DialogContent>
+                <div className="cInputCreate">
+                  <TextField
+                    fullWidth
+                    select
+                    label="Día de la Semana"
+                    onChange={(e) => setDay(e.target.value)}
+                    value={day}
+                  >
+                    {otherDays.map((option) => (
+                      <MenuItem key={option.number} value={option.number}>
+                        {option.name}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </div>
+                <div className="cInputCreate">
+                  <KeyboardTimePicker
+                    fullWidth
+                    label="Hora de Inicio"
+                    value={startTime}
+                    onChange={(value) => setStartTime(value)}
+                    invalidDateMessage="Formato de fecha inválida"
+                    cancelLabel="Cancelar"
+                    keyboardIcon={<AccessTimeIcon />}
+                  />
+                </div>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={() => {
+                    setChangeTime(false);
+                    setDay("");
+                  }}
+                  color="primary"
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  color="primary"
+                  disabled={day === "" || startTime == "Invalid Date"}
+                  onClick={() => update({ startTime, day })}
+                >
+                  Actualizar
+                </Button>
+              </DialogActions>
+            </Dialog>
+            <Dialog
+              open={changeClassRoom}
+              onClose={() => {
+                setChangeClassRoom(false);
+                setClassRoom("");
+              }}
+            >
+              <DialogTitle>Cambiar Aula de Tutoría</DialogTitle>
+              <DialogContent>
+                <TextField
+                  autoFocus
+                  label="Salón"
+                  placeholder="Ej: AR-22 o Virtual"
+                  fullWidth
+                  onChange={(e) => setClassRoom(e.target.value)}
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={() => {
+                    setChangeClassRoom(false);
+                    setClassRoom("");
+                  }}
+                  color="primary"
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  color="primary"
+                  disabled={classRoom === ""}
+                  onClick={() => update({ classRoom })}
+                >
+                  Actualizar
+                </Button>
+              </DialogActions>
+            </Dialog>
+            <Dialog
+              open={changeGroupLink}
+              onClose={() => {
+                setChangeGroupLink(false);
+                setGroupLink("");
+              }}
+            >
+              <DialogTitle>Cambiar Enlace de Grupo</DialogTitle>
+              <DialogContent>
+                <TextField
+                  autoFocus
+                  label="Enlace de Grupo (WhatsApp)"
+                  placeholder="Ej: https://chat.whatsapp.com/GIZ0lkQBlHGI2s9w0WJBC2"
+                  fullWidth
+                  onChange={(e) => setGroupLink(e.target.value)}
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={() => {
+                    setChangeGroupLink(false);
+                    setGroupLink("");
+                  }}
+                  color="primary"
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  color="primary"
+                  disabled={groupLink === ""}
+                  onClick={() => update({ groupLink })}
+                >
+                  Actualizar
+                </Button>
+              </DialogActions>
+            </Dialog>
           </div>
         </div>
       )}

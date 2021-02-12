@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import { getTutoringById, joinTutoring } from "../firebase/functions";
+import {
+  getTutoringById,
+  joinTutoring,
+  updateTutoring,
+} from "../firebase/functions";
 import {
   Button,
   TextField,
@@ -76,6 +80,22 @@ const TutoringDetail = () => {
     } catch (error) {
       console.log(error);
       // TODO: Colocar de alguna forma el error
+    }
+  };
+
+  const leave = async () => {
+    const index = tutoring.studentsIDs.indexOf(user.uid);
+
+    tutoring.studentsIDs.splice(index, 1);
+    tutoring.students.splice(index, 1);
+
+    try {
+      await updateTutoring(tutoring.id, {
+        studentsIDs: tutoring.studentsIDs,
+        students: tutoring.students,
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -268,6 +288,14 @@ const TutoringDetail = () => {
                       secondaryTypographyProps={{ align: "left" }}
                     />
                   </ListItem>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    color="secondary"
+                    onClick={leave}
+                  >
+                    Abandonar Tutoría
+                  </Button>
                 </div>
               ) : (
                 <div>

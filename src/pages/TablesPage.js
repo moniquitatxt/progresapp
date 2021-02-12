@@ -21,8 +21,8 @@ const TablesPage = () => {
 
   useEffect(() => {
     const unsubscribe = getTutoringById(params.id, (tutoring) => {
-      improveData(tutoring.students);
-      setStudents(tutoring.students);
+      const students = improveData(tutoring.students);
+      setStudents(students);
       setTutoring(tutoring);
       setLoading(false);
     });
@@ -31,8 +31,11 @@ const TablesPage = () => {
   }, []);
 
   const improveData = (students) => {
-    students.forEach((student) => {
-      student.degree = degreeName(student.degree);
+    return students.map((student) => {
+      const newStudent = { ...student };
+      newStudent.degree = degreeName(newStudent.degree);
+
+      return newStudent;
     });
   };
 
@@ -60,19 +63,24 @@ const TablesPage = () => {
   ];
 
   const increment = async (uid) => {
-    const students = tutoring.students.map((student) => {
+    tutoring.students.forEach((student) => {
       if (student.uid === uid) {
         student.attendances++;
       }
-
-      return students;
     });
 
-    console.log(students);
-    await updateTutoring(tutoring.id, { students });
+    await updateTutoring(tutoring.id, { students: tutoring.students });
   };
 
-  const decrement = (uid) => {};
+  const decrement = async (uid) => {
+    tutoring.students.forEach((student) => {
+      if (student.uid === uid && student.attendances > 0) {
+        student.attendances--;
+      }
+    });
+
+    await updateTutoring(tutoring.id, { students: tutoring.students });
+  };
 
   if (loading) {
     return (
