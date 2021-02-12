@@ -177,6 +177,7 @@ const CreateTutoring = ({ close }) => {
           fullWidth
           label="Enlace de Grupo (WhatsApp)"
           variant="outlined"
+          placeholder="Ej: https://chat.whatsapp.com/GIZ0lkQBlHGI2s9w0WJBC2"
           error={errorMessages.groupLink !== ""}
           helperText={errorMessages.groupLink}
           onChange={(e) => handleChangeText("groupLink", e.target.value)}

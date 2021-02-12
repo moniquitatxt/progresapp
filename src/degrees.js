@@ -1678,3 +1678,15 @@ export const subjectName = (subjectID) => {
 
   return name;
 };
+
+export const degreeName = (degreeID) => {
+  let name;
+
+  degrees.forEach((degree) => {
+    if (degree.id === degreeID) {
+      name = degree.name;
+    }
+  });
+
+  return name;
+};

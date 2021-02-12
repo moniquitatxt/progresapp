@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Tutorings from "./pages/Tutorings";
 import TutoringDetail from "./pages/TutoringDetail";
 import MyTutorings from "./pages/MyTutorings";
+import MyTutoringDetail from "./pages/MyTutoringDetail";
 import { UserProvider } from "./contexts/UserContext";
 import CustomRoute from "./components/CustomRoute";
 import "date-fns";
@@ -91,13 +92,19 @@ function App() {
                   <NavBar />
                   <TutoringDetail />
                 </CustomRoute>
-                {/* Tutorías de un totr */}
+                {/* Tutorías de un tutor */}
                 <CustomRoute exact path="/mistutorias" auth={true}>
                   <NavBar />
                   <MyTutorings />
                 </CustomRoute>
-                {/* Pagina de tabla */}
-                <CustomRoute path="/tablas" auth={true}>
+                {/* Tutorías de un tutor */}
+                <CustomRoute exact path="/mistutorias/:id" auth={true}>
+                  <NavBar />
+                  <MyTutoringDetail />
+                </CustomRoute>
+                {/* Pagina de la asistencia */}
+                <CustomRoute path="/asistencia/:id" auth={true}>
+                  <NavBar />
                   <TablesPage />
                 </CustomRoute>
                 {/* Página de registro */}

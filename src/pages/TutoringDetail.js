@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../contexts/UserContext";
-import { getTutoringById, joinTutoring } from "../firebase/functions";
+import {
+  getTutoringById,
+  joinTutoring,
+  updateTutoring,
+} from "../firebase/functions";
 import {
   Button,
   TextField,
@@ -50,19 +54,18 @@ const TutoringDetail = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getTutoring();
-  }, []);
+    const unsubscribe = getTutoringById(params.id, (tutoring) => {
+      // Si soy el tutor
+      if (tutoring && user.uid === tutoring.tutor.id) {
+        history.replace(`/mistutorias/${params.id}`);
+        return;
+      }
+      setTutoring(tutoring);
+      setLoading(false);
+    });
 
-  const getTutoring = async () => {
-    const tutoring = await getTutoringById(params.id);
-    // Si soy el tutor
-    if (tutoring && user.uid === tutoring.tutor.id) {
-      history.replace(`/mistutorias/${params.id}`);
-      return;
-    }
-    setTutoring(tutoring);
-    setLoading(false);
-  };
+    return unsubscribe;
+  }, []);
 
   const join = async () => {
     if (tutoring.students.length === 15) {
@@ -73,11 +76,26 @@ const TutoringDetail = () => {
 
     try {
       await joinTutoring(tutoring, user);
-      await getTutoring();
       // TODO: MENSAJE
     } catch (error) {
       console.log(error);
       // TODO: Colocar de alguna forma el error
+    }
+  };
+
+  const leave = async () => {
+    const index = tutoring.studentsIDs.indexOf(user.uid);
+
+    tutoring.studentsIDs.splice(index, 1);
+    tutoring.students.splice(index, 1);
+
+    try {
+      await updateTutoring(tutoring.id, {
+        studentsIDs: tutoring.studentsIDs,
+        students: tutoring.students,
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -270,6 +288,14 @@ const TutoringDetail = () => {
                       secondaryTypographyProps={{ align: "left" }}
                     />
                   </ListItem>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    color="secondary"
+                    onClick={leave}
+                  >
+                    Abandonar Tutoría
+                  </Button>
                 </div>
               ) : (
                 <div>
