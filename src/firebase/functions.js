@@ -40,7 +40,6 @@ export const studentSignUp = async (user) => {
 export const uploadFile = async (file, path) => {
   const fileRef = storage.ref().child(path);
 
-  // TODO: Tener cuidado con los posibles errores y colocar metadata
   await fileRef.put(file);
   const url = await fileRef.getDownloadURL();
   return url;

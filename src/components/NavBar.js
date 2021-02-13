@@ -25,10 +25,12 @@ import Tooltip from "@material-ui/core/Tooltip";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { useUser } from "../contexts/UserContext";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const user = useUser();
   const openMenu = Boolean(anchorEl);
 
   const numerito = 7;
@@ -140,18 +142,21 @@ function NavBar() {
           </ListItem>
           <div className="tutorOptions">
             <Divider style={{ marginTop: "5pt", marginBottom: "5pt" }} />
-            {/* TODO: Colocar un condicional para que solo le aparezca a tutores */}
-            <ListItem
-              button
-              component={Link}
-              to="/mistutorias"
-              onClick={() => setOpen(false)}
-            >
-              <ListItemIcon>
-                <Assignment />
-              </ListItemIcon>
-              <ListItemText primary="Mis Tutorías" />
-            </ListItem>
+            {user.isTutor && (
+              <div>
+                <ListItem
+                  button
+                  component={Link}
+                  to="/mistutorias"
+                  onClick={() => setOpen(false)}
+                >
+                  <ListItemIcon>
+                    <Assignment />
+                  </ListItemIcon>
+                  <ListItemText primary="Mis Tutorías" />
+                </ListItem>
+              </div>
+            )}
           </div>
           <div className="cDrawerBottom">
             <ListItem button onClick={() => signOut()}>

@@ -41,10 +41,9 @@ const MyTutoring = () => {
   useEffect(() => {
     setLoading(true);
 
-    // TODO: Poner esto cuando sea posible asignar tutores
-    // if (!user.isTutor) {
-    //   history.replace("/");
-    // }
+    if (!user.isTutor) {
+      history.replace("/");
+    }
 
     return getTutorTutorings(user.uid, (tutorings) => {
       setTutorings(tutorings);
