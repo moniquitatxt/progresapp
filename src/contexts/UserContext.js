@@ -17,6 +17,12 @@ export const UserProvider = ({ children }) => {
         try {
           setLoading(true);
           const userDoc = await db.collection("students").doc(user.uid).get();
+
+          if (!userDoc.exists) {
+            auth.signOut();
+            return;
+          }
+
           const userData = userDoc.data();
           setUser(userData);
         } catch (error) {
