@@ -78,7 +78,6 @@ const MyTutoring = () => {
       {!loading &&
         (!tutorings.length ? (
           <div>
-            {/* TODO: ESTO */}
             <p>
               Aún no has publicado tutorías. ¡Haz click en el botón para
               hacerlo!

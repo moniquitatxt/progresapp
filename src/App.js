@@ -1,4 +1,13 @@
 import React from "react";
+import "./pages/Login.css";
+import "./pages/Home.css";
+import "./pages/MyTutorings.css";
+import "./pages/SignUp.css";
+import "./pages/TablesPage.css";
+import "./pages/TutoringDetail.css";
+import "./pages/Tutorings.css";
+import "./components/CreateTutoring.css";
+import "./components/NavBar.css";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import {
   unstable_createMuiStrictModeTheme as createMuiTheme,

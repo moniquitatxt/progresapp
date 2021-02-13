@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { auth, db } from "../firebase/config";
+import Snackbar from "@material-ui/core/Snackbar";
+import Button from "@material-ui/core/Button";
 
 const UserContext = React.createContext();
 
@@ -10,6 +12,7 @@ export const useUser = () => {
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [wrongProgresApp, setWrongProgresApp] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -19,6 +22,7 @@ export const UserProvider = ({ children }) => {
           const userDoc = await db.collection("students").doc(user.uid).get();
 
           if (!userDoc.exists) {
+            setWrongProgresApp(true);
             auth.signOut();
             return;
           }
@@ -37,9 +41,35 @@ export const UserProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  // Función del Snackbar
+  const handleCloseSnack = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setWrongProgresApp(false);
+  };
+
   return (
     <UserContext.Provider value={user}>
       {!loading && children}
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        open={wrongProgresApp}
+        autoHideDuration={6000}
+        onClose={handleCloseSnack}
+        message="Estás intentando acceder con una cuenta de profesor"
+        action={
+          <a style={{textDecoration: "none"}} href="http://www.google.com">
+            <Button color="secondary" size="small">
+              Ir a ProgresApp Profesores
+            </Button>
+          </a>
+        }
+      />
     </UserContext.Provider>
   );
 };

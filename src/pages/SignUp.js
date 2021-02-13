@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import logo from "../assets/logo.svg";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
-import "./SignUp.css";
 import { studentSignUp } from "../firebase/functions";
 import { Link } from "react-router-dom";
 import { degrees } from "../degrees";
@@ -175,7 +174,7 @@ const SignUp = () => {
               ></TextField>
             </div>
           </div>
-          {/* TextField del teléfono TODO: Ver si se puede mejorar*/}
+          {/* TextField del teléfono */}
           <div className="tfInfo">
             <TextField
               fullWidth

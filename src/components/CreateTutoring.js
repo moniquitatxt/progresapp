@@ -15,7 +15,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { degreeSubjects } from "../degrees";
 import { useParams } from "react-router-dom";
 import { KeyboardTimePicker } from "@material-ui/pickers";
-import "./CreateTutoring.css";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 const days = [
@@ -100,7 +99,6 @@ const CreateTutoring = ({ close }) => {
       close();
     } catch (error) {
       console.log(error);
-      // TODO: Error de desconexión
       setErrorMessages(errorMessages);
     }
   };
@@ -127,7 +125,6 @@ const CreateTutoring = ({ close }) => {
           ))}
         </TextField>
       </div>
-      {/* TODO: No centrar tanto */}
       <div className="cInputCreate">
         <TextField
           fullWidth

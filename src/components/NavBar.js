@@ -9,7 +9,6 @@ import { ReactComponent as BarLogo } from "../assets/bar-logo.svg";
 import BarDarkMode from "@material-ui/icons/Brightness4";
 import DrawerIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import "./NavBar.css";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
