@@ -101,7 +101,10 @@ const MyTutoringDetail = () => {
 
   const update = async (data) => {
     try {
-      await updateTutoring(tutoring.id, data);
+      await updateTutoring(tutoring, data, "tutorChange", null);
+      setChangeClassRoom(false);
+      setChangeGroupLink(false);
+      setChangeTime(false);
     } catch (error) {
       console.log(error);
     }

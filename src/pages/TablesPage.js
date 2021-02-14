@@ -68,7 +68,12 @@ const TablesPage = () => {
       }
     });
 
-    await updateTutoring(tutoring.id, { students: tutoring.students });
+    await updateTutoring(
+      tutoring.id,
+      { students: tutoring.students },
+      null,
+      null
+    );
   };
 
   const decrement = async (uid) => {
@@ -78,7 +83,7 @@ const TablesPage = () => {
       }
     });
 
-    await updateTutoring(tutoring.id, { students: tutoring.students });
+    await updateTutoring(tutoring, { students: tutoring.students }, null, null);
   };
 
   if (loading) {
