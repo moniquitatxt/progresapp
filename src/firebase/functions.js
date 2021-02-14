@@ -196,7 +196,7 @@ export const updateTutoring = async (tutoring, newData, type, student) => {
   } else if (type === "tutorChange") {
     const notification = {
       title: "Cambio en tutoría",
-      message: `La tutoría de ${tutoring.name} fue modificada, revísala`,
+      message: `La tutoría de ${tutoring.name} fue modificada`,
       date: new Date(),
       read: false,
     };

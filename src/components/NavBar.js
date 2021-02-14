@@ -166,6 +166,7 @@ function NavBar() {
             open={openMenu}
             onClose={handleCloseMenu}
           >
+            <MenuItem>{user.name}</MenuItem>
             <MenuItem onClick={signOut}>Cerrar sesión</MenuItem>
           </Menu>
         </Toolbar>

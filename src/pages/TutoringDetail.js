@@ -32,6 +32,9 @@ import { faChalkboard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LogoWhatsapp } from "react-ionicons";
 import ContactIcon from "@material-ui/icons/MailOutline";
+import Alert from "@material-ui/lab/Alert";
+import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
 
 const days = [
   "Lunes",
@@ -47,6 +50,7 @@ const TutoringDetail = () => {
   const [tutoring, setTutoring] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showStudents, setShowStudents] = useState(false);
+  const [full, setFull] = useState(false);
 
   const user = useUser();
   const params = useParams();
@@ -66,10 +70,18 @@ const TutoringDetail = () => {
     return unsubscribe;
   }, []);
 
+  // Función del Snackbar
+  const handleCloseSnack = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setFull(false);
+  };
+
   const join = async () => {
-    if (tutoring.students.length === 15) {
-      // TODO: Ver de qué forma colocamos este diálgo
-      alert("Está lleno mi helmano");
+    if (tutoring.students.length === 3) {
+      setFull(true);
       return;
     }
 
@@ -327,6 +339,33 @@ const TutoringDetail = () => {
                 ))}
               </DialogContent>
             </Dialog>
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              open={full}
+              autoHideDuration={6000}
+              onClose={handleCloseSnack}
+            >
+              <Alert
+                variant="filled"
+                severity="error"
+                action={
+                  <IconButton
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setFull(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                La tutoría ya está llena
+              </Alert>
+            </Snackbar>
           </div>
         </div>
       )}
