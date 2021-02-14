@@ -51,6 +51,7 @@ const TutoringDetail = () => {
   const [loading, setLoading] = useState(true);
   const [showStudents, setShowStudents] = useState(false);
   const [full, setFull] = useState(false);
+  const [nowBelong, setNowBelong] = useState(false);
 
   const user = useUser();
   const params = useParams();
@@ -79,15 +80,24 @@ const TutoringDetail = () => {
     setFull(false);
   };
 
+  // Función del Snackbar
+  const handleCloseSnackBelong = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setNowBelong(false);
+  };
+
   const join = async () => {
-    if (tutoring.students.length === 3) {
+    if (tutoring.students.length === 15) {
       setFull(true);
       return;
     }
 
     try {
       await joinTutoring(tutoring, user);
-      // TODO: MENSAJE
+      setNowBelong(true);
     } catch (error) {
       console.log(error);
     }
@@ -364,6 +374,33 @@ const TutoringDetail = () => {
                 }
               >
                 La tutoría ya está llena
+              </Alert>
+            </Snackbar>
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              open={nowBelong}
+              autoHideDuration={6000}
+              onClose={handleCloseSnackBelong}
+            >
+              <Alert
+                variant="filled"
+                severity="success"
+                action={
+                  <IconButton
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setNowBelong(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+              >
+                Te has unido a la tutoría correctamente
               </Alert>
             </Snackbar>
           </div>
