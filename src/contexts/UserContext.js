@@ -84,7 +84,10 @@ export const UserProvider = ({ children }) => {
         message="Estás intentando acceder con una cuenta de profesor"
         action={
           // TODO: LINK REAL
-          <a style={{ textDecoration: "none" }} href="http://www.google.com">
+          <a
+            style={{ textDecoration: "none" }}
+            href="https://progresapp-profesores.web.app/"
+          >
             <Button color="secondary" size="small">
               Ir a ProgresApp Profesores
             </Button>
