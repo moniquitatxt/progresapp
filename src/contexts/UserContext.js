@@ -15,27 +15,47 @@ export const UserProvider = ({ children }) => {
   const [wrongProgresApp, setWrongProgresApp] = useState(false);
 
   useEffect(() => {
+    let unsubStudent = () => {};
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      console.log("UNSUBBED");
+      unsubStudent();
       if (user) {
         try {
           setLoading(true);
-          const userDoc = await db.collection("students").doc(user.uid).get();
 
-          if (!userDoc.exists) {
-            setWrongProgresApp(true);
-            auth.signOut();
-            return;
-          }
+          unsubStudent = db
+            .collection("students")
+            .doc(user.uid)
+            .onSnapshot((doc) => {
+              if (!doc.exists) {
+                setWrongProgresApp(true);
+                auth.signOut();
+                return;
+              }
 
-          const userData = userDoc.data();
-          setUser(userData);
+              const userData = doc.data();
+              setUser(userData);
+              setLoading(false);
+            });
+
+          // const userDoc = await db.collection("students").doc(user.uid).get();
+
+          // if (!userDoc.exists) {
+          //   setWrongProgresApp(true);
+          //   auth.signOut();
+          //   return;
+          // }
+
+          // const userData = userDoc.data();
+          // setUser(userData);
         } catch (error) {
           console.log(error.message);
         }
       } else {
+        //unsub2(); // Por si acaso antes el load false estaba fuera de todo
         setUser(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -63,8 +83,8 @@ export const UserProvider = ({ children }) => {
         onClose={handleCloseSnack}
         message="Estás intentando acceder con una cuenta de profesor"
         action={
-			// TODO: LINK REAL
-          <a style={{textDecoration: "none"}} href="http://www.google.com">
+          // TODO: LINK REAL
+          <a style={{ textDecoration: "none" }} href="http://www.google.com">
             <Button color="secondary" size="small">
               Ir a ProgresApp Profesores
             </Button>

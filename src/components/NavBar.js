@@ -75,7 +75,7 @@ function NavBar() {
   };
 
   useEffect(() => {
-    getNotifications(user.uid, (notifications) => {
+    return getNotifications(user.uid, (notifications) => {
       setNumber(countUnread(notifications));
       setNotifications(notifications);
     });
