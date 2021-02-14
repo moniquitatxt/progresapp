@@ -74,6 +74,8 @@ const theme = createMuiTheme({
     octonary: {
       main: "#3c3b3e",
     },
+    alert: "#FF9E44",
+    success: "#D82138",
   },
 });
 
