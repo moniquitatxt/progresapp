@@ -88,10 +88,15 @@ const TutoringDetail = () => {
     tutoring.students.splice(index, 1);
 
     try {
-      await updateTutoring(tutoring.id, {
-        studentsIDs: tutoring.studentsIDs,
-        students: tutoring.students,
-      });
+      await updateTutoring(
+        tutoring,
+        {
+          studentsIDs: tutoring.studentsIDs,
+          students: tutoring.students,
+        },
+        "leave",
+        user
+      );
     } catch (error) {
       console.log(error);
     }

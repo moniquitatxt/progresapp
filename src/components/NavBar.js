@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -26,14 +26,17 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { useUser } from "../contexts/UserContext";
+import { getNotifications, markAsRead } from "../firebase/functions";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const user = useUser();
   const openMenu = Boolean(anchorEl);
-
-  const numerito = 7;
+  const [number, setNumber] = useState(0);
+  const [anchorEl2, setAnchorEl2] = useState(null);
+  const openMenuNoti = Boolean(anchorEl2);
+  const [notifications, setNotifications] = useState([]);
 
   const handleDrawer = () => {
     setOpen(true);
@@ -46,6 +49,37 @@ function NavBar() {
   const handleCloseMenu = () => {
     setAnchorEl(null);
   };
+
+  const handleMenuNoti = (event) => {
+    if (notifications.length) {
+      markAsRead(user.uid);
+    }
+
+    setAnchorEl2(event.currentTarget);
+  };
+
+  const handleCloseMenuNoti = () => {
+    setAnchorEl2(null);
+  };
+
+  const countUnread = (notifications) => {
+    let count = 0;
+
+    notifications.forEach((n) => {
+      if (!n.read) {
+        count++;
+      }
+    });
+
+    return count;
+  };
+
+  useEffect(() => {
+    getNotifications(user.uid, (notifications) => {
+      setNumber(countUnread(notifications));
+      setNotifications(notifications);
+    });
+  }, []);
 
   return (
     <>
@@ -77,16 +111,41 @@ function NavBar() {
           </Link>
           <div className="separador1" />
           <Tooltip title="Notificaciones">
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={handleMenuNoti}>
               <Badge
                 color="secondary"
-                badgeContent={numerito}
-                invisible={false}
+                badgeContent={number}
+                invisible={!number}
               >
                 <NotificationsIcon />
               </Badge>
             </IconButton>
           </Tooltip>
+          <Menu
+            id="noti"
+            anchorEl={anchorEl2}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={openMenuNoti}
+            onClose={handleCloseMenuNoti}
+          >
+            {!notifications.length ? (
+              <MenuItem>No hay notificaciones</MenuItem>
+            ) : (
+              <div>
+                {notifications.map((n) => (
+                  <MenuItem key={n.id}>{n.message}</MenuItem>
+                ))}
+              </div>
+            )}
+          </Menu>
           <Tooltip title="Perfil">
             <IconButton color="inherit" onClick={handleMenu}>
               <AccountCircle />

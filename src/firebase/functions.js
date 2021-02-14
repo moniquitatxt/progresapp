@@ -120,9 +120,9 @@ export const createTutoring = (tutor, tutoring) => {
   return promise;
 };
 
-// Unirsea una tutoría
+// Unirse a una tutoría
 export const joinTutoring = async (tutoring, user) => {
-  const promise = db
+  await db
     .collection("tutorings")
     .doc(tutoring.id)
     .update({
@@ -130,7 +130,33 @@ export const joinTutoring = async (tutoring, user) => {
       students: [...tutoring.students, { ...user, attendances: 0 }],
     });
 
-  return promise;
+  const notification = {
+    title: "Nuevo estudiante",
+    message: `${user.name} se unió a tu tutoría de ${tutoring.name}`,
+    date: new Date(),
+    read: false,
+  };
+
+  await db
+    .collection("students")
+    .doc(tutoring.tutor.id)
+    .collection("notifications")
+    .add(notification);
+
+  if (tutoring.students.length == 15) {
+    const notification = {
+      title: "Tutoría llena",
+      message: `Se llenó tu tutoría de ${tutoring.name}`,
+      date: new Date(),
+      read: false,
+    };
+
+    await db
+      .collection("students")
+      .doc(tutoring.tutor.id)
+      .collection("notifications")
+      .add(notification);
+  }
 };
 
 // Obtener todas las tutorías de un tutor
@@ -151,6 +177,68 @@ export const getTutorTutorings = (tutorID, func) => {
 };
 
 // Actualizar los datos de una tutoría
-export const updateTutoring = async (tutoringID, newData) => {
-  await db.collection("tutorings").doc(tutoringID).update(newData);
+export const updateTutoring = async (tutoring, newData, type, student) => {
+  await db.collection("tutorings").doc(tutoring.id).update(newData);
+
+  if (type === "leave") {
+    const notification = {
+      title: "Cambio de estudiante",
+      message: `${student.name} abandonó tu tutoría de ${tutoring.name}`,
+      date: new Date(),
+      read: false,
+    };
+
+    await db
+      .collection("students")
+      .doc(tutoring.tutor.id)
+      .collection("notifications")
+      .add(notification);
+  } else if (type === "tutorChange") {
+    const notification = {
+      title: "Cambio en tutoría",
+      message: `La tutoría de ${tutoring.name} fue modificada, revísala`,
+      date: new Date(),
+      read: false,
+    };
+
+    tutoring.studentsIDs.forEach((id) => {
+      db.collection("students")
+        .doc(id)
+        .collection("notifications")
+        .add(notification);
+    });
+  }
+};
+
+// Obtener los notificaciones
+export const getNotifications = (userID, func) => {
+  return db
+    .collection("students")
+    .doc(userID)
+    .collection("notifications")
+    .orderBy("date", "desc")
+    .onSnapshot((snapshot) => {
+      const notifications = snapshot.docs.map((doc) => {
+        const notification = doc.data();
+        notification.id = doc.id;
+        return notification;
+      });
+      func(notifications);
+    });
+};
+
+export const markAsRead = async (userID) => {
+  const notifications = await db
+    .collection("students")
+    .doc(userID)
+    .collection("notifications")
+    .get();
+
+  notifications.forEach((doc) => {
+    db.collection("students")
+      .doc(userID)
+      .collection("notifications")
+      .doc(doc.id)
+      .update({ read: true });
+  });
 };
