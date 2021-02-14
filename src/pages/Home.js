@@ -14,6 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import TutoringIcon from "@material-ui/icons/MenuBook";
 import { format } from "date-fns";
 
+
 const days = [
   "Lunes",
   "Martes",
@@ -41,7 +42,7 @@ const Home = () => {
       <div>{loading && <LinearProgress color="secondary" />}</div>
       <div className="cTitleHome">
         <h1>ProgresApp</h1>
-        <p style={{ color: "#3c3b3e", fontSize: "20pt" }}>{user.name}</p>
+        <p style={{ color: "#3c3b3e", fontSize: "20pt" }}>Tutorías inscritas</p>
       </div>
       {/* Línea divisora */}
       <div className="divHomeTutorings">
