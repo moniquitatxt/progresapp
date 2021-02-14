@@ -14,7 +14,6 @@ import Divider from "@material-ui/core/Divider";
 import TutoringIcon from "@material-ui/icons/MenuBook";
 import { format } from "date-fns";
 
-
 const days = [
   "Lunes",
   "Martes",
@@ -53,7 +52,7 @@ const Home = () => {
         <div className="cHomeMssg">
           <p>
             Todavía no te has inscrito en ninguna tutoría. ¡Ve a{" "}
-            <em>Buscar Tutorías</em> para inscribirte en una!
+            <b>Buscar Tutorías</b> para inscribirte en una!
           </p>
         </div>
       )}
