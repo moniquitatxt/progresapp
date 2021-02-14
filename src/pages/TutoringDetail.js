@@ -329,6 +329,7 @@ const TutoringDetail = () => {
                     fullWidth
                     color="primary"
                     onClick={join}
+                    disabled={!tutoring.degrees.includes(user.degree)}
                   >
                     Unirse
                   </Button>
