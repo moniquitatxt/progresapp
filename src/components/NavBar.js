@@ -141,7 +141,7 @@ function NavBar() {
             ) : (
               <div>
                 {notifications.map((n) => (
-                  <MenuItem key={n.id}>{n.message}</MenuItem>
+                  <MenuItem style={{ whiteSpace: "pre-wrap" }} key={n.id}>{n.message}</MenuItem>
                 ))}
               </div>
             )}
