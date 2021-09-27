@@ -21,7 +21,7 @@ import {
   ListItemAvatar,
 } from "@material-ui/core";
 import ScheduleIcon from "@material-ui/icons/QueryBuilderOutlined";
-import { degrees } from "../degrees";
+import { degrees } from "../utils/degrees";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { format } from "date-fns";
 import StudentsIcon from "@material-ui/icons/PersonOutlined";
@@ -34,15 +34,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { KeyboardTimePicker } from "@material-ui/pickers";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
-const days = [
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Juéves",
-  "Viernes",
-  "Sábado",
-  "Domingo",
-];
+const days = ["Lunes", "Martes", "Miércoles", "Juéves", "Viernes", "Sábado", "Domingo"];
 
 const otherDays = [
   {
@@ -156,21 +148,14 @@ const MyTutoringDetail = () => {
                     <StudentsIcon style={{ color: "#B39490" }} />
                   </Avatar>
                 </ListItemAvatar>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  style={{ marginRight: "7pt" }}
-                />
+                <Divider orientation="vertical" flexItem style={{ marginRight: "7pt" }} />
                 <ListItemText
                   primary="Asistencia"
                   secondary={`Estudiantes ${tutoring.students.length}/15`}
                   secondaryTypographyProps={{ align: "left" }}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    onClick={() => history.push("/asistencia/" + tutoring.id)}
-                  >
+                  <IconButton edge="end" onClick={() => history.push("/asistencia/" + tutoring.id)}>
                     <ArrowForwardIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -189,17 +174,13 @@ const MyTutoringDetail = () => {
                     <ScheduleIcon style={{ color: "#fca976" }} />
                   </Avatar>
                 </ListItemAvatar>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  style={{ marginRight: "7pt" }}
-                />
+                <Divider orientation="vertical" flexItem style={{ marginRight: "7pt" }} />
                 <ListItemText
                   primary="Horario"
-                  secondary={`${days[tutoring.day]} ${format(
-                    tutoring.startTime,
+                  secondary={`${days[tutoring.day]} ${format(tutoring.startTime, "p")} - ${format(
+                    tutoring.endingTime,
                     "p"
-                  )} - ${format(tutoring.endingTime, "p")}`}
+                  )}`}
                   secondaryTypographyProps={{ align: "left" }}
                 />
                 <ListItemSecondaryAction>
@@ -219,27 +200,17 @@ const MyTutoringDetail = () => {
               >
                 <ListItemAvatar>
                   <Avatar style={{ backgroundColor: "#fb86bb40" }}>
-                    <FontAwesomeIcon
-                      icon={faChalkboard}
-                      style={{ color: "#fb86bb" }}
-                    />
+                    <FontAwesomeIcon icon={faChalkboard} style={{ color: "#fb86bb" }} />
                   </Avatar>
                 </ListItemAvatar>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  style={{ marginRight: "7pt" }}
-                />
+                <Divider orientation="vertical" flexItem style={{ marginRight: "7pt" }} />
                 <ListItemText
                   primary="Aula"
                   secondary={tutoring.classRoom}
                   secondaryTypographyProps={{ align: "left" }}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    onClick={() => setChangeClassRoom(true)}
-                  >
+                  <IconButton edge="end" onClick={() => setChangeClassRoom(true)}>
                     <EditIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -258,11 +229,7 @@ const MyTutoringDetail = () => {
                     <LogoWhatsapp color="#25d366" />
                   </Avatar>
                 </ListItemAvatar>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  style={{ marginRight: "7pt" }}
-                />
+                <Divider orientation="vertical" flexItem style={{ marginRight: "7pt" }} />
                 <ListItemText
                   primary="Link del Grupo"
                   secondary={
@@ -282,10 +249,7 @@ const MyTutoringDetail = () => {
                   secondaryTypographyProps={{ align: "left" }}
                 />
                 <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    onClick={() => setChangeGroupLink(true)}
-                  >
+                  <IconButton edge="end" onClick={() => setChangeGroupLink(true)}>
                     <EditIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
@@ -373,11 +337,7 @@ const MyTutoringDetail = () => {
                 >
                   Cancelar
                 </Button>
-                <Button
-                  color="primary"
-                  disabled={classRoom === ""}
-                  onClick={() => update({ classRoom })}
-                >
+                <Button color="primary" disabled={classRoom === ""} onClick={() => update({ classRoom })}>
                   Actualizar
                 </Button>
               </DialogActions>
@@ -409,11 +369,7 @@ const MyTutoringDetail = () => {
                 >
                   Cancelar
                 </Button>
-                <Button
-                  color="primary"
-                  disabled={groupLink === ""}
-                  onClick={() => update({ groupLink })}
-                >
+                <Button color="primary" disabled={groupLink === ""} onClick={() => update({ groupLink })}>
                   Actualizar
                 </Button>
               </DialogActions>

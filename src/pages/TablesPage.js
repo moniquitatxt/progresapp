@@ -6,7 +6,7 @@ import { useUser } from "../contexts/UserContext";
 import { getTutoringById } from "../firebase/functions";
 import { useParams, useHistory } from "react-router-dom";
 import { LinearProgress, Divider } from "@material-ui/core";
-import { degreeName } from "../degrees";
+import { degreeName } from "../utils/degrees";
 import { updateTutoring } from "../firebase/functions";
 
 const TablesPage = () => {
@@ -68,12 +68,7 @@ const TablesPage = () => {
       }
     });
 
-    await updateTutoring(
-      tutoring.id,
-      { students: tutoring.students },
-      null,
-      null
-    );
+    await updateTutoring(tutoring.id, { students: tutoring.students }, null, null);
   };
 
   const decrement = async (uid) => {

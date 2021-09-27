@@ -12,21 +12,13 @@ import {
   LinearProgress,
 } from "@material-ui/core";
 import "./Tutorings.css";
-import { degrees } from "../degrees";
+import { degrees } from "../utils/degrees";
 import Divider from "@material-ui/core/Divider";
 import TutoringIcon from "@material-ui/icons/MenuBook";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
-const days = [
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes",
-  "Sábado",
-  "Domingo",
-];
+const days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
 const Tutorings = () => {
   const user = useUser();
@@ -52,9 +44,7 @@ const Tutorings = () => {
       <div>{loading && <LinearProgress color="secondary" />}</div>
       {/*Título Tutorías*/}
       <div className="cTitleTutoring">
-        <h1>
-          Tutorías
-        </h1>
+        <h1>Tutorías</h1>
       </div>
       {/* Seleccionador de carrera */}
       <TextField
@@ -84,39 +74,32 @@ const Tutorings = () => {
               <ListItem
                 key={tutoring.id}
                 button
-                divider                
+                divider
                 style={{
                   backgroundColor: "#fff",
                   borderRadius: "5pt",
                   marginBottom: "10pt",
                   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-
                 }}
                 component={Link}
                 to={"/tutorias/" + tutoring.id}
               >
                 <ListItemAvatar>
                   <Avatar style={{ backgroundColor: "#d3485a40" }}>
-                    <TutoringIcon color="secondary"/>
+                    <TutoringIcon color="secondary" />
                   </Avatar>
                 </ListItemAvatar>
                 {/* Barra vertical */}
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  style={{ marginRight: "7pt" }}
-                />
+                <Divider orientation="vertical" flexItem style={{ marginRight: "7pt" }} />
                 <ListItemText
                   key={tutoring.id + "txt"}
                   primary={tutoring.name}
-                  secondaryTypographyProps={{color: "textSecondary", align: "left"}}
-                  secondary={`${tutoring.tutor.name}\n${
-                    days[tutoring.day]
-                  } ${format(tutoring.startTime, "p")} - ${format(
-                    tutoring.endingTime,
+                  secondaryTypographyProps={{ color: "textSecondary", align: "left" }}
+                  secondary={`${tutoring.tutor.name}\n${days[tutoring.day]} ${format(
+                    tutoring.startTime,
                     "p"
-                  )}`}
-                  style={{ whiteSpace: "pre-wrap"}}                  
+                  )} - ${format(tutoring.endingTime, "p")}`}
+                  style={{ whiteSpace: "pre-wrap" }}
                 />
               </ListItem>
             ))}

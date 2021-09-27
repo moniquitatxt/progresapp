@@ -1,5 +1,5 @@
 import { auth, db, storage } from "./config";
-import { subjectDegrees, subjectName } from "../degrees.js";
+import { subjectDegrees, subjectName } from "../utils/degrees.js";
 import { add } from "date-fns";
 
 // Inicio de sesión de estudiantes con correo y contraseña
@@ -15,10 +15,7 @@ export const signOut = () => {
 
 // Registro de estudiantes
 export const studentSignUp = async (user) => {
-  const response = await auth.createUserWithEmailAndPassword(
-    user.email,
-    user.password
-  );
+  const response = await auth.createUserWithEmailAndPassword(user.email, user.password);
 
   const uid = response.user.uid;
 
@@ -137,11 +134,7 @@ export const joinTutoring = async (tutoring, user) => {
     read: false,
   };
 
-  await db
-    .collection("students")
-    .doc(tutoring.tutor.id)
-    .collection("notifications")
-    .add(notification);
+  await db.collection("students").doc(tutoring.tutor.id).collection("notifications").add(notification);
 
   if (tutoring.students.length == 15) {
     const notification = {
@@ -151,11 +144,7 @@ export const joinTutoring = async (tutoring, user) => {
       read: false,
     };
 
-    await db
-      .collection("students")
-      .doc(tutoring.tutor.id)
-      .collection("notifications")
-      .add(notification);
+    await db.collection("students").doc(tutoring.tutor.id).collection("notifications").add(notification);
   }
 };
 
@@ -188,11 +177,7 @@ export const updateTutoring = async (tutoring, newData, type, student) => {
       read: false,
     };
 
-    await db
-      .collection("students")
-      .doc(tutoring.tutor.id)
-      .collection("notifications")
-      .add(notification);
+    await db.collection("students").doc(tutoring.tutor.id).collection("notifications").add(notification);
   } else if (type === "tutorChange") {
     const notification = {
       title: "Cambio en tutoría",
@@ -202,10 +187,7 @@ export const updateTutoring = async (tutoring, newData, type, student) => {
     };
 
     tutoring.studentsIDs.forEach((id) => {
-      db.collection("students")
-        .doc(id)
-        .collection("notifications")
-        .add(notification);
+      db.collection("students").doc(id).collection("notifications").add(notification);
     });
   }
 };
@@ -228,17 +210,9 @@ export const getNotifications = (userID, func) => {
 };
 
 export const markAsRead = async (userID) => {
-  const notifications = await db
-    .collection("students")
-    .doc(userID)
-    .collection("notifications")
-    .get();
+  const notifications = await db.collection("students").doc(userID).collection("notifications").get();
 
   notifications.forEach((doc) => {
-    db.collection("students")
-      .doc(userID)
-      .collection("notifications")
-      .doc(doc.id)
-      .update({ read: true });
+    db.collection("students").doc(userID).collection("notifications").doc(doc.id).update({ read: true });
   });
 };

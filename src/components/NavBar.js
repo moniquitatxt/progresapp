@@ -4,9 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import LogOutIcon from "@material-ui/icons/ExitToApp";
 import { ReactComponent as BarLogo } from "../assets/bar-logo.svg";
-import BarDarkMode from "@material-ui/icons/Brightness4";
 import DrawerIcon from "@material-ui/icons/Menu";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import ListItem from "@material-ui/core/ListItem";
@@ -27,6 +25,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { useUser } from "../contexts/UserContext";
 import { getNotifications, markAsRead } from "../firebase/functions";
+import InfoIcon from "@material-ui/icons/Info";
 
 function NavBar() {
   const [open, setOpen] = useState(false);
@@ -83,25 +82,12 @@ function NavBar() {
 
   return (
     <>
-      <AppBar
-        position="sticky"
-        style={{ backgroundImage: `url(${Background})` }}
-      >
+      <AppBar position="sticky" style={{ backgroundImage: `url(${Background})` }}>
         <Toolbar>
-          <IconButton
-            color="inherit"
-            style={{ marginRight: "5pt" }}
-            onClick={handleDrawer}
-          >
+          <IconButton color="inherit" style={{ marginRight: "5pt" }} onClick={handleDrawer}>
             <DrawerIcon />
           </IconButton>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            component={Link}
-            to="/"
-          >
+          <IconButton edge="start" color="inherit" aria-label="menu" component={Link} to="/">
             <SvgIcon>
               <BarLogo />
             </SvgIcon>
@@ -112,11 +98,7 @@ function NavBar() {
           <div className="separador1" />
           <Tooltip title="Notificaciones">
             <IconButton color="inherit" onClick={handleMenuNoti}>
-              <Badge
-                color="secondary"
-                badgeContent={number}
-                invisible={!number}
-              >
+              <Badge color="secondary" badgeContent={number} invisible={!number}>
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -141,7 +123,9 @@ function NavBar() {
             ) : (
               <div>
                 {notifications.map((n) => (
-                  <MenuItem style={{ whiteSpace: "pre-wrap" }} key={n.id}>{n.message}</MenuItem>
+                  <MenuItem style={{ whiteSpace: "pre-wrap" }} key={n.id}>
+                    {n.message}
+                  </MenuItem>
                 ))}
               </div>
             )}
@@ -171,30 +155,21 @@ function NavBar() {
           </Menu>
         </Toolbar>
       </AppBar>
-      <SwipeableDrawer
-        anchor="left"
-        open={open}
-        onOpen={() => setOpen(true)}
-        onClose={() => setOpen(false)}
-      >
+      <SwipeableDrawer anchor="left" open={open} onOpen={() => setOpen(true)} onClose={() => setOpen(false)}>
         <div className="drawerContainer">
-          <ListItem
-            button
-            component={Link}
-            to="/"
-            onClick={() => setOpen(false)}
-          >
+          <ListItem button component={Link} to="/" onClick={() => setOpen(false)}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Inicio" />
           </ListItem>
-          <ListItem
-            button
-            component={Link}
-            to="/tutorias"
-            onClick={() => setOpen(false)}
-          >
+          <ListItem button component={Link} to="/about" onClick={() => setOpen(false)}>
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="Acerca De" />
+          </ListItem>
+          <ListItem button component={Link} to="/tutorias" onClick={() => setOpen(false)}>
             <ListItemIcon>
               <SearchIcon />
             </ListItemIcon>
@@ -204,12 +179,7 @@ function NavBar() {
             <Divider style={{ marginTop: "5pt", marginBottom: "5pt" }} />
             {user.isTutor && (
               <div>
-                <ListItem
-                  button
-                  component={Link}
-                  to="/mistutorias"
-                  onClick={() => setOpen(false)}
-                >
+                <ListItem button component={Link} to="/mistutorias" onClick={() => setOpen(false)}>
                   <ListItemIcon>
                     <Assignment />
                   </ListItemIcon>

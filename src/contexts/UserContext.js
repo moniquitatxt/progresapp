@@ -17,7 +17,6 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     let unsubStudent = () => {};
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      console.log("UNSUBBED");
       unsubStudent();
       if (user) {
         try {
@@ -83,11 +82,7 @@ export const UserProvider = ({ children }) => {
         onClose={handleCloseSnack}
         message="Estás intentando acceder con una cuenta de profesor"
         action={
-          // TODO: LINK REAL
-          <a
-            style={{ textDecoration: "none" }}
-            href="https://progresapp-profesores.web.app/"
-          >
+          <a style={{ textDecoration: "none" }} href="https://progresapp-profesores.web.app/">
             <Button color="secondary" size="small">
               Ir a ProgresApp Profesores
             </Button>
